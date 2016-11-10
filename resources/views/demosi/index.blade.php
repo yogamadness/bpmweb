@@ -13,7 +13,7 @@
         Demosi, Mutasi, Promosi, dan Surat Sanksi
 @endsection
 
-@section('main-content')
+@section('content')
 <div class="row">
     <div class="col-xs-12">
         <div class="box">
