@@ -14,14 +14,15 @@ use App\Http\Models\SanksiHeader;
 
 class ApiController extends Controller
 {
-	private static $_testUrl = "http://128.199.130.183/api/";
+	//rubah test url ke 10.20.1.155
+	private static $_testUrl = "http://10.20.1.155/api/";
     private static $_devUrl = "http://10.20.1.155/";
     private static $_fakeUrl = "http://128.199.130.183/api/urlGetEmployee";
     private static $_online = 1; // 1 = online, 0 = offline
 
     public function __construct()
     {
-        //$this->middleware('auth');
+        $this->middleware('ceklogin');
     }
 
 	public function index()
@@ -300,7 +301,7 @@ class ApiController extends Controller
 	public static function GetEmpAutoCompleteNonPemanen()
 	{
     	$nik_national = Input::get('nik');
-    	$nik = base64_encode('/employee/search?JOB_CODE=SAMPLING BOY,SATPAM');
+    	$nik = base64_encode('/employee/search?JOB_CODE=SAMPLING BOY');
     	$url = self::$_devUrl . $nik;
 
     	$getUrl = Input::get('url');
