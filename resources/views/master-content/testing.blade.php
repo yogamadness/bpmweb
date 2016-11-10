@@ -4,6 +4,6 @@
 	<title>ucup</title>
 </head>
 <body>
-{!! $testing !!}
+Example : <br>{{$data->data}}
 </body>
 </html>

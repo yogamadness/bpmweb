@@ -25,18 +25,12 @@
       <!-- /.box-header -->
       <div class="box-body">
         <form method="post" enctype="multipart/form-data" id="formFptk" class="form-horizontal" role="form">
-          <input type="hidden" name="tipePtk" id="tipePtk">
-          @include('master-content.fptk_common')
-          <div class="fptk">
+          @include('master-content.ep-ptk-top')
+          
+          <!-- Berdasarkan TipeTpk -->
+          {{ $example }}
+          @include('master-content.ep-ptk-down')
 
-          </div>
-          <!-- @include('master.fptkensp') -->
-          <!-- @include('master.fptkensr') -->
-          <!-- @include('master.fptkensfm') -->
-          <!-- @include('master.fptkes') -->
-          <!-- @include('master.fptkmns') -->
-          <!-- @include('master.fptkms') -->
-          @include('master-content.fptk_common_bawah')
         </form>
       </div>
       <!-- /.box-body -->
@@ -103,112 +97,7 @@
     $('#head').typeahead({source:[{id: "SM", name: "SM"}, 
                 {id: "EM", name: "EM"}], 
                 autoSelect: true});
-  });
-
-  $('#ajukan').click(function(){
-    $.ajaxSetup({
-      headers: {
-          'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-      }
-    });
-
-    var ofile = document.getElementById("lampiran").files[0];
-    var formdata = new FormData();
-    formdata.append("lampiran",ofile);
-
-    var data = $("#formFptk").serializeArray();
-    $.each(data,function(key,input){
-          formdata.append(input.name,input.value);
-    });
-
-    $.ajax({
-      url   : 'fptk/save',
-      method  : 'post',
-      data  : formdata,
-      contentType: false,
-      processData: false,
-      success : function(data) {
-
-      },
-      error   : function() {
-        console.log('gagal');
-      }
-    });
-  }); 
-
-  //include form
-  $('#jabatan').change(function(){
-    // $('#fptk').html().remove();
-    var level = $('#level_jbt').val();
-    var value = this.value;
-    var low = value.toLowerCase();
-    var cek = low.match(/mandor/);
-      $.ajaxSetup({
-        headers: {
-            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-        }
-      });
-
-      if(low == 'pemanen' && level == 'ENS'){
-        $.post('fptk', { tipePtk: low })
-          .done(function(data){
-            $('.fptk').html(data);
-        });
-        
-      }
-      if(cek && level == 'ENS'){
-        $.post('fptk', { tipePtk: low })
-          .done(function(data){
-            $('.fptk').html(data);
-        });
-        
-      }
-  });
-
-  $('#level_jbt').change(function(){
-    $.ajaxSetup({
-      headers: {
-          'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-      }
-    });
-
-    var level = $('#level_jbt').val();
-    if(level == 'ENS'){
-      $.post('fptkensr')
-        .done(function(data){
-          $('.fptk').html(data);
-      });
-      
-    }
-    if(level == 'EST'){
-      $.post('fptkes')
-        .done(function(data){
-          $('.fptk').html(data);
-      });      
-    }
-    if(level == 'MST'){
-      $.post('fptkms')
-        .done(function(data){
-          $('.fptk').html(data);
-          $('#tipePtk').val('millStaff');
-      });
-      
-    }
-    if(level == 'MNS'){
-      $.post('fptkmns')
-        .done(function(data){
-          $('.fptk').html(data);
-      });      
-    }
-    if(level == 'ROS'){
-      $.post('fptkms')
-        .done(function(data){
-          $('.fptk').html(data);
-          $('#tipePtk').val('regionalOffice');
-      });      
-    }
-  });
-      
+  });      
 
 </script>
 @endsection()

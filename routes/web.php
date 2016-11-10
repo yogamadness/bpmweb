@@ -35,6 +35,12 @@ Route::post('/reload', 'login2controller@reload');
 
 //USER
 Route::get('/user', 'UserController@index');
+Route::get('/user/getdata', 'UserController@datatable');
+Route::get('/user/{ID}','UserController@getedit');
+Route::post('/user/save', 'UserController@save');
+Route::post('/user/{ID}', 'UserController@update');
+Route::delete('/user/{ID}', 'UserController@delete');
+
 //Employee routes
 
 Route::get('/employee', 'EmployeeController@index');
@@ -58,21 +64,26 @@ Route::post('/fptk', function(){
 	$tipe = $_POST['tipePtk'];
 	if($_POST['tipePtk'] == 'pemanen')
 	{
-		return view('master/fptkensp');
+		return view('master-content/fptkensp');
 	}
 	elseif ($tipe == 'mandor') 
 	{
-		return view('master/fptkensm');;
+		return view('master-content/fptkensm');
 	}
 	return null;
 });
-Route::get('/fptkensfm', function(){
-	return view('master/fptkensm');
-});
-Route::get('/fptkes', function(){
-	return view('master/fptkes');
-});
 
+Route::post('/fptkms', 'FptkController@fptkms');
+
+Route::post('/fptkensr', function(){
+	return view('master-content/fptkensr');
+});
+Route::post('/fptkes', function(){
+	return view('master-content/fptkes');
+});
+Route::post('/fptkmns', function(){
+	return view('master-content/fptkmns');
+});
 
 Route::get('/profile', function(){
 	return view('master/profile');

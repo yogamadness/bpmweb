@@ -14,7 +14,9 @@
       <div class="col-sm-3">
         <select class="form-control" name="reason_request" id="reason_request">
           <option value=" ">--Pilih--</option>
-         
+          @foreach($alasanPermintaan as $alasanPer)
+            <option>{{ $alasanPer->description }}</option>
+          @endforeach
         </select>
       </div>
     </div>

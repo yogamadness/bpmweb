@@ -24,11 +24,6 @@ class EmployeeController extends Controller
     $employee = Employee::all();
     return Datatables::of($employee)
     ->addColumn('action', function ($employee) {
-        // return '<div class="btn-group"><a class="dropdown-toggle" data-toggle="dropdown" href="#"><i class="fa fa-bars"></i></a>
-        //         <ul class="dropdown-menu pull-right">
-        //         <li><a href="#" onclick="edit('.$employee->id.')"><i class="fa fa-edit"></i> Edit</a></li>
-        //         <li><a href="#" onclick="hapus('.$employee->id.')"><i class="fa fa-trash-o"></i> Hapus</a></li>
-        //         </ul></div>';
      return '<span class="btn btn-xs btn-primary" onClick="edit2('.$employee->id.')" >
              <i class="fa fa-edit"></i> Edit </span>
              <span class="btn btn-xs btn-danger" onClick="hapus('.$employee->id.')" >
