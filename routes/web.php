@@ -111,12 +111,15 @@ Route::get('/api/urlEmpWorkStatus', 'ApiController@UrlEmpWorkStatus');
 Route::get('/api/getEmpWorkStatus', 'ApiController@GetEmpWorkStatus');
 Route::get('/api/GetEmpByNIK', 'ApiController@GetEmpByNIK');
 Route::get('/api/GetEmpAutoComplete', 'ApiController@GetEmpAutoComplete');
+Route::get('/api/GetEmpAutoCompletePemanen', 'ApiController@GetEmpAutoCompletePemanen');
+Route::get('/api/GetEmpAutoCompleteNonPemanen', 'ApiController@GetEmpAutoCompleteNonPemanen');
 Route::get('/api/GetEmpProductivity', 'ApiController@GetEmpProductivity');
 Route::get('/api/getOptCompany', 'ApiController@GetOptCompany');
 Route::get('/api/getOptBusinessArea', 'ApiController@GetOptBusinessArea');
 Route::get('/api/getOptAfdeling', 'ApiController@GetOptAfdeling');
 Route::get('/api/getOptJobCode', 'ApiController@GetOptJobCode');
 Route::get('/api/getOptJobType', 'ApiController@GetOptJobType');
+Route::get('/api/getEmpSearch', 'ApiController@GetEmpSearch');
 /* -------------- END - API ROUTES -------------- */
 
 /* -------------- PAGE ROUTES -------------- */

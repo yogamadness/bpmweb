@@ -14,15 +14,14 @@ use App\Http\Models\SanksiHeader;
 
 class ApiController extends Controller
 {
-	//rubah test url ke 10.20.1.155
 	private static $_testUrl = "http://10.20.1.155/api/";
     private static $_devUrl = "http://10.20.1.155/";
     private static $_fakeUrl = "http://128.199.130.183/api/urlGetEmployee";
-    private static $_online = 1; // 1 = online, 0 = offline
+    private static $_online = 0; // 1 = online, 0 = offline
 
     public function __construct()
     {
-        //$this->middleware('ceklogin');
+        //$this->middleware('auth');
     }
 
 	public function index()
@@ -32,7 +31,7 @@ class ApiController extends Controller
 
 	public function UrlGetEmployee()
     {
-		$data = ["data"=>["NIK_NASIONAL"=>null,"NIK"=>"21/2131/0111/51","EMPLOYEE_NAME"=>"JUNAIDI","POB"=>"TEMBILAHAN","DOB"=>"06-JUL-78","SEX"=>"MALE","RELIGION"=>"ISLAM","ADDRESS"=>"TELUK KETAPANG KEC PEMAYUNG.KAB BATANG HARI","WERKS"=>"2131","COMP_CODE"=>"21","COMP_NAME"=>"BRAHMA BINABAKTI SAWIT","EST_CODE"=>"31","EST_NAME"=>"PLASMA PEMAYUNG ESTATE","AFD_CODE"=>"A","AFD_NAME"=>"Afdeling A","SPV_NIK"=>null,"JOB_CODE"=>"PEMANEN","JOB_TYPE"=>"HV","STATUS"=>"KT","START_VALID"=>"01-JUL-16","END_VALID"=>"31-DEC-99","RES_DATE"=>null,"JOIN_DATE"=>"01-OCT-12","NO_KTP"=>null,"NPWP"=>null],"count"=>1];
+		$data = ["data"=>["NIK_NASIONAL"=>null,"NIK"=>"21/2131/0111/51","EMPLOYEE_NAME"=>"JUNAIDI","POB"=>"TEMBILAHAN","DOB"=>"06-JUL-78","SEX"=>"MALE","RELIGION"=>"ISLAM","ADDRESS"=>"TELUK KETAPANG KEC PEMAYUNG.KAB BATANG HARI","WERKS"=>"2131","COMP_CODE"=>"KK","COMP_NAME"=>"Karyawan Kontrak","EST_CODE"=>"31","EST_NAME"=>"PLASMA PEMAYUNG ESTATE","AFD_CODE"=>"A","AFD_NAME"=>"Afdeling A","SPV_NIK"=>null,"JOB_CODE"=>"PEMANEN","JOB_TYPE"=>"HV","STATUS"=>"KT","START_VALID"=>"01-JUL-16","END_VALID"=>"31-DEC-99","RES_DATE"=>null,"JOIN_DATE"=>"01-OCT-12","NO_KTP"=>null,"NPWP"=>null],"count"=>1];
 
     	return response()->json($data);
     }
@@ -57,7 +56,6 @@ class ApiController extends Controller
     	$json = file_get_contents($url);
 		$array = json_decode($json);
 		$result=array();
-		//dd($array);
 		foreach ($array->data as $value) {
         	array_push($result, array('id' => $value->id, 'text' => $value->text));
 		}
@@ -274,13 +272,13 @@ class ApiController extends Controller
     	$nik_national = Input::get('nik');
     	$nik = base64_encode('/employee/search?JOB_CODE=Pemanen');
     	$url = self::$_devUrl . $nik;
+    	if(self::$_online == 0) $url = self::$_testUrl . 'getEmpSearch';
 
     	$getUrl = Input::get('url');
     	if($getUrl == 1){
         	dd($url);
         }
 
-    	if(self::$_online == 1) {
     	$json = @file_get_contents($url);
     	if($json === false) {
         	$result = [];
@@ -293,24 +291,30 @@ class ApiController extends Controller
     			}
         	}
         }
-        } else { $result = []; }
 
     	header('Content-type: application/json');
     	return $result;
     }
 
+
+	public static function GetEmpSearch()
+    {
+    	return view('emp' );
+    }
+
 	public static function GetEmpAutoCompleteNonPemanen()
 	{
     	$nik_national = Input::get('nik');
-    	$nik = base64_encode('/employee/search?JOB_CODE=SAMPLING BOY');
+    	$nik = base64_encode('/employee/search?JOB_CODE=SAMPLING BOY,SATPAM');
     	$url = self::$_devUrl . $nik;
+    	if(self::$_online == 0) $url = self::$_testUrl . 'getEmpSearch';
+
 
     	$getUrl = Input::get('url');
     	if($getUrl == 1){
         	dd($url);
         }
 
-    	if(self::$_online == 1) {
     	$json = @file_get_contents($url);
     	if($json === false) {
         	$result = [];
@@ -323,7 +327,6 @@ class ApiController extends Controller
     			}
         	}
         }
-        } else { $result = []; }
 
     	header('Content-type: application/json');
     	return $result;
@@ -336,8 +339,8 @@ class ApiController extends Controller
     	$nik = base64_encode('/employee/getEmployee?NIK=' . urlencode($nik_national));
     	//$nik = urlencode(base64_encode('/employee/search?NIK=21'));
 
-    	$url = self::$_devUrl . $nik;
-    	//$url = self::$_fakeUrl;
+    	//$url = self::$_devUrl . $nik;
+    	$url = self::$_fakeUrl;
 
     	$getUrl = Input::get('url');
     	if($getUrl == 1){

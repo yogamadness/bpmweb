@@ -62,7 +62,7 @@ $(function () {
     checkboxClass: 'icheckbox_minimal-blue',
     radioClass: 'iradio_minimal-blue'
   });
-  $('input[name="iSuratTeguran"]').iCheck('disable'); 
+  $('input[name="iSuratTeguran"]').iCheck('disable');
   //
 @if($field_rules['iJenisPerubahanEmpWorkStatus'] !== 'disabled')
   $( "#iJenisPerubahan" )
@@ -175,24 +175,23 @@ function getDataEmp()
 				if(json == 0) {
             console.log(0);
 				} else {
-          	console.log(json[0].PSS);
-          	console.log($('input[name=iSuratTeguran]').filter('[value="7"]').val());
+          	console.log(json[0].COMP_NAME);
           	$('#iNama').val(json[0].EMPLOYEE_NAME);
           	$('#iTanggalMasukKerja').val(json[0].JOIN_DATE);
           	$('#iTanggalLahir').val(json[0].DOB);
           	$('input[name=iSuratTeguran]').filter('[value="7"]').iCheck('check');//attr('checked', true);
-            $("#iPerusahaanOld").val(json[0].COMP_NAME).trigger("change");
-            $('#iBisnisAreaOld').val(json[0].EST_NAME).trigger("change");
-            $('#iAfdelingOld').val(json[0].AFD_NAME).trigger("change");
-            $('#iJabatanOld').val(json[0].JOB_CODE).trigger("change");
-            $('#iGolonganOld').val(json[0].JOB_TYPE).trigger("change");
-            $('#iStatusKaryawanOld').val(json[0].STATUS).trigger("change");
-            $("#iPerusahaanNew").val(json[0].COMP_NAME).trigger("change");
-            $('#iBisnisAreaNew').val(json[0].EST_NAME).trigger("change");
-            $('#iAfdelingNew').val(json[0].AFD_NAME).trigger("change");
-            $('#iJabatanNew').val(json[0].JOB_CODE).trigger("change");
-            $('#iGolonganNew').val(json[0].JOB_TYPE).trigger("change");
-            $('#iStatusKaryawanNew').val(json[0].STATUS).trigger("change");
+            $("#iPerusahaanOld").select2().val(json[0].COMP_CODE).trigger("change");
+            $('#iBisnisAreaOld').select2().val(json[0].EST_CODE).trigger("change");
+            $('#iAfdelingOld').select2().val(json[0].AFD_CODE).trigger("change");
+            $('#iJabatanOld').select2().val(json[0].JOB_CODE).trigger("change");
+            $('#iGolonganOld').select2().val(json[0].JOB_TYPE).trigger("change");
+            $('#iStatusKaryawanOld').select2().val(json[0].STATUS).trigger("change");
+            $('#iPerusahaanNew').select2().val(json[0].COMP_CODE).trigger("change");
+            $('#iBisnisAreaNew').select2().val(json[0].EST_CODE).trigger("change");
+            $('#iAfdelingNew').select2().val(json[0].AFD_CODE).trigger("change");
+            $('#iJabatanNew').select2().val(json[0].JOB_CODE).trigger("change");
+            $('#iGolonganNew').select2().val(json[0].JOB_TYPE).trigger("change");
+            $('#iStatusKaryawanNew').select2().val(json[0].STATUS).trigger("change");
             $('#iUmur').val(json[0].AGE);
 				}
 			}

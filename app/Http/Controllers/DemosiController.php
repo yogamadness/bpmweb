@@ -19,10 +19,11 @@ use App\Http\Models\ProcessStatusHistory;
 
 class DemosiController extends Controller
 {
+    /*
     public function __construct()
     {
-        //$this->middleware('ceklogin');
-    }
+        $this->middleware('auth');
+    }*/
 
     public function index($notifData = null)
     {
@@ -135,11 +136,11 @@ class DemosiController extends Controller
         return view('demosi.create',[
             'getEmpWorkStatus' => ApiController::GetEmpWorkStatus(),
             'getOptEmpWorkStatus' => ApiController::GetOptEmpWorkStatus(),
-            'getOptCompany' => ApiController::GetOptCompany(),
-            'getOptBusinessArea' => ApiController::GetOptBusinessArea(),
-            'getOptAfdeling' => ApiController::GetOptAfdeling(),
-            'getOptJobCode' => ApiController::GetOptJobCode(),
-            'getOptJobType' => ApiController::GetOptJobType(),
+            'getOptCompany' => ApiController::GetOptEmpWorkStatus(), //GetOptCompany
+            'getOptBusinessArea' => ApiController::GetOptEmpWorkStatus(), //GetOptBusinessArea
+            'getOptAfdeling' => ApiController::GetOptEmpWorkStatus(), //GetOptAfdeling
+            'getOptJobCode' => ApiController::GetOptEmpWorkStatus(), //GetOptJobCode
+            'getOptJobType' => ApiController::GetOptEmpWorkStatus(), //GetOptJobType
             'input' => $input,
             'field_rules' => $field_rules,
             'form_type' => $form_type,
@@ -301,7 +302,11 @@ class DemosiController extends Controller
             'getOptAfdeling' => ApiController::GetOptAfdeling(),
             'getOptJobCode' => ApiController::GetOptJobCode(),
             'getOptJobType' => ApiController::GetOptJobType(),
+        	'urlGetEmpAutoComplete' => 'http://128.199.130.183/api/GetEmpAutoCompletePemanen',
+            'job_code' => 'pemanen',
             'input' => $input,
+            'dHeader' => $dHeader,
+            'dDetail' => $dDetail,
             'field_rules' => $field_rules,
             'form_type' => $form_type,
         ]);
@@ -464,6 +469,8 @@ class DemosiController extends Controller
             'getOptAfdeling' => ApiController::GetOptAfdeling(),
             'getOptJobCode' => ApiController::GetOptJobCode(),
             'getOptJobType' => ApiController::GetOptJobType(),
+        	'urlGetEmpAutoComplete' => 'http://128.199.130.183/api/GetEmpAutoCompletePemanen',
+            'job_code' => 'pemanen',
             'dHeader' => $dHeader,
             'dDetail' => $dDetail,
             'field_rules' => $field_rules,
