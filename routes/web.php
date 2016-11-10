@@ -29,7 +29,7 @@ Route::get('/example', function(){
 Route::get('/home', 'HomeController@index');
 
 Route::get('/loginn', 'AuthController@index');
-Route::post('/getlogin','AuthController@test');
+Route::post('/getlogin','AuthController@getlogin');
 Route::get('/logout', 'AuthController@logout');
 Route::post('/reload', 'AuthController@reload');
 

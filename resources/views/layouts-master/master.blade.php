@@ -139,6 +139,8 @@
         #page-wrapper {
             padding: 45px 10px 10px 10px;
         }
+
+        .typeahead { width: 90%; }
     </style>
 
     @yield('cascanding')
