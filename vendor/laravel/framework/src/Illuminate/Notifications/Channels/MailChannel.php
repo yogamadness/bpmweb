@@ -59,10 +59,6 @@ class MailChannel
                 $m->to($recipients);
             }
 
-            if ($message->cc) {
-                $m->cc($message->cc);
-            }
-
             $m->subject($message->subject ?: Str::title(
                 Str::snake(class_basename($notification), ' ')
             ));

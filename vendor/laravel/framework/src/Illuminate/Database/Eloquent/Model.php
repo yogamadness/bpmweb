@@ -636,7 +636,7 @@ abstract class Model implements ArrayAccess, Arrayable, Jsonable, JsonSerializab
      * Reload a fresh model instance from the database.
      *
      * @param  array|string  $with
-     * @return static|null
+     * @return $this|null
      */
     public function fresh($with = [])
     {
