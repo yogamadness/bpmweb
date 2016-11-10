@@ -1,7 +1,7 @@
 @extends('layouts-master.master')
 
 @section('cascanding')
-
+  @include('demosi.assets_css')
 @endsection
 
 @section('htmlheader_title')
@@ -32,5 +32,5 @@
 
 @endsection
 @section('javascript-form')
-
+@include('demosi.assets_js')
 @stop
