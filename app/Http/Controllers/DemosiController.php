@@ -19,10 +19,10 @@ use App\Http\Models\ProcessStatusHistory;
 
 class DemosiController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('ceklogin');
-    }
+    // public function __construct()
+    // {
+    //     $this->middleware('ceklogin');
+    // }
 
     public function index($notifData = null)
     {
