@@ -138,7 +138,8 @@
   //include form
   $('#jabatan').change(function(){
     // $('#fptk').html().remove();
-    var level = $('#level').val();
+    var level = $('#level_jbt').val();
+    alert(level);
     var value = this.value;
     var low = value.toLowerCase();
     var cek = low.match(/mandor/);
