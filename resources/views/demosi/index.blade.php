@@ -1,19 +1,22 @@
 @extends('layouts-master.master')
-
+@section('tittle', 'FPDM')
 @section('cascanding')
     <link href="{{ asset('/plugins/datatables/dataTables.bootstrap.css') }}" rel="stylesheet" type="text/css" />
-  <link href="{{ asset('plugins/datatables/extensions/Responsive/css/dataTables.responsive.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('plugins/datatables/extensions/Responsive/css/dataTables.responsive.css') }}" rel="stylesheet" type="text/css" />
     <link href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" rel="stylesheet" type="text/css" />
-@endsection
-
-@section('htmlheader_title')
-        Demosi, Mutasi, Promosi, dan Surat Sanksi
 @endsection
 @section('contentheader_title')
         Demosi, Mutasi, Promosi, dan Surat Sanksi
 @endsection
 
 @section('content')
+<div class="row">
+  <div class="col-sm-12">
+    <h1>FORMULIR PERMINTAAN TENAGA KERJA {{ Session::get('area_code') }}
+    </h1>
+
+  </div>
+</div>
 <div class="row">
     <div class="col-xs-12">
         <div class="box">
