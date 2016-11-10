@@ -138,29 +138,31 @@
   //include form
   var level = $('#level').val();
   $('#jabatan').change(function(){
-    $('#fptk').html().remove();
+    // $('#fptk').html().remove();
     var value = this.value;
     // if(level == 'Non Staff'){
-      $.ajaxSetup({
-        headers: {
-            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-        }
-      });
-      if(value == 'Pemanen'){
-        $.post('fptkensp', { tipePtk: value })
-          .done(function(data){
-            $('.fptk').html(data);
-        });
+      // $.ajaxSetup({
+      //   headers: {
+      //       'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+      //   }
+      // });
+      // if(value == 'Pemanen'){
+      //   $.post('fptkensp', { tipePtk: value })
+      //     .done(function(data){
+      //       $('.fptk').html(data);
+      //   });
         
-      }
-      else if(val.includes('mandor')){
-        $.post('fptkensp', { tipePtk: value })
-          .done(function(data){
-            $('.fptk').html(data);
-        });
+      // }
+      // else if(value.includes('mandor')){
+      //   $.post('fptkensp', { tipePtk: value })
+      //     .done(function(data){
+      //       $('.fptk').html(data);
+      //   });
         
-      }
+      // }
     // }
+
+    $ucup = value.includes('mandor');
   }); 
 
 </script>
