@@ -136,31 +136,32 @@
   }); 
 
   //include form
-  var level = $('#level').val();
   $('#jabatan').change(function(){
     // $('#fptk').html().remove();
+    var level = $('#level').val();
     var value = this.value;
-    // if(level == 'Non Staff'){
-      // $.ajaxSetup({
-      //   headers: {
-      //       'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-      //   }
-      // });
-      // if(value == 'Pemanen'){
-      //   $.post('fptkensp', { tipePtk: value })
-      //     .done(function(data){
-      //       $('.fptk').html(data);
-      //   });
+    var low = value.toLowerCase();
+    var cek = low.match(/mandor/);
+      $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+      });
+
+      if(low == 'pemanen'){
+        $.post('fptk', { tipePtk: low })
+          .done(function(data){
+            $('.fptk').html(data);
+        });
         
-      // }
-      // else if(value.includes('mandor')){
-      //   $.post('fptkensp', { tipePtk: value })
-      //     .done(function(data){
-      //       $('.fptk').html(data);
-      //   });
+      }
+      if(cek){
+        $.post('fptk', { tipePtk: low })
+          .done(function(data){
+            $('.fptk').html(data);
+        });
         
-      // }
-    // }
+      }
 
     $ucup = value.includes('mandor');
   }); 

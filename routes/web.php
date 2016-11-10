@@ -51,14 +51,17 @@ Route::get('/fptk_common', function(){
 Route::get('/fptk_common_bawah', function(){
 	return view('master/fptk_common_bawah');
 });
-Route::post('/fptkensp', function(){
-	if($_POST['tipePtk'] == 'Pemanen'){
+Route::post('/fptk', function(){
+	$tipe = $_POST['tipePtk'];
+	if($_POST['tipePtk'] == 'Pemanen')
+	{
 		return view('master/fptkensp');
 	}
+	elseif ($tipe == 'mandor') 
+	{
+		return view('master/fptkensr');
+	}
 	return null;
-});
-Route::get('/fptkensr', function(){
-	return view('master/fptkensr');
 });
 Route::get('/fptkensfm', function(){
 	return view('master/fptkensfm');
@@ -90,3 +93,5 @@ Route::get('/template2', function(){
 
 /*Using SB-ADMIN*/
 Route::get('fptka', 'FptkController@index2');
+
+Route::get('/respons', 'BalikanStringHtmlController@index');
