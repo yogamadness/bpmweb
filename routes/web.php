@@ -56,18 +56,18 @@ Route::get('/fptk_common_bawah', function(){
 });
 Route::post('/fptk', function(){
 	$tipe = $_POST['tipePtk'];
-	if($_POST['tipePtk'] == 'Pemanen')
+	if($_POST['tipePtk'] == 'pemanen')
 	{
 		return view('master/fptkensp');
 	}
 	elseif ($tipe == 'mandor') 
 	{
-		return view('master/fptkensr');
+		return view('master/fptkensm');;
 	}
 	return null;
 });
 Route::get('/fptkensfm', function(){
-	return view('master/fptkensfm');
+	return view('master/fptkensm');
 });
 Route::get('/fptkes', function(){
 	return view('master/fptkes');
@@ -84,14 +84,6 @@ Route::get('/', function(){
 
 Route::get('/login', function(){
 	return view('master/login');
-});
-
-Route::get('/template1', function(){
-	return view('master/sb-admin');
-});
-
-Route::get('/template2', function(){
-	return view('master/sb-admin-2');
 });
 
 /*Using SB-ADMIN*/

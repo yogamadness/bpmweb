@@ -9,6 +9,6 @@ class BalikanStringHtmlController extends Controller
     public function index()
     {
     	$testing = "<html><body><h3>Ucup</h3></body></html>";
-        return $testing;
+        return view('master-content/testing');
     }
 }

@@ -25,7 +25,7 @@
       <!-- /.box-header -->
       <div class="box-body">
         <form method="post" enctype="multipart/form-data" id="formFptk" class="form-horizontal" role="form">
-          @include('master.fptk_common')
+          @include('master-content.fptk_common')
           <div class="fptk">
 
           </div>
@@ -35,7 +35,7 @@
           <!-- @include('master.fptkes') -->
           <!-- @include('master.fptkmns') -->
           <!-- @include('master.fptkms') -->
-          @include('master.fptk_common_bawah')
+          @include('master-content.fptk_common_bawah')
         </form>
       </div>
       <!-- /.box-body -->
@@ -139,7 +139,6 @@
   $('#jabatan').change(function(){
     // $('#fptk').html().remove();
     var level = $('#level_jbt').val();
-    alert(level);
     var value = this.value;
     var low = value.toLowerCase();
     var cek = low.match(/mandor/);
@@ -157,6 +156,13 @@
         
       }
       if(cek && level == 'ENS'){
+        $.post('fptk', { tipePtk: low })
+          .done(function(data){
+            $('.fptk').html(data);
+        });
+        
+      }
+      if(level == 'ENS'){
         $.post('fptk', { tipePtk: low })
           .done(function(data){
             $('.fptk').html(data);
