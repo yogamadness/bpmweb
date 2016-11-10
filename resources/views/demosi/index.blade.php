@@ -12,7 +12,7 @@
 @section('content')
 <div class="row">
   <div class="col-sm-12">
-    <h1>FORMULIR PERMINTAAN TENAGA KERJA {{ Session::get('area_code') }}
+    <h1>Demosi, Mutasi, Promosi, dan Surat Sanksi
     </h1>
 
   </div>

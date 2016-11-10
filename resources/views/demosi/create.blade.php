@@ -1,12 +1,9 @@
 @extends('layouts-master.master')
-
+@section('tittle', 'FPDM')
 @section('cascanding')
   @include('demosi.assets_css')
 @endsection
 
-@section('htmlheader_title')
-  Formulir Perubahan Status Karyawan
-@endsection
 @section('contentheader_title')
   Formulir Perubahan Status Karyawan
 @endsection
