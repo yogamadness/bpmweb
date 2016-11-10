@@ -13,13 +13,20 @@ function ajaxSetup(){
 }
 
 function edit(id){
-     $('#save').hide();
+     $('#simpan').hide();
      $('#update').show();
       $.ajax({
           type: "get",
           url: url + '/' + id,
           success: function(data) {
-            
+            $('#user_id').val(data.user_id);
+            $('#username').val(data.username);
+            $('#nik').val(data.nik);
+            $('#nama').val(data.nama);
+            $('#email').val(data.email);
+            $('#job_code').val(data.job_code);
+            $('#area_code').val(data.area_code);
+            $('#ref_role').val(data.ref_role);
           },
           error: function(data) {
               alert('Cek Your Connection Data', data);
@@ -95,6 +102,9 @@ $("#btn-update").click(function() {
 });
 
 function hide() {
+  $('.form-control').val("");
+  $('#update').hide();
+  $('#simpan').show();
   localStorage.clear();
 }
 

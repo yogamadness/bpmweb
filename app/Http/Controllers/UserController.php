@@ -22,9 +22,9 @@ class UserController extends Controller
 		$user = TR_Users::all();
 		return Datatables::of($user)
 		->addColumn('action', function ($user) {
-		 return '<span class="btn btn-xs btn-primary" onClick="edit('.$user->id.')" >
+		 return '<span class="btn btn-xs btn-primary" onClick="edit('.$user->user_id.')" >
 		         <i class="fa fa-edit"></i> Edit </span>
-		         <span class="btn btn-xs btn-danger" onClick="hapus('.$user->id.')" >
+		         <span class="btn btn-xs btn-danger" onClick="hapus('.$user->user_id.')" >
              <i class="fa fa-remove"></i> Hapus </span>';
         })->make(true);
   	}

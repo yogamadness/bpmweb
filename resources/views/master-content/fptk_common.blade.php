@@ -61,10 +61,10 @@
           Jumlah Kebutuhan
         </span>
       </label>
-      <div class="col-sm-4">
+      <div class="col-sm-4 col-xs-8">
         <input type="text" placeholder="Jumlah Kebutuhan" id="number_of_needs" class="form-control" name="number_of_needs">
       </div>
-      <label class="col-sm-2 control-label">
+      <label class="col-sm-2 col-xs-4 control-label">
         <span class="pull-left">
           Orang
         </span>
@@ -121,12 +121,12 @@
       </div>
     </div>
     <div class="form-group">
-      <label class="col-sm-4 control-label" for="start_contract">
+      <label class="col-sm-4 col-xs-12 control-label" for="start_contract">
         <span class="pull-left">
           Masa Kontrak
         </span>
       </label>
-      <div class="col-sm-4">
+      <div class="col-sm-4 col-xs-6">
         <div class="input-group date" id="start_contract">
           <input type="text" class="form-control" id="start_contract" placeholder="Mulai" name="start_contract"> 
           <span class="input-group-addon">
@@ -134,7 +134,7 @@
           </span>
         </div>
       </div>
-      <div class="col-sm-4">
+      <div class="col-sm-4 col-xs-6">
         <div class="input-group date" id="end_contract">
           <input type="text" class="form-control" id="end_contract" placeholder="Berakhir" name="end_contract"> 
           <span class="input-group-addon">

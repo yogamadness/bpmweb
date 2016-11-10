@@ -8,7 +8,7 @@ use App\CurrentLogin;
 use App\TAPAuth\Auth;
 use Ramsey\Uuid\Uuid;
 
-class login2Controller extends Controller
+class Login2Controller extends Controller
 {
  	function index(){
 		return view('login');
@@ -73,7 +73,7 @@ class login2Controller extends Controller
         ['USER_ID', '=', Session::get('user_id')],
         ['SESSION_ID', '=', Session::get('session_id')]
       ])->get();
-      
+
       if ($result->count() >= 1) {
         $data['success'] = true;
         return response()->json($data);

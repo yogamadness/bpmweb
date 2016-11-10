@@ -72,13 +72,11 @@
 
     $('#start_contract').datetimepicker({
         format: 'DD-MMM-YYYY',
-        defaultDate: new Date(),
         minDate: today
     });
 
     $('#end_contract').datetimepicker({
         format: 'DD-MMM-YYYY',
-        defaultDate: new Date(),
         minDate: today
     });
 
@@ -198,6 +196,7 @@
       $.post('fptkmns')
         .done(function(data){
           $('.fptk').html(data);
+          $('#tipePtk').val('millNonStaff');
       });      
     }
     if(level == 'ROS'){

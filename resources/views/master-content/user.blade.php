@@ -62,7 +62,6 @@
                 </div>
               </div>
             </div>
-
             <div class="col-md-6">
               <div class="form-group">
                 <label class="col-sm-6 control-label" for="job_code">
@@ -100,7 +99,7 @@
       </div>
       <!-- /.box-body -->
       <div class="box-footer">
-      <button class="btn btn-default" type="button">Batal</button>
+      <button class="btn btn-default" type="button" onclick="hide()">Batal</button>
       <button class="btn btn-success pull-right" type="button" id="simpan">Simpan</button>
       <button class="btn btn-success pull-right" type="button" id="update">Update</button>
       </div><!-- /.box-footer -->

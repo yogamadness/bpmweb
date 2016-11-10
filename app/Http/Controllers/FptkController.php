@@ -93,22 +93,21 @@ class FptkController extends Controller
                     )
                 );
             }
-            elseif($requests->tipePtk == 'regionalOffice'){
-                //insert Mill Staff
-                $dataDetail = Ro::create(
+            elseif($requests->tipePtk == 'millNonStaff'){
+                //insert Mill Non Staff
+                $dataDetail = Mill::create(
                     array('no_document_ptk' => $data->doc_code,
-                        'reason_request' => $requests->reason_request,
-                        'employee_before' => $requests->employee_before,
-                        'info' => $requests->description,
-                        'mpe_total' => $requests->mpe_total,
-                        'candidat_recommended' => $requests->employee_recommendation,
-                        'employee_replaced' => $requests->employee_from,
-                        'reason_recommendation' => $requests->reason_recommendation
+                        'employee_recommendation' => $requests->employee_recommendation,
+                        'employee_from' => $requests->employee_from,
+                        'reason_recommendation' => $requests->reason_recommendation,
+                        'atended' => $requests->atented,
+                        'all_overtime_by_job' => $requests->all_overtime_by_job,
+                        'all_overtime' => $requests->all_overtime
                     )
                 );
             }
-            elseif($requests->tipePtk == 'millNonStaff'){
-                //insert Mill Staff
+            elseif($requests->tipePtk == 'regionalOffice'){
+                //insert Regional Office
                 $dataDetail = Ro::create(
                     array('no_document_ptk' => $data->doc_code,
                         'reason_request' => $requests->reason_request,

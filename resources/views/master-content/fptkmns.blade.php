@@ -90,6 +90,8 @@
       <div class="col-sm-3">
         <select class="form-control" name="employee_recommendation" id="employee_recommendation">
           <option>--Pilih--</option>
+          <option>YA</option>
+          <option>TIDAK</option>
         </select>
       </div>
     </div>
@@ -102,6 +104,8 @@
       <div class="col-sm-3">
         <select class="form-control" name="employee_from" id="employee_from">
           <option>--Pilih--</option>
+          <option>INTERNAL</option>
+          <option>EKSTERNAL</option>
         </select>
       </div>
     </div>

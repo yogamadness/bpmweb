@@ -26,20 +26,19 @@ Route::get('/example', function(){
 	return view('master-content/blank');
 });
 
-//Route::get('/', 'EmployeeController@index');
 Route::get('/home', 'HomeController@index');
-Route::get('/loginn', 'login2controller@index');
-Route::post('/getlogin','login2controller@getlogin');
-Route::get('/logout', 'login2controller@logout');
-Route::post('/reload', 'login2controller@reload');
+Route::get('/loginn', 'Login2controller@index');
+Route::post('/getlogin','Login2controller@getlogin');
+Route::get('/logout', 'Login2controller@logout');
+Route::post('/reload', 'Login2controller@reload');
 
 //USER
 Route::get('/user', 'UserController@index');
 Route::get('/user/getdata', 'UserController@datatable');
-Route::get('/user/{ID}','UserController@getedit');
+Route::get('/user/{id}','UserController@getedit');
 Route::post('/user/save', 'UserController@save');
-Route::post('/user/{ID}', 'UserController@update');
-Route::delete('/user/{ID}', 'UserController@delete');
+Route::post('/user/{id}', 'UserController@update');
+Route::delete('/user/{id}', 'UserController@delete');
 
 //Employee routes
 
@@ -66,7 +65,7 @@ Route::post('/fptk', function(){
 	{
 		return view('master-content/fptkensp');
 	}
-	elseif ($tipe == 'mandor') 
+	elseif ($tipe == 'mandor')
 	{
 		return view('master-content/fptkensm');
 	}
