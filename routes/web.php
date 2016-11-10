@@ -100,3 +100,30 @@ Route::get('/login', function(){
 Route::get('fptk', 'FptkController@index2');
 
 Route::get('/respons', 'BalikanStringHtmlController@index');
+
+/*
+* PDM and PSS
+*/
+/* -------------- API ROUTES -------------- */
+//getEmpWorkStatus
+Route::get('/api/urlGetEmployee', 'ApiController@UrlGetEmployee');
+Route::get('/api/urlEmpWorkStatus', 'ApiController@UrlEmpWorkStatus');
+Route::get('/api/getEmpWorkStatus', 'ApiController@GetEmpWorkStatus');
+Route::get('/api/GetEmpByNIK', 'ApiController@GetEmpByNIK');
+Route::get('/api/GetEmpAutoComplete', 'ApiController@GetEmpAutoComplete');
+Route::get('/api/GetEmpProductivity', 'ApiController@GetEmpProductivity');
+Route::get('/api/getOptCompany', 'ApiController@GetOptCompany');
+Route::get('/api/getOptBusinessArea', 'ApiController@GetOptBusinessArea');
+Route::get('/api/getOptAfdeling', 'ApiController@GetOptAfdeling');
+Route::get('/api/getOptJobCode', 'ApiController@GetOptJobCode');
+Route::get('/api/getOptJobType', 'ApiController@GetOptJobType');
+/* -------------- END - API ROUTES -------------- */
+
+/* -------------- PAGE ROUTES -------------- */
+//Form: Demosi
+Route::get('/demosi/approve/{id}','DemosiController@approve');
+Route::get('/demosi/store_approve','DemosiController@store_approve');
+Route::get('/demosi/create_pemanen','DemosiController@create_pemanen');
+Route::get('/demosi/create_non_pemanen','DemosiController@create_non_pemanen');
+Route::resource('demosi', 'DemosiController');
+Route::resource('sanksi', 'SanksiController');
