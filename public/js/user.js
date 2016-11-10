@@ -6,9 +6,9 @@ $(document).ready(function() {
 
 function ajaxSetup(){
   $.ajaxSetup({
-      headers: {
-          'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
-      }
+    headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    }
   });
 }
 
@@ -53,18 +53,16 @@ function hapus(ID) {
     });
 }
 
-$("#btn-save").click(function() {
+$("#simpan").click(function() {
     ajaxSetup();
-    var formData = $("#form-employees").serialize();
+    var formData = $("#form-user").serialize();
     $.ajax({
         type: "POST",
         url: url + '/save',
         data: formData,
         success: function(data) {
           if (data.success ==  true ) {
-            $("#employees-table").DataTable().ajax.reload();
-              $('#formtambah').hide('slow');
-              $('#btn-tambah').show('slow');
+            $("#user-table").DataTable().ajax.reload();
               hide();
           }else {
               alert("Gagal");
@@ -76,29 +74,28 @@ $("#btn-save").click(function() {
     });
 });
 
-$("#btn-update").click(function() {
-    ajaxSetup();
-    var ID = $('#txtid').val();
-    var formData = $("#form-employees").serialize();
-    console.log(formData);
-    $.ajax({
-        type: "POST",
-        url: url + '/' + ID,
-        data: formData,
-        success: function(data) {
-          if (data.success ==  true ) {
-            $("#employees-table").DataTable().ajax.reload()
-            hide();
-            $('#formtambah').hide('slow');
-            $('#btn-tambah').show('slow');
-          }else {
-              alert("Gagal");
-          }
-        },
-        error: function(data) {
-              alert('Cek Your Connection Database', data);
+$("#update").click(function() {
+  alert("masuk");
+  ajaxSetup();
+  var ID = $('#user_id').val();
+  var formData = $("#form-user").serialize();
+  console.log(formData);
+  $.ajax({
+      type: "POST",
+      url: url + '/' + ID,
+      data: formData,
+      success: function(data) {
+        if (data.success ==  true ) {
+          $("#user-table").DataTable().ajax.reload()
+          hide();
+        }else {
+            alert("Gagal");
         }
-    });
+      },
+      error: function(data) {
+            alert('Cek Your Connection Database', data);
+      }
+  });
 });
 
 function hide() {

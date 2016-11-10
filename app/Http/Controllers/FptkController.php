@@ -136,6 +136,7 @@ class FptkController extends Controller
                         'ha_tm' => $requests->ha_tm,
                         'ha_panen' => $requests->ha_panen,
                         'ha_tbm' => $requests->ha_tbm,
+                        'ha_tanam' => $requests->ha_tanam,
                         'mpe' => $requests->mpe,
                         'candidate_recommended' => $requests->candidate_recommended,
                         'employee_replaced' => $requests->employee_from,

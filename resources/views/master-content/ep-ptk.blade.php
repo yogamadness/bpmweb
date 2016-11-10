@@ -28,7 +28,9 @@
           @include('master-content.ep-ptk-top')
           
           <!-- Berdasarkan TipeTpk -->
-          {{ $example }}
+          <!-- {{ $example }} -->
+          <!-- {{ Session::get('role_code')->all() }} -->
+
           @include('master-content.ep-ptk-down')
 
         </form>

@@ -6,37 +6,35 @@
 <div class="row">
   <div class="col-md-12">
     <div class="form-group">
-      <label class="col-sm-3 control-label" for="levelJabatan">
+      <label class="col-sm-3 control-label" for="reason_request">
         <span class="pull-left">
           Alasan Permintaan
         </span>
       </label>
       <div class="col-sm-3">
-        <select class="form-control">
+        <select class="form-control" id="reason_request" name="reason_request">
           <option>--Pilih--</option>
         </select>
       </div>
     </div>
     <div class="form-group">
-      <label class="col-sm-3 control-label" for="jabatan">
+      <label class="col-sm-3 control-label" for="employee_before">
         <span class="pull-left">
           Nama Karyana yang Digantikan
         </span>
       </label>
         <div class="col-sm-5">
-	        <input type="text" placeholder="Fakultas/Jurusan" id="jabatan" class="form-control">
+	        <input type="text" placeholder="Fakultas/Jurusan" id="employee_before" name="employee_before" class="form-control">
 	    </div>
     </div>
     <div class="form-group">
-      <label class="col-sm-3 control-label" for="jabatan">
+      <label class="col-sm-3 control-label" for="description">
         <span class="pull-left">
           Keterangan
         </span>
       </label>
       <div class="col-sm-6">
-        <textarea class="form-control">
-        	
-        </textarea>
+        <textarea class="form-control" id="description" name="description"></textarea>
       </div>
     </div>
   </div>
@@ -55,13 +53,13 @@
 <div class="row">
 	<div class="col-sm-6">
 		<div class="form-group">
-		    <label class="col-sm-5 control-label" for="jumlahKebutuhan">
+		    <label class="col-sm-5 control-label" for="ha_tanam">
 		        <span class="pull-left">
 		          	Ha Tanam
 		        </span>
 		      </label>
 		      <div class="col-sm-3">
-		        <input type="text" placeholder="Ha" id="jumlahKebutuhan" class="form-control">
+		        <input type="text" placeholder="Ha" id="ha_tanam" name="ha_tanam" class="form-control">
 		      </div>
 		      <label class="col-sm-2 control-label">
 		        <span class="pull-left">
@@ -70,13 +68,13 @@
 		    </label>
 		</div>
 		<div class="form-group">
-		    <label class="col-sm-5 control-label" for="jumlahKebutuhan">
+		    <label class="col-sm-5 control-label" for="ha_tm">
 		        <span class="pull-left">
 		          	Ha TM
 		        </span>
 		    </label>
 		    <div class="col-sm-3">
-		        <input type="text" placeholder="Ha" id="jumlahKebutuhan" class="form-control">
+		        <input type="text" placeholder="Ha" id="ha_tm" name="ha_tm" class="form-control">
 		    </div>
 		    <label class="col-sm-2 control-label">
 		        <span class="pull-left">
@@ -85,13 +83,13 @@
 		    </label>
 		</div>
 		<div class="form-group">
-		    <label class="col-sm-5 control-label" for="jumlahKebutuhan">
+		    <label class="col-sm-5 control-label" for="ha_panen">
 		        <span class="pull-left">
 		          	Ha Panen
 		        </span>
 		    </label>
 		    <div class="col-sm-3">
-		        <input type="text" placeholder="Ha" id="jumlahKebutuhan" class="form-control">
+		        <input type="text" placeholder="Ha" id="ha_panen" name="ha_panen" class="form-control">
 		    </div>
 		    <label class="col-sm-2 control-label">
 		        <span class="pull-left">
@@ -100,13 +98,13 @@
 		    </label>
 		</div>
 		<div class="form-group">
-		    <label class="col-sm-5 control-label" for="jumlahKebutuhan">
+		    <label class="col-sm-5 control-label" for="production">
 		        <span class="pull-left">
 		          	Produksi
 		        </span>
 		    </label>
 		    <div class="col-sm-3">
-		        <input type="text" placeholder="Ton" id="jumlahKebutuhan" class="form-control">
+		        <input type="text" placeholder="Ton" id="production" name="production" class="form-control">
 		    </div>
 		    <label class="col-sm-2 control-label">
 		        <span class="pull-left">
@@ -131,105 +129,108 @@
 	    </div>
 	    <div class="col-sm-1" style="padding-right: 5px;margin-left: 15px;">
 	    	<div class="form-group">
-	    		<label>M+5</label>
-	        	<input type="text" placeholder="" id="jumlahKebutuhan" class="form-control">
+	    		<label>M+1</label>
+	        	<input type="text" placeholder="" id="ha_panen_m1" name="ha_panen_m1" class="form-control">
+	        </div>
+	    </div>
+	    <div class="col-sm-1" style="padding-right: 5px;margin-left: 15px;">
+	    	<div class="form-group">
+	    		<label>M+2</label>
+	        	<input type="text" placeholder="" id="ha_panen_m2" name="ha_panen_m2" class="form-control">
+	        </div>
+	    </div>
+	    <div class="col-sm-1" style="padding-right: 5px;margin-left: 15px;">
+	    	<div class="form-group">
+	    		<label>M+3</label>
+	        	<input type="text" placeholder="" id="ha_panen_m3" name="ha_panen_m3" class="form-control">
+	        </div>
+	    </div>
+	    <div class="col-sm-1" style="padding-right: 5px;margin-left: 15px;">
+	    	<div class="form-group">
+	    		<label>M+4</label>
+	        	<input type="text" placeholder="" id="ha_panen_m4" name="ha_panen_m4" class="form-control">
 	        </div>
 	    </div>
 	    <div class="col-sm-1" style="padding-right: 5px;margin-left: 15px;">
 	    	<div class="form-group">
 	    		<label>M+5</label>
-	        	<input type="text" placeholder="" id="jumlahKebutuhan" class="form-control">
+	        	<input type="text" placeholder="" id="ha_panen_m5" name="ha_panen_m5" class="form-control">
 	        </div>
 	    </div>
 	    <div class="col-sm-1" style="padding-right: 5px;margin-left: 15px;">
 	    	<div class="form-group">
-	    		<label>M+5</label>
-	        	<input type="text" placeholder="" id="jumlahKebutuhan" class="form-control">
-	        </div>
-	    </div>
-	    <div class="col-sm-1" style="padding-right: 5px;margin-left: 15px;">
-	    	<div class="form-group">
-	    		<label>M+5</label>
-	        	<input type="text" placeholder="" id="jumlahKebutuhan" class="form-control">
-	        </div>
-	    </div>
-	    <div class="col-sm-1" style="padding-right: 5px;margin-left: 15px;">
-	    	<div class="form-group">
-	    		<label>M+5</label>
-	        	<input type="text" placeholder="" id="jumlahKebutuhan" class="form-control">
-	        </div>
-	    </div>
-	    <div class="col-sm-1" style="padding-right: 5px;margin-left: 15px;">
-	    	<div class="form-group">
-	    		<label>M+5</label>
-	        	<input type="text" placeholder="" id="jumlahKebutuhan" class="form-control">
+	    		<label>M+6</label>
+	        	<input type="text" placeholder="" id="ha_panen_m6" name="ha_panen_m6" class="form-control">
 	        </div>
 	    </div>
 	</div>
+
 	<div class="col-sm-6">
 		<div class="col-sm-3" style="padding-top: 10px;">
 	    	<label>Produksi</label>
 	    </div>
 	    <div class="col-sm-1" style="padding-right: 5px;margin-left: 15px;">
 	    	<div class="form-group">
-	        	<input type="text" placeholder="" id="jumlahKebutuhan" class="form-control">
+	        	<input type="text" placeholder="" id="prod_1" name="prod_1" class="form-control">
 	        </div>
 	    </div>
 	    <div class="col-sm-1" style="padding-right: 5px;margin-left: 15px;">
 	    	<div class="form-group">
-	        	<input type="text" placeholder="" id="jumlahKebutuhan" class="form-control">
+	        	<input type="text" placeholder="" id="prod_2" name="prod_2" class="form-control">
 	        </div>
 	    </div>
 	    <div class="col-sm-1" style="padding-right: 5px;margin-left: 15px;">
 	    	<div class="form-group">
-	        	<input type="text" placeholder="" id="jumlahKebutuhan" class="form-control">
+	        	<input type="text" placeholder="" id="prod_3" name="prod_3" class="form-control">
 	        </div>
 	    </div>
 	    <div class="col-sm-1" style="padding-right: 5px;margin-left: 15px;">
 	    	<div class="form-group">
-	        	<input type="text" placeholder="" id="jumlahKebutuhan" class="form-control">
+	        	<input type="text" placeholder="" id="prod_4" name="prod_4" class="form-control">
 	        </div>
 	    </div>
 	    <div class="col-sm-1" style="padding-right: 5px;margin-left: 15px;">
 	    	<div class="form-group">
-	        	<input type="text" placeholder="" id="jumlahKebutuhan" class="form-control">
+	        	<input type="text" placeholder="" id="prod_5" name="prod_5" class="form-control">
 	        </div>
 	    </div>
 	    <div class="col-sm-1" style="padding-right: 5px;margin-left: 15px;">
 	    	<div class="form-group">
-	        	<input type="text" placeholder="" id="jumlahKebutuhan" class="form-control">
+	        	<input type="text" placeholder="" id="prod_6" name="prod_6" class="form-control">
 	        </div>
 	    </div>
 	</div>
+
 	<div class="col-sm-12">
 		<div class="row">
 			<div class="col-sm-2" style="padding-top: 30px;">
-	    		<label>BCC</label>
+	    	<label>BCC</label>
 		    </div>
 		    <div class="col-sm-1" style="padding-right: 30px;margin-left: 60px;">
 		    	<div class="form-group">
-		    		<label>Bulan</label>
-		        	<input type="text" placeholder="Ton" id="jumlahKebutuhan" class="form-control">
+		    		<label>Jun</label>
+		        	<input type="text" placeholder="Ton" id="bbc_1" class="form-control">
 		        </div>
 		    </div>
 		    <div class="col-sm-1" style="padding-right: 30px;">
 		    	<div class="form-group">
-		    		<label>Bulan</label>
-		        	<input type="text" placeholder="Ton" id="jumlahKebutuhan" class="form-control">
+		    		<label>Jul</label>
+		        	<input type="text" placeholder="Ton" id="bbc_2" class="form-control">
 		        </div>
 		    </div>
 		    <div class="col-sm-1" style="padding-right: 30px;">
 		    	<div class="form-group">
-		    		<label>Bulan</label>
-		        	<input type="text" placeholder="Ton" id="jumlahKebutuhan" class="form-control">
+		    		<label>Agu</label>
+		        	<input type="text" placeholder="Ton" id="bbc_3" class="form-control">
 		        </div>
 		    </div>
 		    <div class="col-sm-1" style="padding-right: 30px;">
 		    	<div class="form-group">
-		    		<label>Bulan</label>
-		        	<input type="text" placeholder="Ton" id="jumlahKebutuhan" class="form-control">
+		    		<label>Sep</label>
+		        	<input type="text" placeholder="Ton" id="bbc_4" class="form-control">
 		        </div>
 		    </div>
+		    <input type="hidden" name="bbc" id="bbd">
 		    <label class="col-sm-2 control-label" style="padding-top: 30px;">
 		        <span class="pull-left">
 		          Orang

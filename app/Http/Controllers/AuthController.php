@@ -17,13 +17,7 @@ class AuthController extends Controller
 
   	function getlogin(Request $request)
   	{
-  		try {
 		$au = Auth::authenticate($request->username,$request->password);
-  			
-  		} catch (Exception $e) {
-  			dd("SERVER DOWN");
-  		}
-
 		if ($au->valid == true) 
 		{
 			$data = DB::table('TR_USER as u')
@@ -58,7 +52,8 @@ class AuthController extends Controller
 
 	      Session::set('role_code', $role_code);
 	      Session::set('role_name', $role_name);
-	      $session = Session::all();      
+	      $session = Session::all();
+	        
 	      // Save and Update to TR_CURRENT_LOGIN
 	      $result = DB::table('TR_CURRENT_LOGIN')->where('USER_ID', '=', Session::get('user_id'))->get();
 			if ($result->count() >= 1) {
@@ -89,13 +84,5 @@ class AuthController extends Controller
       $data['success'] = true;
       return response()->json($data);
     }
-  }
-  function test(){
-  	$curlService = new \Ixudra\Curl\CurlService();
-    $url = base64_encode('/login?username=yaddi.surahman&password=123456');
-    $response = $curlService->to('http://apidev.tap-agri.com/'.$url)->get();
-    $valid = json_decode($response);
-    dd($url);
-    return $valid;
   }
 }

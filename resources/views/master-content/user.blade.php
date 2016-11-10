@@ -17,7 +17,7 @@
       </div>
       <!-- /.box-header -->
       <div class="box-body">
-        <form method="post" id="formUser" class="form-horizontal" role="form">
+        <form method="post" id="form-user" class="form-horizontal" role="form">
           <div class="row">
           <input type="hidden" id="user_id" class="form-control" name="user_id">
             <div class="col-md-6">
@@ -161,7 +161,4 @@
     });
   </script>
   <script src="{{asset('js/user.js')}}"></script>
-  <script type="text/javascript">
-    
-  </script>
 @endpush

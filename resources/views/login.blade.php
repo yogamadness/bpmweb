@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>AdminLTE 2 | Log in</title>
+    <title>BPM | Log in</title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <!-- Bootstrap 3.3.5 -->
@@ -22,7 +22,7 @@
   <body class="hold-transition login-page">
     <div class="login-box">
       <div class="login-logo">
-        <a href="../../index2.html"><b>BPM</b> Authentication</a>
+        <a href="#"><b>BPM</b> Authentication</a>
       </div><!-- /.login-logo -->
       <div class="login-box-body">
         <p class="login-box-msg">Sign in to start your session</p>
@@ -47,13 +47,15 @@
     <script src="dist/plugins/jQuery/jQuery-2.1.4.min.js"></script>
     <!-- Bootstrap 3.3.5 -->
     <script src="dist/bootstrap/js/bootstrap.min.js"></script>
+    <script src="dist/plugins/parsley/js/parsley-2.1.2.min.js"></script>
+    <script src="dist/plugins/parsley/js/id.js"></script>
     <script>
       $(function () {
           $('#form').parsley().on('field:validated', function() {
               var ok = $('.parsley-error').length === 0;
           })
           .on('form:submit', function() {
-          return false; // Don't submit form for this demo
+            return true; // Don't submit form for this demo
           });
       });
     </script>
