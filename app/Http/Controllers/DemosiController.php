@@ -21,7 +21,7 @@ class DemosiController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('ceklogin');
+        //$this->middleware('ceklogin');
     }
 
     public function index($notifData = null)

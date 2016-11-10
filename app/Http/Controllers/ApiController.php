@@ -57,6 +57,7 @@ class ApiController extends Controller
     	$json = file_get_contents($url);
 		$array = json_decode($json);
 		$result=array();
+		dd($array);
 		foreach ($array->data as $value) {
         	array_push($result, array('id' => $value->id, 'text' => $value->text));
 		}
