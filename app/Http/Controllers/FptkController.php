@@ -45,6 +45,11 @@ class FptkController extends Controller
         return view('master-content/fptkms', $data);
     }
 
+    public function fptkes(Request $requests){
+        $data['alasanPermintaan']= (new DataMasterController)->getAlasanPermintaan();
+        return view('master-content/fptkes', $data);
+    }
+
     public function save(Request $requests)
     {
         // $file = $requests->file('lampiran');

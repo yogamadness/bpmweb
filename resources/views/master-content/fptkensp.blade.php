@@ -169,27 +169,28 @@
 		    <div class="col-sm-1" style="padding-right: 30px;margin-left: 60px;">
 		    	<div class="form-group">
 		    		<label>Jun</label>
-		        	<input type="text" placeholder="Ton" id="bbc_1" name="" class="form-control">
+		        	<input type="text" placeholder="Ton" id="bbc_1" class="form-control">
 		        </div>
 		    </div>
 		    <div class="col-sm-1" style="padding-right: 30px;">
 		    	<div class="form-group">
 		    		<label>Jul</label>
-		        	<input type="text" placeholder="Ton" id="bbc_1" name="" class="form-control">
+		        	<input type="text" placeholder="Ton" id="bbc_2" class="form-control">
 		        </div>
 		    </div>
 		    <div class="col-sm-1" style="padding-right: 30px;">
 		    	<div class="form-group">
 		    		<label>Agu</label>
-		        	<input type="text" placeholder="Ton" id="bbc_1" name="" class="form-control">
+		        	<input type="text" placeholder="Ton" id="bbc_3" class="form-control">
 		        </div>
 		    </div>
 		    <div class="col-sm-1" style="padding-right: 30px;">
 		    	<div class="form-group">
 		    		<label>Sep</label>
-		        	<input type="text" placeholder="Ton" id="bbc_1" name="" class="form-control">
+		        	<input type="text" placeholder="Ton" id="bbc_4" class="form-control">
 		        </div>
 		    </div>
+		    <input type="hidden" name="bbc" id="bbd">
 		    <label class="col-sm-2 control-label" style="padding-top: 30px;">
 		        <span class="pull-left">
 		          Orang
@@ -208,20 +209,20 @@
 <div class="row">
 	<div class="col-sm-6">
 		<div class="form-group">
-		    <label class="col-sm-offset-9 col-sm-3 control-label" for="jumlahKebutuhan">
+		    <label class="col-sm-offset-9 col-sm-3 control-label" for="">
 		        <span class="pull-left">
 		          	Kehadiran(%)
 		        </span>
 		    </label>
 		</div>
 		<div class="form-group">
-		    <label class="col-sm-5 control-label" for="jumlahKebutuhan">
+		    <label class="col-sm-5 control-label" for="mpe">
 		        <span class="pull-left">
 		          	MPE
 		        </span>
 		    </label>
 		      <div class="col-sm-3">
-		        <input type="text" placeholder="Ha" id="jumlahKebutuhan" class="form-control">
+		        <input type="text" placeholder="Ha" id="mpe" name="mpe" class="form-control">
 		      </div>
 		    <label class="col-sm-1 control-label" style="padding-left: 0px;">
 		        <span class="pull-left">
@@ -229,17 +230,17 @@
 		        </span>
 		    </label>
 		    <div class="col-sm-3">
-		        <input type="text" placeholder="" id="jumlahKebutuhan" class="form-control">
+		        <input type="text" placeholder="" id="" name="" class="form-control">
 			</div>
 		</div>
 		<div class="form-group">
-		    <label class="col-sm-5 control-label" for="jumlahKebutuhan">
+		    <label class="col-sm-5 control-label" for="kt_per_kk">
 		        <span class="pull-left">
 		          	KT/KK
 		        </span>
 		    </label>
 		    <div class="col-sm-3">
-		        <input type="text" placeholder="Ha" id="jumlahKebutuhan" class="form-control">
+		        <input type="text" placeholder="Ha" id="kt_per_kk" name="kt_per_kk" class="form-control">
 		    </div>
 		    <label class="col-sm-1 control-label" style="padding-left: 0px;">
 		        <span class="pull-left">
@@ -247,17 +248,17 @@
 		        </span>
 		    </label>
 		    <div class="col-sm-3">
-		        <input type="text" placeholder="" id="jumlahKebutuhan" class="form-control">
+		        <input type="text" placeholder="" id="" name="" class="form-control">
 			</div>
 		</div>
 		<div class="form-group">
-		    <label class="col-sm-5 control-label" for="jumlahKebutuhan">
+		    <label class="col-sm-5 control-label" for="kl">
 		        <span class="pull-left">
 		        	KL
 		        </span>
 		    </label>
 		    <div class="col-sm-3">
-		        <input type="text" placeholder="Ha" id="jumlahKebutuhan" class="form-control">
+		        <input type="text" placeholder="Ha" id="kl" name="kl" class="form-control">
 		    </div>
 		    <label class="col-sm-1 control-label" style="padding-left: 0px;">
 		        <span class="pull-left">
@@ -265,17 +266,17 @@
 		        </span>
 		    </label>
 		    <div class="col-sm-3">
-		        <input type="text" placeholder="" id="jumlahKebutuhan" class="form-control">
+		        <input type="text" placeholder="" id="" name="" class="form-control">
 			</div>
 		</div>
 		<div class="form-group">
-		    <label class="col-sm-5 control-label" for="jumlahKebutuhan">
+		    <label class="col-sm-5 control-label" for="productivity">
 		        <span class="pull-left">
 		          	Productivitas
 		        </span>
 		    </label>
 		    <div class="col-sm-3">
-		        <input type="text" placeholder="Ton" id="jumlahKebutuhan" class="form-control">
+		        <input type="text" placeholder="Ton" id="productivity" name="productivity" class="form-control">
 		    </div>
 		    <label class="col-sm-1 control-label" style="padding-left: 0px;">
 		        <span class="pull-left">
@@ -283,7 +284,7 @@
 		        </span>
 		    </label>
 		    <div class="col-sm-3">
-		        <input type="text" placeholder="" id="jumlahKebutuhan" class="form-control">
+		        <input type="text" placeholder="" id="" name="" class="form-control">
 			</div>
 		</div>
 	</div>
@@ -294,13 +295,13 @@
 	</div>
 	<div class="col-sm-6">
 		<div class="form-group">
-		    <label class="col-sm-3 control-label" for="jumlahKebutuhan">
+		    <label class="col-sm-3 control-label" for="mp_aktif">
 		        <span class="pull-left">
 		          	MP Aktif
 		        </span>
 		    </label>
 		    <div class="col-sm-3">
-		        <input type="text" placeholder="" id="jumlahKebutuhan" class="form-control">
+		        <input type="text" placeholder="" id="mp_aktif" name="mp_aktif" class="form-control">
 		    </div>
 		    <label class="col-sm-1 control-label" style="padding-left: 0px;">
 		        <span class="pull-left">

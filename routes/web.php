@@ -27,10 +27,11 @@ Route::get('/example', function(){
 });
 
 Route::get('/home', 'HomeController@index');
-Route::get('/loginn', 'Login2controller@index');
-Route::post('/getlogin','Login2controller@getlogin');
-Route::get('/logout', 'Login2controller@logout');
-Route::post('/reload', 'Login2controller@reload');
+
+Route::get('/loginn', 'AuthController@index');
+Route::post('/getlogin','AuthController@test');
+Route::get('/logout', 'AuthController@logout');
+Route::post('/reload', 'AuthController@reload');
 
 //USER
 Route::get('/user', 'UserController@index');
@@ -77,9 +78,8 @@ Route::post('/fptkms', 'FptkController@fptkms');
 Route::post('/fptkensr', function(){
 	return view('master-content/fptkensr');
 });
-Route::post('/fptkes', function(){
-	return view('master-content/fptkes');
-});
+Route::post('/fptkes', 'FptkController@fptkes');
+
 Route::post('/fptkmns', function(){
 	return view('master-content/fptkmns');
 });

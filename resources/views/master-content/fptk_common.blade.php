@@ -194,16 +194,16 @@
   </div>
   <div class="col-md-6">
     <div class="form-group">
-      <label class="col-sm-4 control-label" for="departemen">
+      <label class="col-sm-4 col-xs-12 control-label" for="departemen">
         <span class="pull-left">
           Usia (Tahun)
         </span>
       </label>
-      <div class="col-sm-4">
-        <input type="text" placeholder="Batas Min" id="" class="form-control" name="">
+      <div class="col-sm-4 col-xs-6">
+        <input type="text" placeholder="Batas Min" id="min_age" class="form-control" name="min_age"> 
       </div>
-      <div class="col-sm-4">
-        <input type="text" placeholder="Batas Max" id="" class="form-control" name="">
+      <div class="col-sm-4 col-xs-6">
+        <input type="text" placeholder="Batas Max" id="max_age" class="form-control" name="max_age">
       </div>
     </div>
     <div class="form-group">

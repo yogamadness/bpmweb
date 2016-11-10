@@ -8,11 +8,11 @@ use App\CurrentLogin;
 use App\TAPAuth\Auth;
 use Ramsey\Uuid\Uuid;
 
-class Login2Controller extends Controller
+class login2Controller extends Controller
 {
- 	function index(){
-		return view('login');
- }
+  function index(){
+    return view('login');
+  }
 
   function getlogin(Request $request){
 		$au = Auth::authenticate($request->username,$request->password);
@@ -28,8 +28,10 @@ class Login2Controller extends Controller
 
         if ($value->workflow_detail_code != 0) {
           $role_code['Role'][$value->workflow_detail_code][] = $value->workflow_detail_code ;
+          $role_name['RoleName'][$value->workflow_detail_code][] = $value->description ;
             if ($value->module_code !=0 ) {
             $role_code['Role'][$value->workflow_detail_code]['Module'][] = $value->module_code ;
+            $role_name['RoleName'][$value->workflow_detail_code][] = $value->module_name;
             }
         }
         // Save Session
@@ -44,9 +46,12 @@ class Login2Controller extends Controller
   			Session::set('email', $value->email);
   			Session::set('job_code', $value->job_code);
       }
-      Session::set('role_code', $role_code);
-      $session = Session::all();
 
+      Session::set('role_code', $role_code);
+      Session::set('role_name', $role_name);
+      $session = Session::all();
+      dd($session);
+      
       // Save and Update to TR_CURRENT_LOGIN
       $result = DB::table('TR_CURRENT_LOGIN')->where('USER_ID', '=', Session::get('user_id'))->get();
       if ($result->count() >= 1) {
@@ -64,19 +69,20 @@ class Login2Controller extends Controller
 		}
 	}
 
-    function logout(){
-      Session::flush();
-      return Redirect('/loginn');
-    }
-    function reload(){
-      $result = DB::table('TR_CURRENT_LOGIN')->where([
-        ['USER_ID', '=', Session::get('user_id')],
-        ['SESSION_ID', '=', Session::get('session_id')]
-      ])->get();
+  function logout(){
+    Session::flush();
+    return Redirect('/loginn');
+  }
+  function reload(){
+    $result = DB::table('TR_CURRENT_LOGIN')->where([
+      ['USER_ID', '=', Session::get('user_id')],
+      ['SESSION_ID', '=', Session::get('session_id')]
+    ])->get();
 
-      if ($result->count() >= 1) {
-        $data['success'] = true;
-        return response()->json($data);
-      }
+    if ($result->count() >= 1) {
+      $data['success'] = true;
+      return response()->json($data);
     }
+  }
+  
 }
