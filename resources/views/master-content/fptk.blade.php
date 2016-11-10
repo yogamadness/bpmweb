@@ -148,14 +148,14 @@
         }
       });
 
-      if(low == 'pemanen'){
+      if(low == 'pemanen' && level == 'ENS'){
         $.post('fptk', { tipePtk: low })
           .done(function(data){
             $('.fptk').html(data);
         });
         
       }
-      if(cek){
+      if(cek && level == 'ENS'){
         $.post('fptk', { tipePtk: low })
           .done(function(data){
             $('.fptk').html(data);

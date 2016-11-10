@@ -32,6 +32,9 @@ Route::get('/loginn', 'login2controller@index');
 Route::post('/getlogin','login2controller@getlogin');
 Route::get('/logout', 'login2controller@logout');
 Route::post('/reload', 'login2controller@reload');
+
+//USER
+Route::get('/user', 'UserController@index');
 //Employee routes
 
 Route::get('/employee', 'EmployeeController@index');

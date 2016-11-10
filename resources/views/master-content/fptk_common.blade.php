@@ -10,7 +10,7 @@
         <select class="form-control" id="level_jbt" name="level_jbt">
           <option value=" ">--Pilih--</option>
           @foreach($levelJabatan as $levJab)
-            <option>{{ $levJab->description }}</option>
+            <option value="{{ $levJab->description_code }}">{{ $levJab->description }}</option>
           @endforeach
         </select>
       </div>
