@@ -17,7 +17,12 @@ class AuthController extends Controller
 
   	function getlogin(Request $request)
   	{
+  		try {
 		$au = Auth::authenticate($request->username,$request->password);
+  			
+  		} catch (Exception $e) {
+  			dd("SERVER DOWN");
+  		}
 
 		if ($au->valid == true) 
 		{
@@ -27,7 +32,8 @@ class AuthController extends Controller
 				->join('TM_MODULE as m', 'd.WORKFLOW_DETAIL_CODE', 'm.WORKFLOW_DETAIL_CODE')
 				->where('u.username', $request->username)
 				->get();
-	     	foreach ($data as $key => $value) {
+	     	foreach ($data as $key => $value) 
+	     	{
 
 		        if ($value->workflow_detail_code != 0) {
 		          $role_code['Role'][$value->workflow_detail_code][] = $value->workflow_detail_code ;

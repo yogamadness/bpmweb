@@ -51,7 +51,7 @@ Route::post('/employee/{ID}', 'EmployeeController@update');
 Route::delete('/employee/{ID}', 'EmployeeController@delete');
 
 //FPTK
-Route::get('/fptk', 'FptkController@index');
+// Route::get('/fptk', 'FptkController@index');
 Route::post('/fptk/save', 'FptkController@save');
 
 Route::get('/fptk_common', function(){
@@ -97,6 +97,6 @@ Route::get('/login', function(){
 });
 
 /*Using SB-ADMIN*/
-Route::get('fptka', 'FptkController@index2');
+Route::get('fptk', 'FptkController@index2');
 
 Route::get('/respons', 'BalikanStringHtmlController@index');

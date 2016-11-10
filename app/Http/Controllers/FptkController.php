@@ -7,6 +7,7 @@ use App\Ptk;
 use App\Mill;
 use App\File;
 use App\Ro;
+use App\Estate;
 
 use DB;
 use App\Http\Controllers\DataMasterController;
@@ -16,10 +17,10 @@ use Response;
 class FptkController extends Controller
 {
 
-    // public function __construct()
-    // {
-    //     $this->middleware('ceklogin');    
-    // }
+    public function __construct()
+    {
+        $this->middleware('ceklogin');    
+    }
 
     public function index()
     {
@@ -120,6 +121,23 @@ class FptkController extends Controller
                         'info' => $requests->description,
                         'mpe_total' => $requests->mpe_total,
                         'candidat_recommended' => $requests->employee_recommendation,
+                        'employee_replaced' => $requests->employee_from,
+                        'reason_recommendation' => $requests->reason_recommendation
+                    )
+                );
+            }
+            elseif($requests->tipePtk == 'staff'){
+                //insert Regional Office
+                $dataDetail = Estate::create(
+                    array('no_document_ptk' => $data->doc_code,
+                        'reason_request' => $requests->reason_request,
+                        'employee_before' => $requests->employee_before,
+                        'info' => $requests->description,
+                        'ha_tm' => $requests->ha_tm,
+                        'ha_panen' => $requests->ha_panen,
+                        'ha_tbm' => $requests->ha_tbm,
+                        'mpe' => $requests->mpe,
+                        'candidate_recommended' => $requests->candidate_recommended,
                         'employee_replaced' => $requests->employee_from,
                         'reason_recommendation' => $requests->reason_recommendation
                     )

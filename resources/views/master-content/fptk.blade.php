@@ -182,6 +182,7 @@
       $.post('fptkes')
         .done(function(data){
           $('.fptk').html(data);
+          $('#tipePtk').val('staff');
       });      
     }
     if(level == 'MST'){
