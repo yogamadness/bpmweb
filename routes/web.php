@@ -16,7 +16,7 @@
 //     return view('welcome');
 // });
 
-//Auth::routes();
+Auth::routes();
 
 Route::get('/beranda', function(){
 	return view('layouts-master/master');
