@@ -169,6 +169,7 @@ return [
          */
         Yajra\Datatables\DatatablesServiceProvider::class,
         Yajra\Oci8\Oci8ServiceProvider::class,
+        Collective\Html\HtmlServiceProvider::class,
         // Kozz\Laravel\Providers\Guzzle::class,
         //
 
@@ -228,6 +229,8 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
+        'Form' => Collective\Html\FormFacade::class,
+        'Html' => Collective\Html\HtmlFacade::class,
         // 'Guzzle' => Kozz\Laravel\Facades\Guzzle::class,
     ],
 

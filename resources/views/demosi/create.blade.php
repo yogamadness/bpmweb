@@ -1,6 +1,6 @@
-@extends('layouts.app')
+@extends('layouts-master.master')
 
-@section('page-css')
+@section('cascanding')
 @include('demosi.assets_css')
 @endsection
 
@@ -11,7 +11,7 @@ Formulir Perubahan Status Karyawan
 Formulir Perubahan Status Karyawan
 @endsection
 
-@section('main-content')
+@section('content')
 <div class="row">
   <div class="col-xs-12">
     <div class="box box-default">
@@ -31,6 +31,6 @@ Formulir Perubahan Status Karyawan
 @include('demosi.confirm')
 
 @endsection
-@section('page-script')
+@section('javascript-form')
 @include('demosi.assets_js')
 @stop
