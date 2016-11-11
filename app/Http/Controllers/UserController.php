@@ -35,6 +35,9 @@ class UserController extends Controller
 	}
 
     public function save(Request $request){
+    	$id = DB::raw("SELECT SEQ_TR_USER.NEXTVAL from dual");
+    	$request['USER_ID'] = $id;
+
 	    $user = TR_Users::create($request->all());
 	    $data['success'] = true;
 	    $data['User'] = $user;
@@ -54,3 +57,4 @@ class UserController extends Controller
 		return response()->json($data);
 	}
 }
+	

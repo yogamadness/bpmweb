@@ -245,3 +245,11 @@
     </div>
   </div>
 </div>
+
+@section('javascript-form')
+<script type="text/javascript">
+  $(document).ready(function(){
+    alert("cup"); 
+  });  
+</script>
+@endsection

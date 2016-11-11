@@ -166,37 +166,37 @@
     </div>
     <!-- /#wrapper -->
     <script type="text/javascript">
-        $(document).ready(function() {
-            looping1();
-        });
+        // $(document).ready(function() {
+        //     looping1();
+        // });
 
-        function ceklogin() {
-            $.ajaxSetup({
-              headers: {
-                  'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-              }
-            });
-            $.ajax({
-                type: "post",
-                url: "reload",
-                async: false
-            }).success(function(data){
-                if (data.success == true ) {
-                    setTimeout(function(){
-                        looping1();
-                    }, 1000);   
-                }else{
-                    alert("Please Re-Login");
-                    window.location.replace("loginn");    
-                }
-            }).error(function(){
-                console.log("eror")
-            });
-          }
+        // function ceklogin() {
+        //     $.ajaxSetup({
+        //       headers: {
+        //           'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        //       }
+        //     });
+        //     $.ajax({
+        //         type: "post",
+        //         url: "reload",
+        //         async: false
+        //     }).success(function(data){
+        //         if (data.success == true ) {
+        //             setTimeout(function(){
+        //                 looping1();
+        //             }, 1000);   
+        //         }else{
+        //             alert("Please Re-Login");
+        //             window.location.replace("loginn");    
+        //         }
+        //     }).error(function(){
+        //         console.log("eror")
+        //     });
+        //   }
 
-        function looping1() {
-            ceklogin();
-        }
+        // function looping1() {
+        //     ceklogin();
+        // }
     </script>
     
     @yield('javascript-form')
