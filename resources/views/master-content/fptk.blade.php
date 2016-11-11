@@ -49,60 +49,13 @@
 </div>
 @endsection
 
-@section('javascript-form')
+@push('js')
 <!-- bootstrap datepicker -->
 <script src="dist/plugins/datetimepicker/js/moment.min.js"></script>
 <script src="dist/plugins/datetimepicker/js/bootstrap-datetimepicker.min.js"></script>
 <script src="dist/plugins/Typeahead-master/bootstrap3-typeahead.js"></script>
 
 <script type="text/javascript">
-  $(function(){
-    var date = new Date();
-    var today = new Date(date.getFullYear(), date.getMonth(), date.getDate());
-    $('#datetimepicker1').datetimepicker({
-        format: 'DD-MMM-YYYY',
-        defaultDate: new Date(),
-        minDate: today
-    });
-    $('#request_date').datetimepicker({
-        format: 'DD-MMM-YYYY',
-        defaultDate: new Date(),
-        minDate: today
-    });
-
-    $('#start_contract').datetimepicker({
-        format: 'DD-MMM-YYYY',
-        minDate: today
-    });
-
-    $('#end_contract').datetimepicker({
-        format: 'DD-MMM-YYYY',
-        minDate: today
-    });
-
-    //Autocomplate
-    $('#jabatan').typeahead({source:[{id: "Penghasil", name: "Penghasil"}, 
-                {id: "Pemanen", name: "Pemanen"},
-                {id: "Mandor", name: "Mandor"}], 
-                autoSelect: true});
-
-    $('#company').typeahead({source:[{id: "GAWI", name: "GAWI"}, 
-                {id: "ESTATE", name: "ESTATE"}], 
-                autoSelect: true});
-
-    $('#ba_code').typeahead({source:[{id: "BA", name: "BA"}, 
-                {id: "BO", name: "BO"}], 
-                autoSelect: true});
-
-    $('#department').typeahead({source:[{id: "PGA", name: "PGA"}, 
-                {id: "KTU", name: "KTU"}], 
-                autoSelect: true});
-
-    $('#head').typeahead({source:[{id: "SM", name: "SM"}, 
-                {id: "EM", name: "EM"}], 
-                autoSelect: true});
-  });
-
   $('#ajukan').click(function(){
     $.ajaxSetup({
       headers: {
@@ -182,7 +135,7 @@
       $.post('fptkes')
         .done(function(data){
           $('.fptk').html(data);
-          $('#tipePtk').val('staff');
+          $('#tipePtk').val('estateStaff');
       });      
     }
     if(level == 'MST'){
@@ -201,7 +154,7 @@
       });      
     }
     if(level == 'ROS'){
-      $.post('fptkms')
+      $.post('fptkro')
         .done(function(data){
           $('.fptk').html(data);
           $('#tipePtk').val('regionalOffice');
@@ -211,4 +164,4 @@
       
 
 </script>
-@endsection()
+@endpush()

@@ -199,7 +199,6 @@
         // }
     </script>
     
-    @yield('javascript-form')
     @stack('js')
 </body>
 
