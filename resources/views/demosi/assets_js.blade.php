@@ -298,7 +298,7 @@ $(document).ready(function(){
         source: nik
     })
     .on('typeahead:selected', getDataEmp);
-    .on('typeahead:selected', getDataEmpProd);
+    //.on('typeahead:selected', getDataEmpProd);
 });
 
 </script>
