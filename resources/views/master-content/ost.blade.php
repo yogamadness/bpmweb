@@ -1,11 +1,8 @@
-@extends('layouts.master')
+@extends('layouts-master.master')
 
-@section('title', 'Profile')
+@section('title', 'OutStanding Task')
 
 @section('content')
-  <div class="content-wrapper">
-    <!-- Main content -->
-    <section class="content">
 
       <div class="row">
         <div class="col-sm-12">
@@ -777,8 +774,6 @@
           </div><!-- /.box -->
         </div><!-- /.col -->
       </div><!-- /.row -->
-    </section><!-- /.content -->
-  </div>
   <!-- Control Sidebar -->
       <aside class="control-sidebar control-sidebar-dark">
         <!-- Create the tabs -->
