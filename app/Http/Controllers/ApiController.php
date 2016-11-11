@@ -17,7 +17,7 @@ class ApiController extends Controller
 	private static $_testUrl = "http://10.20.1.155/api/";
     private static $_devUrl = "http://10.20.1.155/";
     private static $_fakeUrl = "http://10.20.1.155/api/urlGetEmployee";
-    private static $_online = 0; // 1 = online, 0 = offline
+    private static $_online = 1; // 1 = online, 0 = offline
 
     public function __construct()
     {
