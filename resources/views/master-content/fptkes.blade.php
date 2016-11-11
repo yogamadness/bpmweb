@@ -6,13 +6,13 @@
 <div class="row">
   <div class="col-md-12">
     <div class="form-group">
-      <label class="col-sm-3 control-label" for="reason_request">
+      <label class="col-sm-3 control-label" for="reason_for_request">
         <span class="pull-left">
           Alasan Permintaan
         </span>
       </label>
       <div class="col-sm-3">
-        <select class="form-control" id="reason_request" name="reason_request">
+        <select class="form-control" id="reason_for_request" name="reason_for_request">
           <option value=" ">--Pilih--</option>
           @foreach($alasanPermintaan as $alasanPer)
             <option>{{ $alasanPer->description }}</option>
@@ -21,13 +21,13 @@
       </div>
     </div>
     <div class="form-group">
-      <label class="col-sm-3 control-label" for="employee_before">
+      <label class="col-sm-3 control-label" for="employee_replaced">
         <span class="pull-left">
           Nama Karyana yang Digantikan
         </span>
       </label>
         <div class="col-sm-5">
-	        <input type="text" placeholder="Fakultas/Jurusan" id="employee_before" name="employee_before" class="form-control">
+	        <input type="text" placeholder="Fakultas/Jurusan" id="employee_replaced" name="employee_replaced" class="form-control">
 	    </div>
     </div>
     <div class="form-group">

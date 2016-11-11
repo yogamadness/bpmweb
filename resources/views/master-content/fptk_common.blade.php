@@ -248,8 +248,8 @@
 
 @section('javascript-form')
 <script type="text/javascript">
-  $(document).ready(function(){
-    alert("cup"); 
-  });  
+  $('#company').keyup(function() {
+    console.log(this.val);
+  });
 </script>
 @endsection
