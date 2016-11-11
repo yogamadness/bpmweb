@@ -10,7 +10,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <meta name="csrf-token" content="{{ csrf_token() }}" />
-    <title>TAP - @yield('tittle')</title>
+    <title>TAP - @yield('title')</title>
 
     <link href="{{ asset('/assets/css/bootstrap.min.css') }}" rel="stylesheet">
     <link href="{{ asset('/assets/css/sb-admin.css') }}" rel="stylesheet">

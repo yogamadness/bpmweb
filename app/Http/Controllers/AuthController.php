@@ -53,7 +53,6 @@ class AuthController extends Controller
 	      Session::set('role_code', $role_code);
 	      Session::set('role_name', $role_name);
 	      $session = Session::all();
-	     	dd($session);
 	      // Save and Update to TR_CURRENT_LOGIN
 	      $result = DB::table('TR_CURRENT_LOGIN')->where('USER_ID', '=', Session::get('user_id'))->get();
 			if ($result->count() >= 1) {
