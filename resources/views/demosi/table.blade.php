@@ -30,7 +30,7 @@
 
     @foreach($data as $row)
               <tr>
-                <td><a class="btn btn-danger" style="padding:2px;"><i class="fa fa-remove"></i></a></td>
+                <td><a class="btn btn-danger" style="padding:2px;">x</i></a></td>
                 <td>1</td>
                 <td><a href="{{ route('demosi.edit', $row->h_id ) }}">{{ $row->doc_code }}</a> <a href="{!! url('demosi/approve', $row->h_id) !!}"><i class="fa fa-check-square-o" aria-hidden="true"></i></a></td>
                 <td>--</td>
