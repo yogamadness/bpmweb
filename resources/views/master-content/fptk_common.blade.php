@@ -263,6 +263,8 @@
           alert("not Support");
         }
 
+        validasi();
+
     var date = new Date();
     var today = new Date(date.getFullYear(), date.getMonth(), date.getDate());
     $('#datetimepicker1').datetimepicker({
@@ -419,6 +421,13 @@
         $('#min_age').val(localStorage.getItem('min_age'));
         $('#max_age').val(localStorage.getItem('max_age'));
         $('#experience').val(localStorage.getItem('experience'));
+      }
+
+      function validasi(){
+        var mulai_kontrak = $('#start_contract').val();
+        if (mulai_kontrak != "" || mulai_kontrak != null) {
+          $('#end_contract').prop('disabled', false);
+        }
       }
 </script>
 @endpush()
