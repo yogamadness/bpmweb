@@ -13,7 +13,12 @@
   <div class="col-xs-12">
     <div class="box box-default">
       <div class="box-header with-border">
-        <h3 class="box-title">Formulir Perubahan Status Karyawan - [[Non Staff Pemanen]]</h3>
+        @if($job_code === 'pemanen')
+        <h3 class="box-title">Formulir Perubahan Status Karyawan - Pemanen</h3>
+        @endif
+        @if($job_code === 'non_pemanen')
+        <h3 class="box-title">Formulir Perubahan Status Karyawan - Non Pemanen</h3>
+        @endif
       </div>
       {!! Form::open(array('id' => 'formDemosi', 'route' => 'demosi.store')) !!}
 
@@ -29,5 +34,5 @@
 
 @endsection
 @section('javascript-form')
-@include('demosi.assets_js')
+  @include('demosi.assets_js')
 @stop
