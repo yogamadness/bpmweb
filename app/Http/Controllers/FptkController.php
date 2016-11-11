@@ -46,6 +46,11 @@ class FptkController extends Controller
         return view('master-content/fptkms', $data);
     }
 
+    public function fptkro(Request $requests){
+        $data['alasanPermintaan']= (new DataMasterController)->getAlasanPermintaan();
+        return view('master-content/fptkro', $data);
+    }
+
     public function fptkes(Request $requests){
         $data['alasanPermintaan']= (new DataMasterController)->getAlasanPermintaan();
         return view('master-content/fptkes', $data);
@@ -117,32 +122,69 @@ class FptkController extends Controller
                 $dataDetail = Ro::create(
                     array('no_document_ptk' => $data->doc_code,
                         'reason_request' => $requests->reason_request,
-                        'employee_before' => $requests->employee_before,
-                        'info' => $requests->description,
+                        'employee_replaced' => $requests->employee_replaced,
+                        'info' => $requests->info,
                         'mpe_total' => $requests->mpe_total,
                         'candidat_recommended' => $requests->employee_recommendation,
-                        'employee_replaced' => $requests->employee_from,
+                        'employee_before' => $requests->employee_before,
                         'reason_recommendation' => $requests->reason_recommendation
                     )
                 );
             }
-            elseif($requests->tipePtk == 'staff'){
+            elseif($requests->tipePtk == 'estateStaff'){
                 //insert Regional Office
                 $dataDetail = Estate::create(
                     array('no_document_ptk' => $data->doc_code,
-                        'reason_request' => $requests->reason_request,
-                        'employee_before' => $requests->employee_before,
-                        'info' => $requests->description,
-                        'ha_tm' => $requests->ha_tm,
-                        'ha_panen' => $requests->ha_panen,
-                        'ha_tbm' => $requests->ha_tbm,
-                        'ha_tanam' => $requests->ha_tanam,
-                        'mpe' => $requests->mpe,
-                        'candidate_recommended' => $requests->candidate_recommended,
-                        'employee_replaced' => $requests->employee_from,
+                        'reason_for_request' => $requests->reason_for_request,
+                        'employee_replaced' => $requests->employee_replaced,
+                        'information' => $requests->information,
+                        'pba_ha_tm' => $requests->pba_ha_tm,
+                        'pba_ha_panen' => $requests->pba_ha_panen,
+                        'pba_ha_tbm' => $requests->pba_ha_tbm,
+                        'pba_ha_tanam' => $requests->pba_ha_tanam,
+                        'pmp_mpe' => $requests->pmp_mpe,
+                        'candidate' => $requests->candidate,
+                        'candidate_from' => $requests->candidate_from,
                         'reason_recommendation' => $requests->reason_recommendation
                     )
                 );
+            }
+            elseif($requests->tipePtk == 'estateNonStaffPemanen'){
+                //insert Regional Office
+                $dataDetail = Estate::create(
+                    array('no_document_ptk' => $data->doc_code,
+                        'pba_ha_tm' => $requests->pba_ha_tm,
+                        'pba_ha_panen' => $requests->pba_ha_panen,
+                        'pba_ha_tm' => $requests->pba_ha_tm,
+                        'pba_ha_tanam' => $requests->pba_ha_tanam,
+                        'pba_produksi' => $requests->pba_produksi,
+                        'pba_bcc_b1' => $requests->pba_bcc_b1,
+                        'pba_bcc_b2' => $requests->pba_bcc_b2,
+                        'pba_bcc_b3' => $requests->pba_bcc_b3,
+                        'pba_bcc_b4' => $requests->pba_bcc_b4,
+                        'estimate_ha_panen_m1' => $requests->estimate_ha_panen_m1,
+                        'estimate_ha_panen_m2' => $requests->estimate_ha_panen_m2,
+                        'estimate_ha_panen_m3' => $requests->estimate_ha_panen_m3,
+                        'estimate_ha_panen_m4' => $requests->estimate_ha_panen_m4,
+                        'estimate_ha_panen_m5' => $requests->estimate_ha_panen_m5,
+                        'estimate_ha_panen_m6' => $requests->estimate_ha_panen_m6,
+                        'estimate_prod_m1' => $requests->estimate_prod_m1,
+                        'estimate_prod_m2' => $requests->estimate_prod_m2,
+                        'estimate_prod_m3' => $requests->estimate_prod_m3,
+                        'estimate_prod_m4' => $requests->estimate_prod_m4,
+                        'estimate_prod_m5' => $requests->estimate_prod_m5,
+                        'estimate_prod_m6' => $requests->estimate_prod_m6,
+                        'pmp_mpe' => $requests->pmp_mpe,
+                        'pmp_mpe_attendance' => $requests->pmp_mpe_attendance,
+                        'pmp_kk_kt' => $requests->pmp_kk_kt,
+                        'pmp_kk_kt_attendance' => $requests->pmp_kk_kt_attendance,
+                        'pmp_kl' => $requests->pmp_kl,
+                        'pmp_kl_attendance' => $requests->pmp_kl_attendance,
+                        'pmp_productivitas' => $requests->pmp_productivitas,
+                        'mp_active' => $requests->mp_active
+                    )
+                );
+                dd($dataDetail);
             }
 
             // //insert file 

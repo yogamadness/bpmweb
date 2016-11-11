@@ -246,16 +246,70 @@
   </div>
 </div>
 
-@section('javascript-form')
+@push('js')
 <script type="text/javascript">
     $(document).ready(function(){
-        /*Local Storage*/
-        if (localStorage) {
-          setStorage();
-          getStorage();
-        } else {
-          alert("not Support");
+      /*Local Storage*/
+      if (localStorage) {
+        setStorage();
+        if (localStorage.getItem('company') != null){
+          if (confirm('Halaman ini masih menyimpan data lama. Apakah anda ingin menggukanannya lagi?')) {
+            getStorage();
+          } else {
+            localStorage.clear();
+          }
         }
+      } else {
+        alert("not Support");
+      }
+
+      // validasi();
+
+      var date = new Date();
+      var today = new Date(date.getFullYear(), date.getMonth(), date.getDate());
+      $('#datetimepicker1').datetimepicker({
+          format: 'DD-MMM-YYYY',
+          defaultDate: new Date(),
+          minDate: today
+      });
+
+      $('#request_date').datetimepicker({
+          format: 'DD-MMM-YYYY',
+          defaultDate: new Date(),
+          minDate: today
+      });
+
+      $('#start_contract').datetimepicker({
+          format: 'DD-MMM-YYYY',
+          minDate: today
+      });
+
+      $('#end_contract').datetimepicker({
+          format: 'DD-MMM-YYYY',
+          minDate: today
+      });
+
+      //Autocomplate
+      $('#jabatan').typeahead({source:[{id: "Penghasil", name: "Penghasil"}, 
+                  {id: "Pemanen", name: "Pemanen"},
+                  {id: "Mandor", name: "Mandor"}], 
+                  autoSelect: true});
+
+      $('#company').typeahead({source:[{id: "GAWI", name: "GAWI"}, 
+                  {id: "ESTATE", name: "ESTATE"}], 
+                  autoSelect: true});
+
+      $('#ba_code').typeahead({source:[{id: "BA", name: "BA"}, 
+                  {id: "BO", name: "BO"}], 
+                  autoSelect: true});
+
+      $('#department').typeahead({source:[{id: "PGA", name: "PGA"}, 
+                  {id: "KTU", name: "KTU"}], 
+                  autoSelect: true});
+
+      $('#head').typeahead({source:[{id: "SM", name: "SM"}, 
+                  {id: "EM", name: "EM"}], 
+                  autoSelect: true});
     });
 
       function setStorage(){
@@ -280,10 +334,10 @@
         });
 
         /*On Change*/
-        /*$('#needs_date').keyup(function(){
+        $('#needs_date').change(function(){
           var needs_date = $('#needs_date').val();
           localStorage.setItem('needs_date', needs_date);
-        });*/
+        });
 
         $('#head').keyup(function(){
           var head = $('#head').val();
@@ -291,31 +345,31 @@
         });
 
         /*On Change*/
-        /*$('#emp_status').keyup(function(){
+        $('#emp_status').change(function(){
           var emp_status = $('#emp_status').val();
           localStorage.setItem('emp_status', emp_status);
-        });*/
+        });
 
-        $('#start_contract').keyup(function(){
+        $('#start_contract').change(function(){
           var start_contract = $('#start_contract').val();
           localStorage.setItem('start_contract', start_contract);
         });
 
-        $('#end_contract').keyup(function(){
+        $('#end_contract').change(function(){
           var end_contract = $('#end_contract').val();
           localStorage.setItem('end_contract', end_contract);
         });
 
         /*On Change*/
-        /*$('#gender').keyup(function(){
+        $('#gender').change(function(){
           var gender = $('#gender').val();
           localStorage.setItem('gender', gender);
         });
 
-        $('#last_education').keyup(function(){
+        $('#last_education').change(function(){
           var last_education = $('#last_education').val();
           localStorage.setItem('last_education', last_education);
-        });*/
+        });
 
         $('#facult').keyup(function(){
           var facult = $('#facult').val();
@@ -333,16 +387,15 @@
         });
 
         /*On Change*/
-        /*$('#min_age').keyup(function(){
+        $('#min_age').keyup(function(){
           var min_age = $('#min_age').val();
           localStorage.setItem('min_age', min_age);
-        });*/
+        });
 
-        /*On Change*/
-        /*$('#max_age').keyup(function(){
+        $('#max_age').keyup(function(){
           var max_age = $('#max_age').val();
           localStorage.setItem('max_age', max_age);
-        });*/
+        });
 
         $('#experience').keyup(function(){
           var experience = $('#experience').val();
@@ -369,5 +422,12 @@
         $('#max_age').val(localStorage.getItem('max_age'));
         $('#experience').val(localStorage.getItem('experience'));
       }
+
+      function validasi(){
+        var mulai_kontrak = $('#start_contract').val();
+        if (mulai_kontrak != "" || mulai_kontrak != null) {
+          // $('#end_contract').prop('disabled', false);
+        }
+      }
 </script>
-@endsection
+@endpush()

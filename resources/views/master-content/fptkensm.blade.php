@@ -271,7 +271,7 @@
 		    <div class="col-sm-1" style="padding-right: 30px;margin-left: 60px;">
 		    	<div class="form-group">
 		    		<label>Panen</label>
-		        	<input type="text" placeholder="Ton" id="mpe_mandor_pemanen" name="mpe_mandor_pemanen" class="form-control">
+		        	<input type="text" placeholder="Ton" id="mpe_mandor_panen" name="mpe_mandor_panen" class="form-control">
 		        </div>
 		    </div>
 		    <div class="col-sm-1" style="padding-right: 30px;">
@@ -312,22 +312,22 @@
 		    </div>
 		    <div class="col-sm-1" style="padding-right: 30px;margin-left: 60px;">
 		    	<div class="form-group">
-		        	<input type="text" placeholder="Ton" id="jumlahKebutuhan" class="form-control">
+		        	<input type="text" placeholder="Ton" id="moe_karyawan_panen" name="moe_karyawan_panen" class="form-control">
 		        </div>
 		    </div>
 		    <div class="col-sm-1" style="padding-right: 30px;">
 		    	<div class="form-group">
-		        	<input type="text" placeholder="Ton" id="jumlahKebutuhan" class="form-control">
+		        	<input type="text" placeholder="Ton" id="moe_karyawan_rawat" name="moe_karyawan_rawat" class="form-control">
 		        </div>
 		    </div>
 		    <div class="col-sm-1" style="padding-right: 30px;">
 		    	<div class="form-group">
-		        	<input type="text" placeholder="Ton" id="jumlahKebutuhan" class="form-control">
+		        	<input type="text" placeholder="Ton" id="moe_karyawan_umum" name="moe_karyawan_umum" class="form-control">
 		        </div>
 		    </div>
 		    <div class="col-sm-offset-1 col-sm-1" style="padding-right: 30px;">
 		    	<div class="form-group">
-		        	<input type="text" placeholder="Ton" id="jumlahKebutuhan" class="form-control">
+		        	<input type="text" placeholder="Ton" id="moe_karyawan_total" name="moe_karyawan_total" class="form-control">
 		        </div>
 		    </div>
 		    <label class="col-sm-2 control-label">
@@ -369,39 +369,41 @@
 <div class="row">
   <div class="col-md-12">
     <div class="form-group">
-      <label class="col-sm-3 control-label" for="levelJabatan">
+      <label class="col-sm-3 control-label" for="candidate">
         <span class="pull-left">
           Ada Calon yaang Disarakan ?
         </span>
       </label>
       <div class="col-sm-3">
-        <select class="form-control">
-          <option>--Pilih--</option>
+        <select class="form-control" id="candidate" name="candidate">
+          <option value=" ">--Pilih--</option>
+          <option>YA</option>
+          <option>TIDAK</option>
         </select>
       </div>
     </div>
     <div class="form-group">
-      <label class="col-sm-3 control-label" for="levelJabatan">
+      <label class="col-sm-3 control-label" for="candidate_from">
         <span class="pull-left">
           Asal Karyawan
         </span>
       </label>
       <div class="col-sm-3">
-        <select class="form-control">
-          <option>--Pilih--</option>
+        <select class="form-control" id="candidate_from" name="candidate_from">
+          <option value=" ">--Pilih--</option>
+          <option>INTERNAL</option>
+          <option>EKSTERNAL</option>
         </select>
       </div>
     </div>
     <div class="form-group">
-      <label class="col-sm-3 control-label" for="jabatan">
+      <label class="col-sm-3 control-label" for="reason_recommendation">
         <span class="pull-left">
           Alasan Rekomendasi
         </span>
       </label>
       <div class="col-sm-6">
-        <textarea class="form-control">
-        	
-        </textarea>
+        <textarea class="form-control" id="reason_recommendation" name="reason_recommendation"></textarea>
       </div>
     </div>
   </div>

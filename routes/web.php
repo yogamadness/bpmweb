@@ -62,11 +62,11 @@ Route::get('/fptk_common_bawah', function(){
 });
 Route::post('/fptk', function(){
 	$tipe = $_POST['tipePtk'];
-	if($_POST['tipePtk'] == 'pemanen')
+	if($_POST['tipePtk'] == 'estateNonStaffPemanen')
 	{
 		return view('master-content/fptkensp');
 	}
-	elseif ($tipe == 'mandor')
+	elseif ($tipe == 'estateNonStaffMandor')
 	{
 		return view('master-content/fptkensm');
 	}
@@ -74,12 +74,11 @@ Route::post('/fptk', function(){
 });
 
 Route::post('/fptkms', 'FptkController@fptkms');
-
+Route::post('/fptkro', 'FptkController@fptkro');
+Route::post('/fptkes', 'FptkController@fptkes');
 Route::post('/fptkensr', function(){
 	return view('master-content/fptkensr');
 });
-Route::post('/fptkes', 'FptkController@fptkes');
-
 Route::post('/fptkmns', function(){
 	return view('master-content/fptkmns');
 });
@@ -87,11 +86,9 @@ Route::post('/fptkmns', function(){
 Route::get('/profile', function(){
 	return view('master/profile');
 });
-
 Route::get('/', function(){
 	return view('master/ost');
 });
-
 Route::get('/login', function(){
 	return view('master/login');
 });

@@ -1,5 +1,5 @@
 <hr>
-<div class="input-group">
+m<div class="input-group">
   <h4>
     <b>Data Pendukung (data bulan MM-YYYY)</b>
   </h4>
@@ -131,32 +131,32 @@
 	    </div>
 	    <div class="col-sm-1" style="padding-right: 5px;margin-left: 15px;">
 	    	<div class="form-group">
-	        	<input type="text" placeholder="" id="prod_1" name="prod_1" class="form-control">
+	        	<input type="text" placeholder="" id="estimate_prod_m1" name="estimate_prod_m1" class="form-control">
 	        </div>
 	    </div>
 	    <div class="col-sm-1" style="padding-right: 5px;margin-left: 15px;">
 	    	<div class="form-group">
-	        	<input type="text" placeholder="" id="prod_2" name="prod_2" class="form-control">
+	        	<input type="text" placeholder="" id="estimate_prod_m2" name="estimate_prod_m2" class="form-control">
 	        </div>
 	    </div>
 	    <div class="col-sm-1" style="padding-right: 5px;margin-left: 15px;">
 	    	<div class="form-group">
-	        	<input type="text" placeholder="" id="prod_3" name="prod_3" class="form-control">
+	        	<input type="text" placeholder="" id="estimate_prod_m3" name="estimate_prod_m3" class="form-control">
 	        </div>
 	    </div>
 	    <div class="col-sm-1" style="padding-right: 5px;margin-left: 15px;">
 	    	<div class="form-group">
-	        	<input type="text" placeholder="" id="prod_4" name="prod_4" class="form-control">
+	        	<input type="text" placeholder="" id="estimate_prod_m4" name="estimate_prod_m4" class="form-control">
 	        </div>
 	    </div>
 	    <div class="col-sm-1" style="padding-right: 5px;margin-left: 15px;">
 	    	<div class="form-group">
-	        	<input type="text" placeholder="" id="prod_5" name="prod_5" class="form-control">
+	        	<input type="text" placeholder="" id="estimate_prod_m5" name="estimate_prod_m5" class="form-control">
 	        </div>
 	    </div>
 	    <div class="col-sm-1" style="padding-right: 5px;margin-left: 15px;">
 	    	<div class="form-group">
-	        	<input type="text" placeholder="" id="prod_6" name="prod_6" class="form-control">
+	        	<input type="text" placeholder="" id="estimate_prod_m6" name="estimate_prod_m6" class="form-control">
 	        </div>
 	    </div>
 	</div>

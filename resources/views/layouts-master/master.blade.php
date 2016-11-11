@@ -232,8 +232,12 @@
         // }
 >>>>>>> 18ca570c645de2c6021c6e1bf4eda06d9b2f754e
     </script>
+<<<<<<< HEAD
 
     @yield('javascript-form')
+=======
+    
+>>>>>>> b11f51863d00bb007fea4872acb96ef780c6b661
     @stack('js')
 </body>
 

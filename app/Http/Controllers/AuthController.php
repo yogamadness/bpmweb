@@ -20,12 +20,31 @@ class AuthController extends Controller
 		$au = Auth::authenticate($request->username,$request->password);
 		if ($au->valid == true) 
 		{
+			$test = DB::table('TR_USER as u')
+					->select('m.module_code')
+					->join('TR_WORKFLOW_JOB as j', 'u.job_code' , 'j.job_code')
+					->join('TR_WORKFLOW_DETAIL as d', 'j.WORKFLOW_DETAIL_CODE', 'd.WORKFLOW_DETAIL_CODE')
+					->join('TM_MODULE as m', 'd.WORKFLOW_DETAIL_CODE', 'm.WORKFLOW_DETAIL_CODE')
+					->where('u.username', $request->username)
+					->get();
+					dd($test);
+
 			$data = DB::table('TR_USER as u')
 				->join('TR_WORKFLOW_JOB as j', 'u.job_code' , 'j.job_code')
 				->join('TR_WORKFLOW_DETAIL as d', 'j.WORKFLOW_DETAIL_CODE', 'd.WORKFLOW_DETAIL_CODE')
 				->join('TM_MODULE as m', 'd.WORKFLOW_DETAIL_CODE', 'm.WORKFLOW_DETAIL_CODE')
 				->where('u.username', $request->username)
 				->get();
+
+				foreach ($test->module_code as $key => $code) {
+					# code...
+				}
+
+			$datamenu = DB::table('tm_menu as n')
+				->join('TM_MODULE as m', 'n.module_code', 'm.module_code')
+				->whereIn('n.module_code', [ $test->module_code ])
+				->get();
+			dd($datamenu);
 	     	foreach ($data as $key => $value) 
 	     	{
 
