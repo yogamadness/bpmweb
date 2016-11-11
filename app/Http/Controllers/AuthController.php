@@ -27,7 +27,7 @@ class AuthController extends Controller
 					->join('TM_MODULE as m', 'd.WORKFLOW_DETAIL_CODE', 'm.WORKFLOW_DETAIL_CODE')
 					->where('u.username', $request->username)
 					->get();
-					dd($test);
+					// dd($test);
 
 			$data = DB::table('TR_USER as u')
 				->join('TR_WORKFLOW_JOB as j', 'u.job_code' , 'j.job_code')
@@ -35,10 +35,12 @@ class AuthController extends Controller
 				->join('TM_MODULE as m', 'd.WORKFLOW_DETAIL_CODE', 'm.WORKFLOW_DETAIL_CODE')
 				->where('u.username', $request->username)
 				->get();
-
-				foreach ($test->module_code as $key => $code) {
-					# code...
+				// $module_code = "";
+				foreach ($test as $key => $code) {
+					$module_code = $code->module_code;
 				}
+
+				dd($module_code);
 
 			$datamenu = DB::table('tm_menu as n')
 				->join('TM_MODULE as m', 'n.module_code', 'm.module_code')
