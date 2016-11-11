@@ -109,7 +109,7 @@
         
       }
       if(cek && level == 'ENS'){
-        $.post('fptk', { tipePtk: low })
+        $.post('fptkensfm')
           .done(function(data){
             $('.fptk').html(data);
             $('#tipePtk').val('estateNonStaffMandor');

@@ -289,7 +289,7 @@
 		    <div class="col-sm-1" style="padding-right: 30px;">
 		    	<div class="form-group">
 		    		<label>Mandor1</label>
-		        	<input type="text" placeholder="Ton" id="mpe_mandor_mandor_1" name="mpe_mandor_mandor_1" class="form-control">
+		        	<input type="text" placeholder="Ton" id="mpe_mandor_mandor1" name="mpe_mandor_mandor1" class="form-control">
 		        </div>
 		    </div>
 		    <div class="col-sm-1" style="padding-right: 30px;">
@@ -344,17 +344,17 @@
 		    </div>
 		    <div class="col-sm-1" style="padding-right: 30px;margin-left: 60px;">
 		    	<div class="form-group">
-		        	<input type="text" placeholder="Ton" id="jumlahKebutuhan" name="" class="form-control">
+		        	<input type="text" placeholder="Ton" id="rasio_panen" name="rasio_panen" class="form-control">
 		        </div>
 		    </div>
 		    <div class="col-sm-1" style="padding-right: 30px;">
 		    	<div class="form-group">
-		        	<input type="text" placeholder="Ton" id="jumlahKebutuhan" name="" class="form-control">
+		        	<input type="text" placeholder="Ton" id="rasio_rawat" name="rasio_rawat" class="form-control">
 		        </div>
 		    </div>
 		    <div class="col-sm-1" style="padding-right: 30px;">
 		    	<div class="form-group">
-		        	<input type="text" placeholder="Ton" id="jumlahKebutuhan" name="" class="form-control">
+		        	<input type="text" placeholder="Ton" id="rasio_umum" name="rasio_umum" class="form-control">
 		        </div>
 		    </div>
 		</div>

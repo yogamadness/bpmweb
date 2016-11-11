@@ -166,7 +166,7 @@
     </div>
     <!-- /#wrapper -->
     <script type="text/javascript">
-<<<<<<< HEAD
+
         $(document).ready(function() {
             looping1();
         });
@@ -198,46 +198,8 @@
         function looping1() {
             ceklogin();
         }
-=======
-        // $(document).ready(function() {
-        //     looping1();
-        // });
-
-        // function ceklogin() {
-        //     $.ajaxSetup({
-        //       headers: {
-        //           'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-        //       }
-        //     });
-        //     $.ajax({
-        //         type: "post",
-        //         url: "reload",
-        //         async: false
-        //     }).success(function(data){
-        //         if (data.success == true ) {
-        //             setTimeout(function(){
-        //                 looping1();
-        //             }, 1000);   
-        //         }else{
-        //             alert("Please Re-Login");
-        //             window.location.replace("loginn");    
-        //         }
-        //     }).error(function(){
-        //         console.log("eror")
-        //     });
-        //   }
-
-        // function looping1() {
-        //     ceklogin();
-        // }
->>>>>>> 18ca570c645de2c6021c6e1bf4eda06d9b2f754e
+        
     </script>
-<<<<<<< HEAD
-
-    @yield('javascript-form')
-=======
-    
->>>>>>> b11f51863d00bb007fea4872acb96ef780c6b661
     @stack('js')
 </body>
 

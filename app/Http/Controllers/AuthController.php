@@ -8,6 +8,7 @@ use DB;
 use App\CurrentLogin;
 use App\TAPAuth\Auth;
 use Ramsey\Uuid\Uuid;
+use URL;
 
 class AuthController extends Controller
 {
@@ -43,15 +44,23 @@ class AuthController extends Controller
 				->join('TM_MODULE as m', 'n.module_code', 'm.module_code')
 				->whereIn('n.module_code', $module_code)
 				->get();
-			//dd($datamenu);
+			
+			// $menu_detail = [];
 			foreach ($datamenu as $key => $value) {
-				Session::set('menu_code', $value->menu_code);
-				Session::set('menu_name', $value->menu_name);
-				Session::set('url', $value->url);
-				Session::set('module_code', $value->module_code);
-				Session::set('module_name', $value->module_name);
-				Session::set('description', $value->description);
+				$menu_detail[] = $value->menu_code;
+				$menu_name[] = $value->menu_name;
+				$menu_url[] = $value->url;
+			}
 
+
+	    	$url = URL::to('/');
+
+			foreach ($datamenu as $key => $menus) {
+				if ($menus->url == null) {
+					$datas[] = '<a href="'.$url.'">'.$menus->menu_name.'</a>';
+				} else {
+					$datas[] = '<a href="'.$url.$menus->url.'">'.$menus->menu_name.'</a>';
+				}
 			}
 
 	     	foreach ($data as $key => $value) 
@@ -79,8 +88,15 @@ class AuthController extends Controller
 
 	      Session::set('role_code', $role_code);
 	      Session::set('role_name', $role_name);
+	      Session::set('menu_detail', $menu_detail);
+	      Session::set('menu_name', $menu_name);
+	      Session::set('menu_url', $menu_url);
+	      Session::set('menus', $datas);
 	      $session = Session::all();
-	      dd($session);
+
+
+	      // dd($datas);
+
 	      // Save and Update to TR_CURRENT_LOGIN
 	      $result = DB::table('TR_CURRENT_LOGIN')->where('USER_ID', '=', Session::get('user_id'))->get();
 			if ($result->count() >= 1) {

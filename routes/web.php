@@ -68,12 +68,13 @@ Route::post('/fptk', function(){
 	}
 	elseif ($tipe == 'estateNonStaffMandor')
 	{
-		return view('master-content/fptkensm');
+		return view('master-content/fptkensfm');
 	}
 	return null;
 });
 
 Route::post('/fptkms', 'FptkController@fptkms');
+Route::post('/fptkensfm', 'FptkController@fptkensfm');
 Route::post('/fptkro', 'FptkController@fptkro');
 Route::post('/fptkes', 'FptkController@fptkes');
 Route::post('/fptkensr', function(){

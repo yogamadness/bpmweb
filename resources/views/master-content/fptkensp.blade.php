@@ -317,11 +317,11 @@ m<div class="input-group">
 			if (localStorage) {
 			setStorage();
 				if (localStorage.getItem('company') != null){
-				if (confirm('Halaman ini masih menyimpan data lama. Apakah anda ingin menggukanannya lagi?')) {
-				getStorage();
-				} else {
-				localStorage.clear();
-				}
+					if (confirm('Halaman ini masih menyimpan data lama. Apakah anda ingin menggukanannya lagi?')) {
+						getStorage();
+					} else {
+						localStorage.clear();
+					}
 				}
 			} else {
 				alert("not Support");

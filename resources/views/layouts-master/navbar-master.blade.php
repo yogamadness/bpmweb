@@ -83,46 +83,12 @@
                         </ul>
                     </li>
                     <li>
-                        <a href="javascript:;" data-toggle="collapse" data-target="#demo"><i class="fa fa-fw fa-arrows-v"></i> TAP <i class="fa fa-fw fa-caret-down"></i></a>
+                        <a href="javascript:;" data-toggle="collapse" data-target="#demo"><i class="fa fa-fw fa-arrows-v"></i> Menus <i class="fa fa-fw fa-caret-down"></i></a>
                         <ul id="demo" class="collapse">
                             <li>
-                                <a href="javascript:;" data-toggle="collapse" data-target="#demo2"><span class="glyphicon glyphicon-th" aria-hidden="true"></span>  Input PTK</a>
-                                <ul id="demo2" class="collapse">
-                                    <li>
-                                        <a href="javascript:;" data-toggle="collapse" data-target="#demo3">HC</a>
-                                        <ul id="demo3" class="collapse">
-                                            <li>
-                                                <a href="">FPTK</a>
-                                            </li>
-                                            <li>
-                                                <a href="">Terminasi</a>
-                                            </li>
-                                            <li>
-                                                <a href="">Mutasi</a>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li>
-                                <a href=""><span class="glyphicon glyphicon-th" aria-hidden="true"></span>  Approval PTK</a>
-                            </li>
-                            <li>
-                                <a href="javascript:;" data-toggle="collapse" data-target="#demo4"><span class="glyphicon glyphicon-th" aria-hidden="true"></span>  Non Staff</a>
-                                <ul id="demo4" class="collapse">
-                                    <li>
-                                        <a href="">Level Tiga</a>
-                                    </li>
-                                    <li>
-                                        <a href="">Level Tiga</a>
-                                    </li>
-                                    <li>
-                                        <a href="">Level Tiga</a>
-                                    </li>
-                                    <li>
-                                        <a href="">Level Tiga</a>
-                                    </li>
-                                </ul>
+                                @foreach (Session::get('menus') as $menus)
+                                    {!! $menus !!}
+                                @endforeach
                             </li>
                         </ul>
                     </li>
