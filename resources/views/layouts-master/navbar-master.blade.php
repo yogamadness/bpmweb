@@ -54,6 +54,35 @@
                         <a href="index.html"><i class="fa fa-fw fa-edit"></i> Dashboard</a>
                     </li>
                     <li>
+                        <a href="javascript:;" data-toggle="collapse" data-target="#hc"><i class="fa fa-fw fa-arrows-v"></i> HC <i class="fa fa-fw fa-caret-down"></i></a>
+                        <ul id="hc" class="collapse">
+                            <li>
+                                <a href="javascript:;" data-toggle="collapse" data-target="#ptk"><span class="glyphicon glyphicon-th" aria-hidden="true"></span>  ptk</a>
+                                <ul id="ptk" class="collapse">
+                                    <li><a href=""> Input PTK</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href=""><span class="glyphicon glyphicon-th" aria-hidden="true"></span>  Terminasi</a>
+                            </li>
+                            <li>
+                                <a href=""><span class="glyphicon glyphicon-th" aria-hidden="true"></span>  PPM</a>
+                            </li>
+                            <li>
+                                <a href=""><span class="glyphicon glyphicon-th" aria-hidden="true"></span>  Sanksi</a>
+                            </li>
+                            <li>
+                                <a href=""><span class="glyphicon glyphicon-th" aria-hidden="true"></span>  Input / Rubah Personalia</a>
+                            </li>
+                            <li>
+                                <a href=""><span class="glyphicon glyphicon-th" aria-hidden="true"></span>  PDG</a>
+                            </li>
+                            <li>
+                                <a href=""><span class="glyphicon glyphicon-th" aria-hidden="true"></span>  UPP</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
                         <a href="javascript:;" data-toggle="collapse" data-target="#demo"><i class="fa fa-fw fa-arrows-v"></i> TAP <i class="fa fa-fw fa-caret-down"></i></a>
                         <ul id="demo" class="collapse">
                             <li>

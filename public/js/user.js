@@ -75,7 +75,6 @@ $("#simpan").click(function() {
 });
 
 $("#update").click(function() {
-  alert("masuk");
   ajaxSetup();
   var ID = $('#user_id').val();
   var formData = $("#form-user").serialize();

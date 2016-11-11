@@ -245,3 +245,11 @@
     </div>
   </div>
 </div>
+
+@section('javascript-form')
+<script type="text/javascript">
+  $('#company').keyup(function() {
+    console.log(this.val);
+  });
+</script>
+@endsection
