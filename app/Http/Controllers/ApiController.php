@@ -119,28 +119,32 @@ class ApiController extends Controller
 
     public static function GetOptBusinessArea()
     {
-    	$nik = base64_encode('/area/region');//?NIK=' . urlencode($nik_national));
+			$curlService = new \Ixudra\Curl\CurlService();
+			$nik = base64_encode('/area/region');//?NIK=' . urlencode($nik_national));
     	$url = self::$_devUrl . $nik;
 
-    	$getUrl = Input::get('url');
-    	if($getUrl == 1){
-        	dd($url);
-        }
-
-    	if(self::$_online == 1) {
-    	$json = @file_get_contents($url);
-    	if($json === false) {
-        	$result = [];
-        } else {
-    		$array = json_decode($json);
+			$response = $curlService->to($url)->get();
+			$array = json_decode($response);
+			//
+    	// $getUrl = Input::get('url');
+    	// if($getUrl == 1){
+      //   	dd($url);
+      //   }
+			//
+    	// if(self::$_online == 1) {
+    	// $json = @file_get_contents($url);
+    	// if($json === false) {
+      //   	$result = [];
+      //   } else {
+    	// 	$array = json_decode($json);
     		$result = array();
     		if(isset($array->data)) {
     			foreach ($array->data as $value) {
     				array_push($result, array('id' => $value->REGION_CODE, 'text' => $value->REGION_NAME));
     			}
         	}
-        }
-        } else { $result = []; }
+        // }
+        // } else { $result = []; }
 
     	header('Content-type: application/json');
     	return json_encode($result);
