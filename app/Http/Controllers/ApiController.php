@@ -14,9 +14,9 @@ use App\Http\Models\SanksiHeader;
 
 class ApiController extends Controller
 {
-		private static $_testUrl = "http://10.20.1.155/api/";
+		private static $_testUrl = "http://tap-flowdev.tap-agri.com/api/";
     private static $_devUrl = "http://apidev.tap-agri.com/";
-    private static $_fakeUrl = "http://apidev.tap-agri.com/urlGetEmployee";
+    private static $_fakeUrl = "http://tap-flowdev.tap-agri.com/urlGetEmployee";
     private static $_online = 0; // 1 = online, 0 = offline
 
     public function __construct()
@@ -85,7 +85,7 @@ class ApiController extends Controller
 
     public static function GetOptCompany()
     {
-			
+
     	$nik = base64_encode('/area/company');//?NIK=' . urlencode($nik_national));
     	$url = self::$_devUrl . $nik;
 
