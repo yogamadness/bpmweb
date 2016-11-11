@@ -207,13 +207,13 @@
       </div>
     </div>
     <div class="form-group">
-      <label class="col-sm-4 control-label" for="skill">
+      <label class="col-sm-4 control-label" for="experience">
         <span class="pull-left">
           Pengalaman
         </span>
       </label>
       <div class="col-sm-4">
-        <input type="text" placeholder="Pengalaman" id="skill" class="form-control" class="skill">
+        <input type="text" placeholder="Pengalaman" id="experience" class="form-control" class="experience">
       </div>
       <label class="col-sm-2 control-label">
         <span class="pull-left">
@@ -230,7 +230,7 @@
         </span>
       </label>
       <div class="col-sm-6">
-        <textarea class="form-control" id="keterampilan" name="keterampilan"></textarea>
+        <textarea class="form-control" id="skill" name="skill"></textarea>
       </div>
     </div>
     <div class="form-group">
@@ -248,8 +248,126 @@
 
 @section('javascript-form')
 <script type="text/javascript">
-  $('#company').keyup(function() {
-    console.log(this.val);
-  });
+    $(document).ready(function(){
+        /*Local Storage*/
+        if (localStorage) {
+          setStorage();
+          getStorage();
+        } else {
+          alert("not Support");
+        }
+    });
+
+      function setStorage(){
+        $('#company').keyup(function(){
+          var company = $('#company').val();
+          localStorage.setItem('company', company);
+        });
+
+        $('#ba_code').keyup(function(){
+          var ba_code = $('#ba_code').val();
+          localStorage.setItem('ba_code', ba_code);
+        });
+
+        $('#department').keyup(function(){
+          var department = $('#department').val();
+          localStorage.setItem('department', department);
+        });
+
+        $('#number_of_needs').keyup(function(){
+          var number_of_needs = $('#number_of_needs').val();
+          localStorage.setItem('number_of_needs', number_of_needs);
+        });
+
+        /*On Change*/
+        /*$('#needs_date').keyup(function(){
+          var needs_date = $('#needs_date').val();
+          localStorage.setItem('needs_date', needs_date);
+        });*/
+
+        $('#head').keyup(function(){
+          var head = $('#head').val();
+          localStorage.setItem('head', head);
+        });
+
+        /*On Change*/
+        /*$('#emp_status').keyup(function(){
+          var emp_status = $('#emp_status').val();
+          localStorage.setItem('emp_status', emp_status);
+        });*/
+
+        $('#start_contract').keyup(function(){
+          var start_contract = $('#start_contract').val();
+          localStorage.setItem('start_contract', start_contract);
+        });
+
+        $('#end_contract').keyup(function(){
+          var end_contract = $('#end_contract').val();
+          localStorage.setItem('end_contract', end_contract);
+        });
+
+        /*On Change*/
+        /*$('#gender').keyup(function(){
+          var gender = $('#gender').val();
+          localStorage.setItem('gender', gender);
+        });
+
+        $('#last_education').keyup(function(){
+          var last_education = $('#last_education').val();
+          localStorage.setItem('last_education', last_education);
+        });*/
+
+        $('#facult').keyup(function(){
+          var facult = $('#facult').val();
+          localStorage.setItem('facult', facult);
+        });
+
+        $('#skill').keyup(function(){
+          var skill = $('#skill').val();
+          localStorage.setItem('skill', skill);
+        });
+
+        $('#spec_requirment').keyup(function(){
+          var spec_requirment = $('#spec_requirment').val();
+          localStorage.setItem('spec_requirment', spec_requirment);
+        });
+
+        /*On Change*/
+        /*$('#min_age').keyup(function(){
+          var min_age = $('#min_age').val();
+          localStorage.setItem('min_age', min_age);
+        });*/
+
+        /*On Change*/
+        /*$('#max_age').keyup(function(){
+          var max_age = $('#max_age').val();
+          localStorage.setItem('max_age', max_age);
+        });*/
+
+        $('#experience').keyup(function(){
+          var experience = $('#experience').val();
+          localStorage.setItem('experience', experience);
+        });
+      }
+
+      function getStorage(){
+        $('#company').val(localStorage.getItem('company'));
+        $('#ba_code').val(localStorage.getItem('ba_code'));
+        $('#department').val(localStorage.getItem('department'));
+        $('#number_of_needs').val(localStorage.getItem('number_of_needs'));
+        $('#needs_date').val(localStorage.getItem('needs_date'));
+        $('#head').val(localStorage.getItem('head'));
+        $('#emp_status').val(localStorage.getItem('emp_status'));
+        $('#start_contract').val(localStorage.getItem('start_contract'));
+        $('#end_contract').val(localStorage.getItem('end_contract'));
+        $('#gender').val(localStorage.getItem('gender'));
+        $('#last_education').val(localStorage.getItem('last_education'));
+        $('#facult').val(localStorage.getItem('facult'));
+        $('#skill').val(localStorage.getItem('skill'));
+        $('#spec_requirment').val(localStorage.getItem('spec_requirment'));
+        $('#min_age').val(localStorage.getItem('min_age'));
+        $('#max_age').val(localStorage.getItem('max_age'));
+        $('#experience').val(localStorage.getItem('experience'));
+      }
 </script>
 @endsection

@@ -17,7 +17,7 @@
       </div>
       <!-- /.box-header -->
       <div class="box-body">
-        <form method="post" id="form-user" class="form-horizontal" role="form">
+        <form method="post" id="form-user" class="form-horizontal" role="form" data-parsley-validate="">
           <div class="row">
           <input type="hidden" id="user_id" class="form-control" name="user_id">
             <div class="col-md-6">
@@ -28,7 +28,7 @@
                   </span>
                 </label>
                 <div class="col-sm-6">
-                  <input type="text" placeholder="Username" id="username" class="form-control" name="username">
+                  <input type="text" placeholder="Username" id="username" class="form-control" name="username" required="">
                 </div>
               </div>
               <div class="form-group">
@@ -38,7 +38,7 @@
                   </span>
                 </label>
                 <div class="col-sm-6">
-                  <input type="text" placeholder="NIK" id="nik" class="form-control" name="nik">
+                  <input type="text" placeholder="NIK" id="nik" class="form-control" name="nik" required="">
                 </div>
               </div>
               <div class="form-group">
@@ -48,7 +48,7 @@
                   </span>
                 </label>
                 <div class="col-sm-6">
-                  <input type="text" placeholder="Nama" id="nama" class="form-control" name="nama">
+                  <input type="text" placeholder="Nama" id="nama" class="form-control" name="nama" required="">
                 </div>
               </div>
               <div class="form-group">
@@ -58,7 +58,7 @@
                   </span>
                 </label>
                 <div class="col-sm-6">
-                  <input type="email" placeholder="Email" id="email" class="form-control" name="email">
+                  <input type="email" placeholder="Email" id="email" class="form-control" name="email" required="">
                 </div>
               </div>
             </div>
@@ -70,7 +70,7 @@
                   </span>
                 </label>
                 <div class="col-sm-6">
-                  <input type="text" placeholder="Job Code" id="job_code" class="form-control" name="job_code">
+                  <input type="text" placeholder="Job Code" id="job_code" class="form-control" name="job_code" required="">
                 </div>
               </div>
               <div class="form-group">
@@ -80,7 +80,7 @@
                   </span>
                 </label>
                 <div class="col-sm-6">
-                  <input type="text" placeholder="Area Code" id="area_code" class="form-control" name="area_code">
+                  <input type="text" placeholder="Area Code" id="area_code" class="form-control" name="area_code" required="">
                 </div>
               </div>
               <div class="form-group">
@@ -90,7 +90,7 @@
                   </span>
                 </label>
                 <div class="col-sm-6">
-                  <input type="text" placeholder="Ref Code" id="ref_role" class="form-control" name="ref_role">
+                  <input type="text" placeholder="Ref Code" id="ref_role" class="form-control" name="ref_role" required="">
                 </div>
               </div>
             </div> <!-- /col-md-6 -->           
@@ -159,6 +159,12 @@
             ]
       });
     });
+
+    $function(){
+      $('#form').parsley().on('field:validate', function({
+        
+      }))
+    };
   </script>
   <script src="{{asset('js/user.js')}}"></script>
 @endpush
