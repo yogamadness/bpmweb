@@ -368,7 +368,7 @@ class ApiController extends Controller
 
 	public static function GetEmpByNIK($nik = null)
 	{
-			$curlService = new \Ixudra\Curl\CurlService();
+
 			$nik_national = Input::get('nik') == '' ? $nik : Input::get('nik');
 			//$nik = base64_encode('/employee/search?NIK=' . urlencode($nik_national));
     	$nik = base64_encode('/employee/getEmployee?NIK=' . urlencode($nik_national));
@@ -377,20 +377,18 @@ class ApiController extends Controller
     	//$url = self::$_devUrl . $nik;
     	$url = self::$_fakeUrl;
 
-			$response = $curlService->to($url)->get();
-			$array = json_decode($response);
-    	// $getUrl = Input::get('url');
-    	// if($getUrl == 1){
-      //   	dd($url);
-      //   }
-			//
-    	// //if(self::$_online == 1) {
-    	// if(1==1){
-    	// $json = @file_get_contents($url);
-    	// if($json === false) {
-      //   	$result = [];
-      //   } else {
-    	// 	$array = json_decode($json);
+    	$getUrl = Input::get('url');
+    	if($getUrl == 1){
+        	dd($url);
+        }
+
+    	//if(self::$_online == 1) {
+    	if(1==1){
+    	$json = @file_get_contents($url);
+    	if($json === false) {
+        	$result = [];
+        } else {
+    		$array = json_decode($json);
     		$result = array();
     		if(isset($array->data)) {
     			//foreach ($array->data as $value) {
@@ -425,9 +423,9 @@ class ApiController extends Controller
                             		'PSS' => (isset($pss) ? $pss->trans_type_id : ''),
             					));
     			}
-        	//}
+        	}
         }
-        //} else { $result = []; }
+        } else { $result = []; }
 
     	header('Content-type: application/json');
     	return $result;
