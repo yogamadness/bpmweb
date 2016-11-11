@@ -87,7 +87,7 @@ class ApiController extends Controller
     {
     	$nik = base64_encode('/area/company');//?NIK=' . urlencode($nik_national));
     	$url = self::$_devUrl . $nik;
-print_r $url;
+
     	$getUrl = Input::get('url');
     	if($getUrl == 1){
         	dd($url);
