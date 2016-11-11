@@ -82,6 +82,7 @@ class DemosiController extends Controller
             'getOptAfdeling' => ApiController::GetOptAfdeling(),
             'getOptJobCode' => ApiController::GetOptJobCode(),
             'getOptJobType' => ApiController::GetOptJobType(),
+            'getEmpProductivity' => ApiController::GetEmpProductivity(),
             'input' => $input,
             'field_rules' => $field_rules,
             'form_type' => $form_type,
@@ -141,6 +142,7 @@ class DemosiController extends Controller
             'getOptAfdeling' => ApiController::GetOptAfdeling(), //GetOptAfdeling
             'getOptJobCode' => ApiController::GetOptJobCode(), //GetOptJobCode
             'getOptJobType' => ApiController::GetOptJobType(), //GetOptJobType
+            'getEmpProductivity' => ApiController::GetEmpProductivity(),
             'input' => $input,
             'field_rules' => $field_rules,
             'form_type' => $form_type,
@@ -200,6 +202,7 @@ class DemosiController extends Controller
             'getOptAfdeling' => ApiController::GetOptAfdeling(),
             'getOptJobCode' => ApiController::GetOptJobCode(),
             'getOptJobType' => ApiController::GetOptJobType(),
+            'getEmpProductivity' => ApiController::GetEmpProductivity(),
             'input' => $input,
             'field_rules' => $field_rules,
             'form_type' => $form_type,
@@ -302,6 +305,7 @@ class DemosiController extends Controller
             'getOptAfdeling' => ApiController::GetOptAfdeling(),
             'getOptJobCode' => ApiController::GetOptJobCode(),
             'getOptJobType' => ApiController::GetOptJobType(),
+            'getEmpProductivity' => ApiController::GetEmpProductivity(),
         	'urlGetEmpAutoComplete' => 'http://tap-flowdev.tap-agri.com/api/GetEmpAutoCompletePemanen',
             'job_code' => 'pemanen',
             'input' => $input,
@@ -469,6 +473,7 @@ class DemosiController extends Controller
             'getOptAfdeling' => ApiController::GetOptAfdeling(),
             'getOptJobCode' => ApiController::GetOptJobCode(),
             'getOptJobType' => ApiController::GetOptJobType(),
+            'getEmpProductivity' => ApiController::GetEmpProductivity(),
         	'urlGetEmpAutoComplete' => 'http://tap-flowdev.tap-agri.com/api/GetEmpAutoCompletePemanen',
             'job_code' => 'pemanen',
             'dHeader' => $dHeader,

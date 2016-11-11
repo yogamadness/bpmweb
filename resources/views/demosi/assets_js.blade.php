@@ -198,7 +198,32 @@ function getDataEmp()
 		});
 	}
 }
-
+function getDataEmpProd()
+{
+    var nik = $.trim($('#iNikSap').val());
+	console.log(nik);
+	if(nik!='') {
+		$.ajax({
+			url : "http://tap-flowdev.tap-agri.com/api/GetEmpProductivity",
+			type : 'GET',
+			data : {
+				'nik': nik,
+			},
+			dataType : 'json',
+			success : function(json) {
+				if(json == 0) {
+            console.log(0);
+				} else {
+            console.log(json);
+          	//console.log(json[0].BULAN);
+          	//$('#iNama').val(json[0].BULAN);
+          	//$('#iAtt3yAgo').val(json[0].KEHADIRAN);
+          	//$('#iProd3yAgo').val(json[0].PRODUCTIVITY);
+				}
+			}
+		});
+	}
+}
 
 $(document).ready(function(){
     // Constructing the suggestion engine
