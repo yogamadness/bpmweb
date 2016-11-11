@@ -85,29 +85,33 @@ class ApiController extends Controller
 
     public static function GetOptCompany()
     {
+			$curlService = new \Ixudra\Curl\CurlService();
 
     	$nik = base64_encode('/area/company');//?NIK=' . urlencode($nik_national));
     	$url = self::$_devUrl . $nik;
 
-    	$getUrl = Input::get('url');
-    	if($getUrl == 1){
-        	dd($url);
-        }
+			$response = $curlService->to($url)->get();
+			$array = json_decode($response);
 
-    	if(self::$_online == 1) {
-    	$json = @file_get_contents($url);
-    	if($json === false) {
-        	$result = [];
-        } else {
-    		$array = json_decode($json);
+    	// $getUrl = Input::get('url');
+    	// if($getUrl == 1){
+      //   	dd($url);
+      //   }
+
+    	// if(self::$_online == 1) {
+    	// $json = @file_get_contents($url);
+    	// if($json === false) {
+      //   	$result = [];
+      //   } else {
+    		//$array = json_decode($json);
     		$result = array();
     		if(isset($array->data)) {
     			foreach ($array->data as $value) {
     				array_push($result, array('id' => $value->COMP_CODE, 'text' => $value->COMP_NAME));
     			}
         	}
-        }
-        } else { $result = []; }
+        //}
+        // } else { $result = []; }
 
     	header('Content-type: application/json');
     	return json_encode($result);
