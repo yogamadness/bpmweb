@@ -7,6 +7,7 @@
 
 @section('content')
 <h1>Welcome</h1>
+<p>{{ Session::get('email') }}</p>
 @endsection()
 
 @section('javascript-form')

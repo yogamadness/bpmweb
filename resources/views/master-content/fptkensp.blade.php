@@ -169,25 +169,25 @@ m<div class="input-group">
 		    <div class="col-sm-1" style="padding-right: 30px;margin-left: 60px;">
 		    	<div class="form-group">
 		    		<label>Jun</label>
-		        	<input type="text" placeholder="Ton" id="pba_bbc_1" name="pba_bbc_1" class="form-control">
+		        	<input type="text" placeholder="Ton" id="pba_bbc_b1" name="pba_bbc_b1" class="form-control">
 		        </div>
 		    </div>
 		    <div class="col-sm-1" style="padding-right: 30px;">
 		    	<div class="form-group">
 		    		<label>Jul</label>
-		        	<input type="text" placeholder="Ton" id="pba_bbc_2" name="pba_bbc_2" class="form-control">
+		        	<input type="text" placeholder="Ton" id="pba_bbc_b2" name="pba_bbc_b2" class="form-control">
 		        </div>
 		    </div>
 		    <div class="col-sm-1" style="padding-right: 30px;">
 		    	<div class="form-group">
 		    		<label>Agu</label>
-		        	<input type="text" placeholder="Ton" id="pba_bbc_3" name="pba_bbc_3" class="form-control">
+		        	<input type="text" placeholder="Ton" id="pba_bbc_b3" name="pba_bbc_b3" class="form-control">
 		        </div>
 		    </div>
 		    <div class="col-sm-1" style="padding-right: 30px;">
 		    	<div class="form-group">
 		    		<label>Sep</label>
-		        	<input type="text" placeholder="Ton" id="pba_bbc_4" name="pba_bbc_4" class="form-control">
+		        	<input type="text" placeholder="Ton" id="pba_bbc_b4" name="pba_bbc_b4" class="form-control">
 		        </div>
 		    </div>
 		    <input type="hidden" name="bbc" id="bbd">
@@ -308,3 +308,24 @@ m<div class="input-group">
 		</div>
 	</div>
 </div>
+
+@push('js')
+	<script type="text/javascript">
+		$(document).ready(function(){
+
+			/*Local Storage*/
+			if (localStorage) {
+			setStorage();
+				if (localStorage.getItem('company') != null){
+				if (confirm('Halaman ini masih menyimpan data lama. Apakah anda ingin menggukanannya lagi?')) {
+				getStorage();
+				} else {
+				localStorage.clear();
+				}
+				}
+			} else {
+				alert("not Support");
+			}
+	  });
+	</script>
+@endpush()

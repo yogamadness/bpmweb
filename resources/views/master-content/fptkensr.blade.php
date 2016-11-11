@@ -88,7 +88,7 @@
 		        </span>
 		    </label>
 		    <div class="col-sm-3">
-		        <input type="text" placeholder="" id="pmp_mpe_attendance" name="pmp_mpe_attendance" class="form-control">
+		        <input type="text" placeholder="" id="pmp_attendance" name="pmp_attendance" class="form-control">
 			</div>
 		</div>
 		<div class="form-group">

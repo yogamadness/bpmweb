@@ -20,14 +20,17 @@ class AuthController extends Controller
 		$au = Auth::authenticate($request->username,$request->password);
 		if ($au->valid == true) 
 		{
-			$test = DB::table('TR_USER as u')
+			$getModulCode = DB::table('TR_USER as u')
 					->select('m.module_code')
 					->join('TR_WORKFLOW_JOB as j', 'u.job_code' , 'j.job_code')
 					->join('TR_WORKFLOW_DETAIL as d', 'j.WORKFLOW_DETAIL_CODE', 'd.WORKFLOW_DETAIL_CODE')
 					->join('TM_MODULE as m', 'd.WORKFLOW_DETAIL_CODE', 'm.WORKFLOW_DETAIL_CODE')
 					->where('u.username', $request->username)
 					->get();
-					// dd($test);
+			$module_code = [];
+			foreach ($getModulCode as $key => $code) {
+				$module_code[] = $code->module_code;
+			}
 
 			$data = DB::table('TR_USER as u')
 				->join('TR_WORKFLOW_JOB as j', 'u.job_code' , 'j.job_code')
@@ -35,21 +38,24 @@ class AuthController extends Controller
 				->join('TM_MODULE as m', 'd.WORKFLOW_DETAIL_CODE', 'm.WORKFLOW_DETAIL_CODE')
 				->where('u.username', $request->username)
 				->get();
-				// $module_code = "";
-				foreach ($test as $key => $code) {
-					$module_code = $code->module_code;
-				}
-
-				dd($module_code);
 
 			$datamenu = DB::table('tm_menu as n')
 				->join('TM_MODULE as m', 'n.module_code', 'm.module_code')
-				->whereIn('n.module_code', [ $test->module_code ])
+				->whereIn('n.module_code', $module_code)
 				->get();
-			dd($datamenu);
+			//dd($datamenu);
+			foreach ($datamenu as $key => $value) {
+				Session::set('menu_code', $value->menu_code);
+				Session::set('menu_name', $value->menu_name);
+				Session::set('url', $value->url);
+				Session::set('module_code', $value->module_code);
+				Session::set('module_name', $value->module_name);
+				Session::set('description', $value->description);
+
+			}
+
 	     	foreach ($data as $key => $value) 
 	     	{
-
 		        if ($value->workflow_detail_code != 0) {
 		          $role_code['Role'][$value->workflow_detail_code][] = $value->workflow_detail_code ;
 		          $role_name['RoleName'][$value->workflow_detail_code][] = $value->description ;
@@ -74,6 +80,7 @@ class AuthController extends Controller
 	      Session::set('role_code', $role_code);
 	      Session::set('role_name', $role_name);
 	      $session = Session::all();
+	      dd($session);
 	      // Save and Update to TR_CURRENT_LOGIN
 	      $result = DB::table('TR_CURRENT_LOGIN')->where('USER_ID', '=', Session::get('user_id'))->get();
 			if ($result->count() >= 1) {
@@ -99,7 +106,6 @@ class AuthController extends Controller
       ['USER_ID', '=', Session::get('user_id')],
       ['SESSION_ID', '=', Session::get('session_id')]
     ])->get();
-
     if ($result->count() >= 1) {
       $data['success'] = true;
       return response()->json($data);

@@ -130,6 +130,7 @@
       $.post('fptkensr')
         .done(function(data){
           $('.fptk').html(data);
+          $('#tipePtk').val('estateNonStaffRawat');
       });
       
     }

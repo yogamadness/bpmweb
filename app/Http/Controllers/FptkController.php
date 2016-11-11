@@ -158,10 +158,10 @@ class FptkController extends Controller
                         'pba_ha_tm' => $requests->pba_ha_tm,
                         'pba_ha_tanam' => $requests->pba_ha_tanam,
                         'pba_produksi' => $requests->pba_produksi,
-                        'pba_bcc_b1' => $requests->pba_bcc_b1,
-                        'pba_bcc_b2' => $requests->pba_bcc_b2,
-                        'pba_bcc_b3' => $requests->pba_bcc_b3,
-                        'pba_bcc_b4' => $requests->pba_bcc_b4,
+                        'pba_bbc_b1' => $requests->pba_bbc_b1,
+                        'pba_bbc_b2' => $requests->pba_bbc_b2,
+                        'pba_bbc_b3' => $requests->pba_bbc_b3,
+                        'pba_bbc_b4' => $requests->pba_bbc_b4,
                         'estimate_ha_panen_m1' => $requests->estimate_ha_panen_m1,
                         'estimate_ha_panen_m2' => $requests->estimate_ha_panen_m2,
                         'estimate_ha_panen_m3' => $requests->estimate_ha_panen_m3,
@@ -175,7 +175,31 @@ class FptkController extends Controller
                         'estimate_prod_m5' => $requests->estimate_prod_m5,
                         'estimate_prod_m6' => $requests->estimate_prod_m6,
                         'pmp_mpe' => $requests->pmp_mpe,
-                        'pmp_mpe_attendance' => $requests->pmp_mpe_attendance,
+                        'pmp_attendance' => $requests->pmp_mpe_attendance,
+                        'pmp_kk_kt' => $requests->pmp_kk_kt,
+                        'pmp_kk_kt_attendance' => $requests->pmp_kk_kt_attendance,
+                        'pmp_kl' => $requests->pmp_kl,
+                        'pmp_kl_attendance' => $requests->pmp_kl_attendance,
+                        'pmp_productivitas' => $requests->pmp_productivitas,
+                        'mp_active' => $requests->mp_active
+                    )
+                );
+                dd($dataDetail);
+            }
+            elseif($requests->tipePtk == 'estateNonStaffRawat'){
+                //insert Regional Office
+                $dataDetail = Estate::create(
+                    array('no_document_ptk' => $data->doc_code,
+                        'pba_ha_tm' => $requests->pba_ha_tm,
+                        'pba_ha_tm' => $requests->pba_ha_tm,
+                        'pba_ha_tanam' => $requests->pba_ha_tanam,
+                        'pba_produksi' => $requests->pba_produksi,
+                        'pba_bbc_b1' => $requests->pba_bbc_b1,
+                        'pba_bbc_b2' => $requests->pba_bbc_b2,
+                        'pba_bbc_b3' => $requests->pba_bbc_b3,
+                        'pba_bbc_b4' => $requests->pba_bbc_b4,
+                        'pmp_mpe' => $requests->pmp_mpe,
+                        'pmp_attendance' => $requests->pmp_attendance,
                         'pmp_kk_kt' => $requests->pmp_kk_kt,
                         'pmp_kk_kt_attendance' => $requests->pmp_kk_kt_attendance,
                         'pmp_kl' => $requests->pmp_kl,
