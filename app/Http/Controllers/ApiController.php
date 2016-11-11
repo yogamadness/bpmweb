@@ -295,32 +295,28 @@ class ApiController extends Controller
 
 	public static function GetEmpAutoCompletePemanen()
 	{
-			$curlService = new \Ixudra\Curl\CurlService();
-			$nik_national = Input::get('nik');
+    	$nik_national = Input::get('nik');
     	$nik = base64_encode('/employee/search?JOB_CODE=Pemanen');
     	$url = self::$_devUrl . $nik;
+    	if(self::$_online == 0) $url = self::$_testUrl . 'getEmpSearch';
 
-			$response = $curlService->to($url)->get();
-			$array = json_decode($response);
-    	// if(self::$_online == 0) $url = self::$_testUrl . 'getEmpSearch';
-			//
-    	// $getUrl = Input::get('url');
-    	// if($getUrl == 1){
-      //   	dd($url);
-      //   }
-			//
-    	// $json = @file_get_contents($url);
-    	// if($json === false) {
-      //   	$result = [];
-      //   } else {
-    	// 	$array = json_decode($json);
+    	$getUrl = Input::get('url');
+    	if($getUrl == 1){
+        	dd($url);
+        }
+
+    	$json = @file_get_contents($url);
+    	if($json === false) {
+        	$result = [];
+        } else {
+    		$array = json_decode($json);
     		$result = array();
     		if(isset($array->data)) {
     			foreach ($array->data as $value) {
     				array_push($result, $value->NIK);
     			}
         	}
-        //}
+        }
 
     	header('Content-type: application/json');
     	return $result;
@@ -334,33 +330,29 @@ class ApiController extends Controller
 
 	public static function GetEmpAutoCompleteNonPemanen()
 	{
-			$curlService = new \Ixudra\Curl\CurlService();
-			$nik_national = Input::get('nik');
+    	$nik_national = Input::get('nik');
     	$nik = base64_encode('/employee/search?JOB_CODE=SATPAM');
     	$url = self::$_devUrl . $nik;
+    	if(self::$_online == 0) $url = self::$_testUrl . 'getEmpSearch';
 
-			$response = $curlService->to($url)->get();
-			$array = json_decode($response);
-    	// if(self::$_online == 0) $url = self::$_testUrl . 'getEmpSearch';
-			//
-			//
-    	// $getUrl = Input::get('url');
-    	// if($getUrl == 1){
-      //   	dd($url);
-      //   }
-			//
-    	// $json = @file_get_contents($url);
-    	// if($json === false) {
-      //   	$result = [];
-      //   } else {
-    	// 	$array = json_decode($json);
+
+    	$getUrl = Input::get('url');
+    	if($getUrl == 1){
+        	dd($url);
+        }
+
+    	$json = @file_get_contents($url);
+    	if($json === false) {
+        	$result = [];
+        } else {
+    		$array = json_decode($json);
     		$result = array();
     		if(isset($array->data)) {
     			foreach ($array->data as $value) {
     				array_push($result, $value->NIK);
     			}
         	}
-        //}
+        }
 
     	header('Content-type: application/json');
     	return $result;
@@ -368,8 +360,7 @@ class ApiController extends Controller
 
 	public static function GetEmpByNIK($nik = null)
 	{
-
-			$nik_national = Input::get('nik') == '' ? $nik : Input::get('nik');
+    	$nik_national = Input::get('nik') == '' ? $nik : Input::get('nik');
 			//$nik = base64_encode('/employee/search?NIK=' . urlencode($nik_national));
     	$nik = base64_encode('/employee/getEmployee?NIK=' . urlencode($nik_national));
     	//$nik = urlencode(base64_encode('/employee/search?NIK=21'));
