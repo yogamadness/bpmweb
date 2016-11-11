@@ -844,7 +844,7 @@ class DemosiController extends Controller
 	function validation($input)
     {
     	if($input['iNikSap'] == '') return false;
-      if(!preg_match("/(\d{2})\/(\d{4})\/(\d{4})\/(\d{2})/", $input['iNikSap'])) return ;
+      if(!preg_match("/(\d{2})\/(\d{4})\/(\d{4})\/(\d{2})/", $input['iNikSap'])) return false;
         return true;
     }
 }
