@@ -246,7 +246,7 @@ $(document).ready(function(){
         limit: 10,
         source: nik
     })
-    .on('typeahead:selected', getDataEmpProd);
+    .on('typeahead:selected', getDataEmp);
 });
 
 </script>
