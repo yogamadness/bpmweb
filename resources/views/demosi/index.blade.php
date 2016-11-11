@@ -1,4 +1,5 @@
 @extends('layouts-master.master')
+
 @section('tittle', 'FPDM')
 @section('cascanding')
     <link href="{{ asset('/plugins/datatables/dataTables.bootstrap.css') }}" rel="stylesheet" type="text/css" />

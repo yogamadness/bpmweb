@@ -165,7 +165,7 @@ function getDataEmp()
 	console.log(nik);
 	if(nik!='') {
 		$.ajax({
-			url : "http://128.199.130.183/api/GetEmpByNIK",
+			url : "http://10.20.1.155/api/GetEmpByNIK",
 			type : 'GET',
 			data : {
 				'nik': nik,

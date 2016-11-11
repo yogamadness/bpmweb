@@ -16,7 +16,7 @@ class ApiController extends Controller
 {
 	private static $_testUrl = "http://10.20.1.155/api/";
     private static $_devUrl = "http://10.20.1.155/";
-    private static $_fakeUrl = "http://128.199.130.183/api/urlGetEmployee";
+    private static $_fakeUrl = "http://10.20.1.155/api/urlGetEmployee";
     private static $_online = 0; // 1 = online, 0 = offline
 
     public function __construct()
@@ -305,7 +305,7 @@ class ApiController extends Controller
 	public static function GetEmpAutoCompleteNonPemanen()
 	{
     	$nik_national = Input::get('nik');
-    	$nik = base64_encode('/employee/search?JOB_CODE=SAMPLING BOY,SATPAM');
+    	$nik = base64_encode('/employee/search?JOB_CODE=SATPAM');
     	$url = self::$_devUrl . $nik;
     	if(self::$_online == 0) $url = self::$_testUrl . 'getEmpSearch';
 

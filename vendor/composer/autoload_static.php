@@ -117,6 +117,10 @@ class ComposerStaticInit2672e857787c37cc23d112dce644045e
             'ClassPreloader\\' => 15,
             'Carbon\\' => 7,
         ),
+        'B' => 
+        array (
+            'Barryvdh\\Cors\\' => 14,
+        ),
         'A' => 
         array (
             'App\\' => 4,
@@ -307,6 +311,10 @@ class ComposerStaticInit2672e857787c37cc23d112dce644045e
         array (
             0 => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon',
         ),
+        'Barryvdh\\Cors\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/barryvdh/laravel-cors/src',
+        ),
         'App\\' => 
         array (
             0 => __DIR__ . '/../..' . '/app',
@@ -436,6 +444,14 @@ class ComposerStaticInit2672e857787c37cc23d112dce644045e
         'App\\TAPAuth\\Auth' => __DIR__ . '/../..' . '/app/TAPAuth/Auth.php',
         'App\\TR_Users' => __DIR__ . '/../..' . '/app/TR_Users.php',
         'App\\User' => __DIR__ . '/../..' . '/app/User.php',
+        'Barryvdh\\Cors\\HandleCors' => __DIR__ . '/..' . '/barryvdh/laravel-cors/src/HandleCors.php',
+        'Barryvdh\\Cors\\HandlePreflight' => __DIR__ . '/..' . '/barryvdh/laravel-cors/src/HandlePreflight.php',
+        'Barryvdh\\Cors\\HandlePreflightSimple' => __DIR__ . '/..' . '/barryvdh/laravel-cors/src/HandlePreflightSimple.php',
+        'Barryvdh\\Cors\\LumenServiceProvider' => __DIR__ . '/..' . '/barryvdh/laravel-cors/src/LumenServiceProvider.php',
+        'Barryvdh\\Cors\\ServiceProvider' => __DIR__ . '/..' . '/barryvdh/laravel-cors/src/ServiceProvider.php',
+        'Barryvdh\\Cors\\Stack\\Cors' => __DIR__ . '/..' . '/barryvdh/laravel-cors/src/Stack/Cors.php',
+        'Barryvdh\\Cors\\Stack\\CorsService' => __DIR__ . '/..' . '/barryvdh/laravel-cors/src/Stack/CorsService.php',
+        'Barryvdh\\Cors\\Util\\OriginMatcher' => __DIR__ . '/..' . '/barryvdh/laravel-cors/src/Util/OriginMatcher.php',
         'Carbon\\Carbon' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/Carbon.php',
         'Carbon\\CarbonInterval' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/CarbonInterval.php',
         'ClassPreloader\\ClassList' => __DIR__ . '/..' . '/classpreloader/classpreloader/src/ClassList.php',

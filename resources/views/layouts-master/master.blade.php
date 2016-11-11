@@ -12,17 +12,17 @@
     <meta name="csrf-token" content="{{ csrf_token() }}" />
     <title>TAP - @yield('tittle')</title>
 
-    <link href="assets/css/bootstrap.min.css" rel="stylesheet">
-    <link href="assets/css/sb-admin.css" rel="stylesheet">
-    <link href="assets/dist/css/AdminLTE.min.css" rel="stylesheet">
-    <link href="assets/font-awesome-4.1.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="{{ asset('/assets/css/bootstrap.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('/assets/css/sb-admin.css') }}" rel="stylesheet">
+    <link href="{{ asset('/assets/dist/css/AdminLTE.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('/assets/font-awesome-4.1.0/css/font-awesome.min.css') }}" rel="stylesheet" type="text/css">
     <!-- dataTables -->
-    <link rel="stylesheet" href="dist/plugins/datatables/dataTables.bootstrap.css">
+    <link rel="stylesheet" href="{{ asset('/dist/plugins/datatables/dataTables.bootstrap.css') }}">
     <!-- bootstrap datepicker -->
-    <link rel="stylesheet" href="dist/plugins/datetimepicker/css/bootstrap-datetimepicker.min.css">
+    <link rel="stylesheet" href="{{ asset('/dist/plugins/datetimepicker/css/bootstrap-datetimepicker.min.css') }}">
     <!-- iCheck for checkboxes and radio inputs -->
-    <link rel="stylesheet" href="dist/plugins/iCheck/all.css">
-    
+    <link rel="stylesheet" href="{{ asset('/dist/plugins/iCheck/all.css') }}">
+
     <style type="text/css">
         /*Navbar Header*/
         .navbar-inverse {
@@ -145,9 +145,9 @@
 
     @yield('cascanding')
     <!-- jQuery Version 2.2.3 -->
-    <script src="dist/plugins/jQuery/jquery-2.2.3.min.js"></script>
+    <script src="{{ asset('/dist/plugins/jQuery/jquery-2.2.3.min.js') }}"></script>
     <!-- Bootstrap Core JavaScript -->
-    <script src="assets/js/bootstrap.min.js"></script>
+    <script src="{{ asset('/assets/js/bootstrap.min.js') }}"></script>
 </head>
 
 <body>
@@ -184,10 +184,10 @@
                 if (data.success == true ) {
                     setTimeout(function(){
                         looping1();
-                    }, 1000);   
+                    }, 1000);
                 }else{
                     alert("Please Re-Login");
-                    window.location.replace("loginn");    
+                    window.location.replace("loginn");
                 }
             }).error(function(){
                 console.log("eror")
@@ -198,7 +198,7 @@
             ceklogin();
         }
     </script>
-    
+
     @yield('javascript-form')
     @stack('js')
 </body>

@@ -85,7 +85,7 @@ class DemosiController extends Controller
             'input' => $input,
             'field_rules' => $field_rules,
             'form_type' => $form_type,
-        	'urlGetEmpAutoComplete' => 'http://128.199.130.183/api/GetEmpAutoComplete',
+        	'urlGetEmpAutoComplete' => 'http://10.20.1.155/api/GetEmpAutoComplete',
             'job_code' => '',
         ]);
     }
@@ -144,7 +144,7 @@ class DemosiController extends Controller
             'input' => $input,
             'field_rules' => $field_rules,
             'form_type' => $form_type,
-        	'urlGetEmpAutoComplete' => 'http://128.199.130.183/api/GetEmpAutoCompletePemanen',
+        	'urlGetEmpAutoComplete' => 'http://10.20.1.155/api/GetEmpAutoCompletePemanen',
             'job_code' => 'pemanen',
         ]);
     }
@@ -203,7 +203,7 @@ class DemosiController extends Controller
             'input' => $input,
             'field_rules' => $field_rules,
             'form_type' => $form_type,
-        	'urlGetEmpAutoComplete' => 'http://128.199.130.183/api/GetEmpAutoCompleteNonPemanen',
+        	'urlGetEmpAutoComplete' => 'http://10.20.1.155/api/GetEmpAutoCompleteNonPemanen',
             'job_code' => 'non_pemanen',
         ]);
     }
@@ -302,7 +302,7 @@ class DemosiController extends Controller
             'getOptAfdeling' => ApiController::GetOptAfdeling(),
             'getOptJobCode' => ApiController::GetOptJobCode(),
             'getOptJobType' => ApiController::GetOptJobType(),
-        	'urlGetEmpAutoComplete' => 'http://128.199.130.183/api/GetEmpAutoCompletePemanen',
+        	'urlGetEmpAutoComplete' => 'http://10.20.1.155/api/GetEmpAutoCompletePemanen',
             'job_code' => 'pemanen',
             'input' => $input,
             'dHeader' => $dHeader,
@@ -469,7 +469,7 @@ class DemosiController extends Controller
             'getOptAfdeling' => ApiController::GetOptAfdeling(),
             'getOptJobCode' => ApiController::GetOptJobCode(),
             'getOptJobType' => ApiController::GetOptJobType(),
-        	'urlGetEmpAutoComplete' => 'http://128.199.130.183/api/GetEmpAutoCompletePemanen',
+        	'urlGetEmpAutoComplete' => 'http://10.20.1.155/api/GetEmpAutoCompletePemanen',
             'job_code' => 'pemanen',
             'dHeader' => $dHeader,
             'dDetail' => $dDetail,
