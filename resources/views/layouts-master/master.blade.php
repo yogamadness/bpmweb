@@ -165,6 +165,7 @@
 
     </div>
     <!-- /#wrapper -->
+    @yield('javascript-form')
     <script type="text/javascript">
 
         $(document).ready(function() {
@@ -198,7 +199,7 @@
         function looping1() {
             ceklogin();
         }
-        
+
     </script>
     @stack('js')
 </body>
