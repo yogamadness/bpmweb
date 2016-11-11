@@ -337,7 +337,7 @@ class ApiController extends Controller
 			$nik_national = Input::get('nik');
     	$nik = base64_encode('/employee/search?JOB_CODE=SATPAM');
     	$url = self::$_devUrl . $nik;
-    	if(self::$_online == 0) $url = self::$_testUrl . 'getEmpSearch';
+    	//if(self::$_online == 0) $url = self::$_testUrl . 'getEmpSearch';
 
 			$response = $curlService->to($url)->get();
 			$array = json_decode($response);
@@ -431,33 +431,36 @@ class ApiController extends Controller
 	}
 	public static function GetEmpProductivity()
 	{
-    	$nik_national = Input::get('nik');
+			$curlService = new \Ixudra\Curl\CurlService();
+			$nik_national = Input::get('nik');
     	$nik = base64_encode('/employee/getProductivity?NIK=' . urlencode($nik_national) . '&date_start=' . date('Y-m-d') . '&date_end=4');
     	$url = self::$_devUrl . $nik;
 
-    	$getUrl = Input::get('url');
-    	if($getUrl == 1){
-        	dd($url);
-        }
-
-    	if(self::$_online == 1) {
-    	$json = @file_get_contents($url);
-    	if($json === false) {
-        	$result = [];
-        } else {
-    		$array = json_decode($json);
+			$response = $curlService->to($url)->get();
+			$array = json_decode($response);
+    	// $getUrl = Input::get('url');
+    	// if($getUrl == 1){
+      //   	dd($url);
+      //   }
+			//
+    	// if(self::$_online == 1) {
+    	// $json = @file_get_contents($url);
+    	// if($json === false) {
+      //   	$result = [];
+      //   } else {
+    	// 	$array = json_decode($json);
     		$result = array();
-    		if(isset($array->data)) {
-    			foreach ($array->data as $value) {
-    				array_push($result, array(
-            			'BULAN' => $value->BULAN,
-            			'KEHADIRAN' => $value->KEHADIRAN,
-            			'PRODUCTIVITY' => $value->PRODUCTIVITY,
-  						));
+				if(isset($array->data)) {
+					foreach ($array->data as $value) {
+						array_push($result, array(
+							'BULAN' => $value->BULAN,
+							'KEHADIRAN' => $value->KEHADIRAN,
+							'PRODUCTIVITY' => $value->PRODUCTIVITY,
+						));
+					}
 				}
-        	}
-        }
-        } else { $result = []; }
+        // }
+        // } else { $result = []; }
 
     	header('Content-type: application/json');
     	return $result;
