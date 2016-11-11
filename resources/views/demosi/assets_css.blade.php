@@ -10,3 +10,4 @@
 <!--
 <link href="{{ asset('plugins/datatables/extensions/Responsive/css/dataTables.responsive.css') }}" rel="stylesheet" type="text/css" />
 -->
+<link href="{{ asset('/css/custom.css') }}" rel="stylesheet" type="text/css" />
