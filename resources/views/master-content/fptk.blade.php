@@ -101,9 +101,10 @@
       });
 
       if(low == 'pemanen' && level == 'ENS'){
-        $.post('fptk', { tipePtk: low })
+        $.post('fptk', { tipePtk: 'estateNonStaffPemanen' })
           .done(function(data){
             $('.fptk').html(data);
+            $('#tipePtk').val('estateNonStaffPemanen');
         });
         
       }
@@ -111,6 +112,7 @@
         $.post('fptk', { tipePtk: low })
           .done(function(data){
             $('.fptk').html(data);
+            $('#tipePtk').val('estateNonStaffMandor');
         });
         
       }

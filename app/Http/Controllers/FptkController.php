@@ -174,9 +174,17 @@ class FptkController extends Controller
                         'estimate_prod_m4' => $requests->estimate_prod_m4,
                         'estimate_prod_m5' => $requests->estimate_prod_m5,
                         'estimate_prod_m6' => $requests->estimate_prod_m6,
-                        'reason_recommendation' => $requests->reason_recommendation
+                        'pmp_mpe' => $requests->pmp_mpe,
+                        'pmp_mpe_attendance' => $requests->pmp_mpe_attendance,
+                        'pmp_kk_kt' => $requests->pmp_kk_kt,
+                        'pmp_kk_kt_attendance' => $requests->pmp_kk_kt_attendance,
+                        'pmp_kl' => $requests->pmp_kl,
+                        'pmp_kl_attendance' => $requests->pmp_kl_attendance,
+                        'pmp_productivitas' => $requests->pmp_productivitas,
+                        'mp_active' => $requests->mp_active
                     )
                 );
+                dd($dataDetail);
             }
 
             // //insert file 

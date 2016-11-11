@@ -249,67 +249,67 @@
 @push('js')
 <script type="text/javascript">
     $(document).ready(function(){
-        /*Local Storage*/
-        if (localStorage) {
-          setStorage();
-          if (localStorage.getItem('company') != null){
-            if (confirm('Halaman ini masih menyimpan data lama. Apakah anda ingin menggukanannya lagi?')) {
-              getStorage();
-            } else {
-              localStorage.clear();
-            }
+      /*Local Storage*/
+      if (localStorage) {
+        setStorage();
+        if (localStorage.getItem('company') != null){
+          if (confirm('Halaman ini masih menyimpan data lama. Apakah anda ingin menggukanannya lagi?')) {
+            getStorage();
+          } else {
+            localStorage.clear();
           }
-        } else {
-          alert("not Support");
         }
+      } else {
+        alert("not Support");
+      }
 
-        validasi();
+      // validasi();
 
-    var date = new Date();
-    var today = new Date(date.getFullYear(), date.getMonth(), date.getDate());
-    $('#datetimepicker1').datetimepicker({
-        format: 'DD-MMM-YYYY',
-        defaultDate: new Date(),
-        minDate: today
-    });
-    $('#request_date').datetimepicker({
-        format: 'DD-MMM-YYYY',
-        defaultDate: new Date(),
-        minDate: today
-    });
+      var date = new Date();
+      var today = new Date(date.getFullYear(), date.getMonth(), date.getDate());
+      $('#datetimepicker1').datetimepicker({
+          format: 'DD-MMM-YYYY',
+          defaultDate: new Date(),
+          minDate: today
+      });
 
-    $('#start_contract').datetimepicker({
-        format: 'DD-MMM-YYYY',
-        minDate: today
-    });
+      $('#request_date').datetimepicker({
+          format: 'DD-MMM-YYYY',
+          defaultDate: new Date(),
+          minDate: today
+      });
 
-    $('#end_contract').datetimepicker({
-        format: 'DD-MMM-YYYY',
-        minDate: today
-    });
+      $('#start_contract').datetimepicker({
+          format: 'DD-MMM-YYYY',
+          minDate: today
+      });
 
-    //Autocomplate
-    $('#jabatan').typeahead({source:[{id: "Penghasil", name: "Penghasil"}, 
-                {id: "Pemanen", name: "Pemanen"},
-                {id: "Mandor", name: "Mandor"}], 
-                autoSelect: true});
+      $('#end_contract').datetimepicker({
+          format: 'DD-MMM-YYYY',
+          minDate: today
+      });
 
-    $('#company').typeahead({source:[{id: "GAWI", name: "GAWI"}, 
-                {id: "ESTATE", name: "ESTATE"}], 
-                autoSelect: true});
+      //Autocomplate
+      $('#jabatan').typeahead({source:[{id: "Penghasil", name: "Penghasil"}, 
+                  {id: "Pemanen", name: "Pemanen"},
+                  {id: "Mandor", name: "Mandor"}], 
+                  autoSelect: true});
 
-    $('#ba_code').typeahead({source:[{id: "BA", name: "BA"}, 
-                {id: "BO", name: "BO"}], 
-                autoSelect: true});
+      $('#company').typeahead({source:[{id: "GAWI", name: "GAWI"}, 
+                  {id: "ESTATE", name: "ESTATE"}], 
+                  autoSelect: true});
 
-    $('#department').typeahead({source:[{id: "PGA", name: "PGA"}, 
-                {id: "KTU", name: "KTU"}], 
-                autoSelect: true});
+      $('#ba_code').typeahead({source:[{id: "BA", name: "BA"}, 
+                  {id: "BO", name: "BO"}], 
+                  autoSelect: true});
 
-    $('#head').typeahead({source:[{id: "SM", name: "SM"}, 
-                {id: "EM", name: "EM"}], 
-                autoSelect: true});
+      $('#department').typeahead({source:[{id: "PGA", name: "PGA"}, 
+                  {id: "KTU", name: "KTU"}], 
+                  autoSelect: true});
 
+      $('#head').typeahead({source:[{id: "SM", name: "SM"}, 
+                  {id: "EM", name: "EM"}], 
+                  autoSelect: true});
     });
 
       function setStorage(){

@@ -62,11 +62,11 @@ Route::get('/fptk_common_bawah', function(){
 });
 Route::post('/fptk', function(){
 	$tipe = $_POST['tipePtk'];
-	if($_POST['tipePtk'] == 'pemanen')
+	if($_POST['tipePtk'] == 'estateNonStaffPemanen')
 	{
 		return view('master-content/fptkensp');
 	}
-	elseif ($tipe == 'mandor')
+	elseif ($tipe == 'estateNonStaffMandor')
 	{
 		return view('master-content/fptkensm');
 	}
