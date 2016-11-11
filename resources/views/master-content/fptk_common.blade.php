@@ -426,7 +426,7 @@
       function validasi(){
         var mulai_kontrak = $('#start_contract').val();
         if (mulai_kontrak != "" || mulai_kontrak != null) {
-          $('#end_contract').prop('disabled', false);
+          // $('#end_contract').prop('disabled', false);
         }
       }
 </script>

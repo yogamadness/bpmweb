@@ -168,6 +168,12 @@ class FptkController extends Controller
                         'estimate_ha_panen_m4' => $requests->estimate_ha_panen_m4,
                         'estimate_ha_panen_m5' => $requests->estimate_ha_panen_m5,
                         'estimate_ha_panen_m6' => $requests->estimate_ha_panen_m6,
+                        'estimate_prod_m1' => $requests->estimate_prod_m1,
+                        'estimate_prod_m2' => $requests->estimate_prod_m2,
+                        'estimate_prod_m3' => $requests->estimate_prod_m3,
+                        'estimate_prod_m4' => $requests->estimate_prod_m4,
+                        'estimate_prod_m5' => $requests->estimate_prod_m5,
+                        'estimate_prod_m6' => $requests->estimate_prod_m6,
                         'reason_recommendation' => $requests->reason_recommendation
                     )
                 );
