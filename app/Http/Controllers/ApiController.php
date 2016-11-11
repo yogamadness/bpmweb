@@ -256,6 +256,7 @@ class ApiController extends Controller
         } else {
     		$array = json_decode($json);
     		$result = array();
+				dd($result)
     		if(isset($array->data)) {
     			foreach ($array->data as $value) {
     				array_push($result, $value->NIK);
