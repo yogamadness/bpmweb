@@ -4,11 +4,14 @@
   @include('demosi.assets_css')
 @endsection
 
-@section('contentheader_title')
-  Formulir Perubahan Status Karyawan
-@endsection
-
 @section('content')
+<div class="row">
+  <div class="col-sm-12">
+    <h1>Formulir Perubahan Status Karyawan
+    </h1>
+
+  </div>
+</div>
 <div class="row">
   <div class="col-xs-12">
     <div class="box box-default">
