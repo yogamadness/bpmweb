@@ -85,6 +85,7 @@ class ApiController extends Controller
 
     public static function GetOptCompany()
     {
+			
     	$nik = base64_encode('/area/company');//?NIK=' . urlencode($nik_national));
     	$url = self::$_devUrl . $nik;
 
