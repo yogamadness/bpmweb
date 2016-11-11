@@ -1,17 +1,17 @@
-@extends('layouts.app')
-
-@section('page-css')
-@include('demosi.assets_css')
+@extends('layouts-master.master')
+@section('tittle', 'FPDM')
+@section('cascanding')
+  @include('demosi.assets_css')
 @endsection
 
-@section('htmlheader_title')
-Formulir Perubahan Status Karyawan
-@endsection
-@section('contentheader_title')
-Formulir Perubahan Status Karyawan
-@endsection
+@section('content')
+<div class="row">
+  <div class="col-sm-12">
+    <h1>Formulir Perubahan Status Karyawan
+    </h1>
 
-@section('main-content')
+  </div>
+</div>
 <div class="row">
   <div class="col-xs-12">
     <div class="box box-default">
@@ -32,6 +32,6 @@ Formulir Perubahan Status Karyawan
 @include('demosi.confirm')
 
 @endsection
-@section('page-script')
+@section('javascript-form')
 @include('demosi.assets_js')
 @stop

@@ -1,14 +1,7 @@
-@extends('layouts.app')
-
-@section('page-css')
-@include('demosi.assets_css')
-@endsection
-
-@section('htmlheader_title')
-Formulir Perubahan Status Karyawan
-@endsection
-@section('contentheader_title')
-Formulir Perubahan Status Karyawan
+@extends('layouts-master.master')
+@section('tittle', 'FPDM')
+@section('cascanding')
+  @include('demosi.assets_css')
 @endsection
 
 @section('main-content')
@@ -32,6 +25,6 @@ Formulir Perubahan Status Karyawan
 @include('demosi.reject')
 
 @endsection
-@section('page-script')
-@include('demosi.assets_js')
+@section('javascript-form')
+  @include('demosi.assets_js')
 @stop
