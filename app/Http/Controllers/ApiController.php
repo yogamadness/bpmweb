@@ -299,7 +299,7 @@ class ApiController extends Controller
 			$nik_national = Input::get('nik');
     	$nik = base64_encode('/employee/search?JOB_CODE=Pemanen');
     	$url = self::$_devUrl . $nik;
-    	if(self::$_online == 0) $url = self::$_testUrl . 'getEmpSearch';
+    	//if(self::$_online == 0) $url = self::$_testUrl . 'getEmpSearch';
 
 			$response = $curlService->to($url)->get();
 			$array = json_decode($response);
