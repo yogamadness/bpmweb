@@ -193,7 +193,7 @@ class FptkController extends Controller
                         'pba_ha_tm' => $requests->pba_ha_tm,
                         'pba_ha_tm' => $requests->pba_ha_tm,
                         'pba_ha_tanam' => $requests->pba_ha_tanam,
-                        'pba_produksi' => $requests->pba_produksi,
+                          'pba_produksi' => $requests->pba_produksi,
                         'pba_bbc_b1' => $requests->pba_bbc_b1,
                         'pba_bbc_b2' => $requests->pba_bbc_b2,
                         'pba_bbc_b3' => $requests->pba_bbc_b3,
