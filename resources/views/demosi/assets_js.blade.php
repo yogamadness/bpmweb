@@ -30,26 +30,76 @@ $(function () {
   $('.reservation').daterangepicker();
 
   //Date range as a button
+  var startDate;
+  var endDate;
   $('#iPeriodePengangkatanKaryawanKontrak').daterangepicker(
-      {
-        ranges: {
-          '1 Month': [moment().startOf('month'), moment().endOf('month')],
-          '2 Month': [moment().startOf('month'), moment().add(1, 'month').endOf('month')],
-          '3 Month': [moment().startOf('month'), moment().add(2, 'month').endOf('month')],
-          '4 Month': [moment().startOf('month'), moment().add(3, 'month').endOf('month')],
-          '5 Month': [moment().startOf('month'), moment().add(4, 'month').endOf('month')],
-          '6 Month': [moment().startOf('month'), moment().add(5, 'month').endOf('month')],
-          '12 Month': [moment().startOf('month'), moment().add(11, 'month').endOf('month')],
-          '18 Month': [moment().startOf('month'), moment().add(17, 'month').endOf('month')],
-          '24 Month': [moment().startOf('month'), moment().add(23, 'month').endOf('month')]
-        },
-        startDate: moment().subtract(29, 'days'),
-        endDate: moment()
-      },
-      function (start, end) {
-        $('#iPeriodePengangkatanKaryawanKontrak span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'));
-      }
-  );
+       {
+          startDate: moment(),
+          endDate: moment().add('days', 29),
+          minDate: '01/01/2016',
+          maxDate: '12/31/2018',
+          dateLimit: { days: 60 },
+          showDropdowns: false,
+          showWeekNumbers: false,
+          timePicker: false,
+          timePickerIncrement: 1,
+          timePicker12Hour: true,
+          ranges: {
+            '1 Month': [moment().startOf('month'), moment().endOf('month')],
+            '2 Month': [moment().startOf('month'), moment().add(1, 'month').endOf('month')],
+            '3 Month': [moment().startOf('month'), moment().add(2, 'month').endOf('month')],
+            '4 Month': [moment().startOf('month'), moment().add(3, 'month').endOf('month')],
+            '5 Month': [moment().startOf('month'), moment().add(4, 'month').endOf('month')],
+            '6 Month': [moment().startOf('month'), moment().add(5, 'month').endOf('month')],
+            '12 Month': [moment().startOf('month'), moment().add(11, 'month').endOf('month')],
+            '18 Month': [moment().startOf('month'), moment().add(17, 'month').endOf('month')],
+            '24 Month': [moment().startOf('month'), moment().add(23, 'month').endOf('month')]
+          },
+          opens: 'left',
+          buttonClasses: ['btn btn-default'],
+          applyClass: 'btn-small btn-primary',
+          cancelClass: 'btn-small',
+          format: 'DD-MMM-YYYY',
+          separator: ' ke ',
+          locale: {
+              applyLabel: 'Kirim',
+              fromLabel: 'Dari',
+              toLabel: 'Ke',
+              customRangeLabel: 'Pilih Periode',
+              daysOfWeek: ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr','Sa'],
+              monthNames: ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Augustus', 'September', 'Oktober', 'November', 'Desember'],
+              firstDay: 1
+          }
+       },
+       function(start, end) {
+        console.log("Callback has been called!");
+        $('#iPeriodePengangkatanKaryawanKontrak span').html(start.format('DD-MMM-YYYY') + ' - ' + end.format('DD-MMM-YYYY'));
+        startDate = start;
+         endDate = end;
+
+       }
+    );
+
+  // $('#iPeriodePengangkatanKaryawanKontrak').daterangepicker(
+  //     {
+  //       ranges: {
+          // '1 Month': [moment().startOf('month'), moment().endOf('month')],
+          // '2 Month': [moment().startOf('month'), moment().add(1, 'month').endOf('month')],
+          // '3 Month': [moment().startOf('month'), moment().add(2, 'month').endOf('month')],
+          // '4 Month': [moment().startOf('month'), moment().add(3, 'month').endOf('month')],
+          // '5 Month': [moment().startOf('month'), moment().add(4, 'month').endOf('month')],
+          // '6 Month': [moment().startOf('month'), moment().add(5, 'month').endOf('month')],
+          // '12 Month': [moment().startOf('month'), moment().add(11, 'month').endOf('month')],
+          // '18 Month': [moment().startOf('month'), moment().add(17, 'month').endOf('month')],
+          // '24 Month': [moment().startOf('month'), moment().add(23, 'month').endOf('month')]
+  //       },
+  //       startDate: moment().subtract(29, 'days'),
+  //       endDate: moment()
+  //     },
+  //     function (start, end) {
+  //       $('#iPeriodePengangkatanKaryawanKontrak span').html(start.format('DD-MMM-YYYY') + ' - ' + end.format('DD-MMM-YYYY'));
+  //     }
+  // );
 
   //Date picker
   $('.datepicker').datepicker({
@@ -198,6 +248,7 @@ function getDataEmp()
 		});
 	}
 }
+
 function getDataEmpProd()
 {
     var nik = $.trim($('#iNikSap').val());
@@ -247,6 +298,7 @@ $(document).ready(function(){
         source: nik
     })
     .on('typeahead:selected', getDataEmp);
+    .on('typeahead:selected', getDataEmpProd);
 });
 
 </script>
