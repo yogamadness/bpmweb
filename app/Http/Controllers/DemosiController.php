@@ -136,11 +136,11 @@ class DemosiController extends Controller
         return view('demosi.create',[
             'getEmpWorkStatus' => ApiController::GetEmpWorkStatus(),
             'getOptEmpWorkStatus' => ApiController::GetOptEmpWorkStatus(),
-            'getOptCompany' => ApiController::GetOptEmpWorkStatus(), //GetOptCompany
-            'getOptBusinessArea' => ApiController::GetOptEmpWorkStatus(), //GetOptBusinessArea
-            'getOptAfdeling' => ApiController::GetOptEmpWorkStatus(), //GetOptAfdeling
-            'getOptJobCode' => ApiController::GetOptEmpWorkStatus(), //GetOptJobCode
-            'getOptJobType' => ApiController::GetOptEmpWorkStatus(), //GetOptJobType
+            'getOptCompany' => ApiController::GetOptCompany(), //GetOptCompany
+            'getOptBusinessArea' => ApiController::GetOptBusinessArea(), //GetOptBusinessArea
+            'getOptAfdeling' => ApiController::GetOptAfdeling(), //GetOptAfdeling
+            'getOptJobCode' => ApiController::GetOptJobCode(), //GetOptJobCode
+            'getOptJobType' => ApiController::GetOptJobType(), //GetOptJobType
             'input' => $input,
             'field_rules' => $field_rules,
             'form_type' => $form_type,
