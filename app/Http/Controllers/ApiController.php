@@ -241,7 +241,7 @@ class ApiController extends Controller
 	{
     	$nik_national = Input::get('nik');
     	$comp_code = Input::get('$comp_code') ? '&comp_code='.Input::get('$comp_code') : '';
-    	$nik = base64_encode('/employee/search?' . $comp_code);//?NIK=' . urlencode($nik_national));
+    	$nik = base64_encode('/employee/search');//?' . $comp_code);//?NIK=' . urlencode($nik_national));
     	$url = self::$_devUrl . $nik;
 
     	$getUrl = Input::get('url');
@@ -256,7 +256,7 @@ class ApiController extends Controller
         } else {
     		$array = json_decode($json);
     		$result = array();
-				
+
     		if(isset($array->data)) {
     			foreach ($array->data as $value) {
     				array_push($result, $value->NIK);
