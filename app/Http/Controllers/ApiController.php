@@ -152,28 +152,32 @@ class ApiController extends Controller
 
     public static function GetOptAfdeling()
     {
-    	$nik = base64_encode('/area/afdeling');//?NIK=' . urlencode($nik_national));
+			$curlService = new \Ixudra\Curl\CurlService();
+			$nik = base64_encode('/area/afdeling');//?NIK=' . urlencode($nik_national));
     	$url = self::$_devUrl . $nik;
 
-    	$getUrl = Input::get('url');
-    	if($getUrl == 1){
-        	dd($url);
-        }
-
-    	if(self::$_online == 1) {
-    	$json = @file_get_contents($url);
-    	if($json === false) {
-        	$result = [];
-        } else {
-    		$array = json_decode($json);
+			$response = $curlService->to($url)->get();
+			$array = json_decode($response);
+			//
+    	// $getUrl = Input::get('url');
+    	// if($getUrl == 1){
+      //   	dd($url);
+      //   }
+			//
+    	// if(self::$_online == 1) {
+    	// $json = @file_get_contents($url);
+    	// if($json === false) {
+      //   	$result = [];
+      //   } else {
+    	// 	$array = json_decode($json);
     		$result = array();
     		if(isset($array->data)) {
     			foreach ($array->data as $value) {
     				array_push($result, array('id' => $value->AFD_CODE, 'text' => $value->AFD_NAME));
     			}
         	}
-        }
-        } else { $result = []; }
+        // }
+        // } else { $result = []; }
 
     	header('Content-type: application/json');
     	return json_encode($result);
@@ -190,28 +194,32 @@ class ApiController extends Controller
 		//
     // 	header('Content-type: application/json');
     // 	return json_encode($result);
+			$curlService = new \Ixudra\Curl\CurlService();
 			$nik = base64_encode('/employee/jabatan');//?NIK=' . urlencode($nik_national));
 			$url = self::$_devUrl . $nik;
 
-			$getUrl = Input::get('url');
-			if($getUrl == 1){
-					dd($url);
-				}
-
-			if(self::$_online == 1) {
-			$json = @file_get_contents($url);
-			if($json === false) {
-					$result = [];
-				} else {
-				$array = json_decode($json);
+			$response = $curlService->to($url)->get();
+			$array = json_decode($response);
+			//
+			// $getUrl = Input::get('url');
+			// if($getUrl == 1){
+			// 		dd($url);
+			// 	}
+			//
+			// if(self::$_online == 1) {
+			// $json = @file_get_contents($url);
+			// if($json === false) {
+			// 		$result = [];
+			// 	} else {
+			// 	$array = json_decode($json);
 				$result = array();
 				if(isset($array->data)) {
 					foreach ($array->data as $value) {
 						array_push($result, array('id' => $value->JOB_TYPE, 'text' => $value->JOB_CODE));
 					}
 					}
-				}
-				} else { $result = []; }
+				// }
+				// } else { $result = []; }
 
 			header('Content-type: application/json');
 			return json_encode($result);
@@ -219,28 +227,31 @@ class ApiController extends Controller
 
     public static function GetOptJobType()
     {
-    	$nik = base64_encode('/area/company');//?NIK=' . urlencode($nik_national));
+			$curlService = new \Ixudra\Curl\CurlService();
+			$nik = base64_encode('/area/company');//?NIK=' . urlencode($nik_national));
     	$url = self::$_devUrl . $nik;
 
-    	$getUrl = Input::get('url');
-    	if($getUrl == 1){
-        	dd($url);
-        }
-
-    	if(self::$_online == 1) {
-    	$json = @file_get_contents($url);
-    	if($json === false) {
-        	$result = [];
-        } else {
-    		$array = json_decode($json);
+			$response = $curlService->to($url)->get();
+			$array = json_decode($response);
+			// $getUrl = Input::get('url');
+    	// if($getUrl == 1){
+      //   	dd($url);
+      //   }
+			//
+    	// if(self::$_online == 1) {
+    	// $json = @file_get_contents($url);
+    	// if($json === false) {
+      //   	$result = [];
+      //   } else {
+    	// 	$array = json_decode($json);
     		$result = array();
     		if(isset($array->data)) {
     			foreach ($array->data as $value) {
     				array_push($result, array('id' => $value->COMP_CODE, 'text' => $value->COMP_NAME));
     			}
         	}
-        }
-        } else { $result = []; }
+        // }
+        // } else { $result = []; }
 
     	header('Content-type: application/json');
     	return json_encode($result);
@@ -248,22 +259,26 @@ class ApiController extends Controller
 
 	public static function GetEmpAutoComplete()
 	{
-    	$nik_national = Input::get('nik');
+			$curlService = new \Ixudra\Curl\CurlService();
+			$nik_national = Input::get('nik');
     	$comp_code = Input::get('$comp_code') ? '&comp_code='.Input::get('$comp_code') : '';
     	$nik = base64_encode('/employee/search');//?' . $comp_code);//?NIK=' . urlencode($nik_national));
     	$url = self::$_devUrl . $nik;
 
-    	$getUrl = Input::get('url');
-    	if($getUrl == 1){
-        	dd($url);
-        }
+			$response = $curlService->to($url)->get();
+			$array = json_decode($response);
 
-    	if(self::$_online == 1) {
-    	$json = @file_get_contents($url);
-    	if($json === false) {
-        	$result = [];
-        } else {
-    		$array = json_decode($json);
+			// $getUrl = Input::get('url');
+    	// if($getUrl == 1){
+      //   	dd($url);
+      //   }
+			//
+    	// if(self::$_online == 1) {
+    	// $json = @file_get_contents($url);
+    	// if($json === false) {
+      //   	$result = [];
+      //   } else {
+    	// 	$array = json_decode($json);
     		$result = array();
 
     		if(isset($array->data)) {
@@ -271,8 +286,8 @@ class ApiController extends Controller
     				array_push($result, $value->NIK);
     			}
         	}
-        }
-        } else { $result = []; }
+        // }
+        // } else { $result = []; }
 
     	header('Content-type: application/json');
     	return $result;
@@ -280,28 +295,32 @@ class ApiController extends Controller
 
 	public static function GetEmpAutoCompletePemanen()
 	{
-    	$nik_national = Input::get('nik');
+			$curlService = new \Ixudra\Curl\CurlService();
+			$nik_national = Input::get('nik');
     	$nik = base64_encode('/employee/search?JOB_CODE=Pemanen');
     	$url = self::$_devUrl . $nik;
-    	if(self::$_online == 0) $url = self::$_testUrl . 'getEmpSearch';
 
-    	$getUrl = Input::get('url');
-    	if($getUrl == 1){
-        	dd($url);
-        }
-
-    	$json = @file_get_contents($url);
-    	if($json === false) {
-        	$result = [];
-        } else {
-    		$array = json_decode($json);
+			$response = $curlService->to($url)->get();
+			$array = json_decode($response);
+    	// if(self::$_online == 0) $url = self::$_testUrl . 'getEmpSearch';
+			//
+    	// $getUrl = Input::get('url');
+    	// if($getUrl == 1){
+      //   	dd($url);
+      //   }
+			//
+    	// $json = @file_get_contents($url);
+    	// if($json === false) {
+      //   	$result = [];
+      //   } else {
+    	// 	$array = json_decode($json);
     		$result = array();
     		if(isset($array->data)) {
     			foreach ($array->data as $value) {
     				array_push($result, $value->NIK);
     			}
         	}
-        }
+        //}
 
     	header('Content-type: application/json');
     	return $result;
@@ -315,29 +334,33 @@ class ApiController extends Controller
 
 	public static function GetEmpAutoCompleteNonPemanen()
 	{
-    	$nik_national = Input::get('nik');
+			$curlService = new \Ixudra\Curl\CurlService();
+			$nik_national = Input::get('nik');
     	$nik = base64_encode('/employee/search?JOB_CODE=SATPAM');
     	$url = self::$_devUrl . $nik;
-    	if(self::$_online == 0) $url = self::$_testUrl . 'getEmpSearch';
 
-
-    	$getUrl = Input::get('url');
-    	if($getUrl == 1){
-        	dd($url);
-        }
-
-    	$json = @file_get_contents($url);
-    	if($json === false) {
-        	$result = [];
-        } else {
-    		$array = json_decode($json);
+			$response = $curlService->to($url)->get();
+			$array = json_decode($response);
+    	// if(self::$_online == 0) $url = self::$_testUrl . 'getEmpSearch';
+			//
+			//
+    	// $getUrl = Input::get('url');
+    	// if($getUrl == 1){
+      //   	dd($url);
+      //   }
+			//
+    	// $json = @file_get_contents($url);
+    	// if($json === false) {
+      //   	$result = [];
+      //   } else {
+    	// 	$array = json_decode($json);
     		$result = array();
     		if(isset($array->data)) {
     			foreach ($array->data as $value) {
     				array_push($result, $value->NIK);
     			}
         	}
-        }
+        //}
 
     	header('Content-type: application/json');
     	return $result;
@@ -345,7 +368,8 @@ class ApiController extends Controller
 
 	public static function GetEmpByNIK($nik = null)
 	{
-    	$nik_national = Input::get('nik') == '' ? $nik : Input::get('nik');
+			$curlService = new \Ixudra\Curl\CurlService();
+			$nik_national = Input::get('nik') == '' ? $nik : Input::get('nik');
 			//$nik = base64_encode('/employee/search?NIK=' . urlencode($nik_national));
     	$nik = base64_encode('/employee/getEmployee?NIK=' . urlencode($nik_national));
     	//$nik = urlencode(base64_encode('/employee/search?NIK=21'));
@@ -353,18 +377,20 @@ class ApiController extends Controller
     	//$url = self::$_devUrl . $nik;
     	$url = self::$_fakeUrl;
 
-    	$getUrl = Input::get('url');
-    	if($getUrl == 1){
-        	dd($url);
-        }
-
-    	//if(self::$_online == 1) {
-    	if(1==1){
-    	$json = @file_get_contents($url);
-    	if($json === false) {
-        	$result = [];
-        } else {
-    		$array = json_decode($json);
+			$response = $curlService->to($url)->get();
+			$array = json_decode($response);
+    	// $getUrl = Input::get('url');
+    	// if($getUrl == 1){
+      //   	dd($url);
+      //   }
+			//
+    	// //if(self::$_online == 1) {
+    	// if(1==1){
+    	// $json = @file_get_contents($url);
+    	// if($json === false) {
+      //   	$result = [];
+      //   } else {
+    	// 	$array = json_decode($json);
     		$result = array();
     		if(isset($array->data)) {
     			//foreach ($array->data as $value) {
@@ -399,9 +425,9 @@ class ApiController extends Controller
                             		'PSS' => (isset($pss) ? $pss->trans_type_id : ''),
             					));
     			}
-        	}
+        	//}
         }
-        } else { $result = []; }
+        //} else { $result = []; }
 
     	header('Content-type: application/json');
     	return $result;
