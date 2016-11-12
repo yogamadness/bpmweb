@@ -1,30 +1,36 @@
 	<!-- Create Demosi Fields -->
 <div class="box-body">
-
 	<!-- panel header -->
 	<div class="panel panel-default">
 		<div class="panel-body">
-			<div class="form-group">
-				<div class="col-md-6 md10">
-					<label for="iNikNasional">NIK Nasional</label>
-					<input type="text" class="form-control" placeholder="" id="iNikNasional" name="iNikNasional" value="{{ isset($dHeader) ? $dHeader->nik_national : ''  }}" {{ $field_rules['iNikNasional'] }}>
-				</div>
-				<div class="col-md-6">
-					<label id="iTanggalMasuk">Tanggal Masuk Kerja:</label>
-					<div class="input-group date">
-						<div class="input-group-addon">
-							<i class="fa fa-calendar"></i>
-						</div>
-						<input type="text" class="form-control pull-right datepicker" id="iTanggalMasukKerja" name="iTanggalMasukKerja"  value="{{ isset($dHeader) ? (date('d-M-Y', strtotime($dHeader->join_date))) : ''  }}" {{ $field_rules['iTanggalMasukKerja'] }}>
-					</div>
-				</div>
+			<div class="row">
+			  <div class="col-md-6 md10">
+			    <div class="form-group">
+			    <label for="iNikNasional">NIK Nasional</label>
+			    <input type="text" class="form-control" placeholder="" id="iNikNasional" name="iNikNasional" value="{{ isset($dHeader) ? $dHeader->nik_national : ''  }}" {{ $field_rules['iNikNasional'] }}>
+			    </div>
+			  </div>
+			  <div class="col-md-6">
+			    <div class="form-group">
+			    <label id="iTanggalMasuk">Tanggal Masuk Kerja:</label>
+			    <div class="input-group date">
+			      <div class="input-group-addon">
+			        <i class="fa fa-calendar"></i>
+			      </div>
+			      <input type="text" class="form-control pull-right datepicker" id="iTanggalMasukKerja" name="iTanggalMasukKerja"  value="{{ isset($dHeader) ? (date('d-M-Y', strtotime($dHeader->join_date))) : ''  }}" {{ $field_rules['iTanggalMasukKerja'] }}>
+			    </div>
+			    </div>
+			  </div>
 			</div>
-			<div class="form-group">
-				<div class="col-md-6 md10" id="bloodhound">
+			<div class="row">
+				<div class="col-md-6 md10">
+					<div class="form-group" id="bloodhound">
 					<label for="iNikSap">NIK SAP</label>
 					<input type="text" class="form-control tags {{ isset($val_error) ? $val_error['iNikSap'] : '' }}" placeholder="" id="iNikSap" name="iNikSap" value="{{ isset($dHeader) ? $dHeader->nik_sap : ''  }}"  {{ $field_rules['iNikSap'] }}>
+					</div>
 				</div>
 				<div class="col-md-6">
+					<div class="form-group">
 					<label for="iTanggalEfektif">Tanggal Efektif Berlaku:</label>
 					<!--Otomatis awal bulan jika karyawan non staff)-->
 					<div class="input-group date">
@@ -33,14 +39,18 @@
 						</div>
 						<input type="text" class="form-control pull-right tglberlaku" id="iTanggalEfektifBerlaku" name="iTanggalEfektifBerlaku"  value="{{ isset($dHeader) ? (date('d-M-Y', strtotime($dHeader->effective_date))) : ''  }}" {{ $field_rules['iTanggalEfektifBerlaku'] }}>
 					</div>
+					</div>
 				</div>
 			</div>
-			<div class="form-group">
+			<div class="row">
 				<div class="col-md-6 md10">
+					<div class="form-group">
 					<label for="iNama">Nama</label>
 					<input type="text" class="form-control" placeholder="" id="iNama" name="iNama"  value="{{ isset($dHeader) ? $dHeader->employee_name : ''  }}" {{ $field_rules['iNama'] }}>
+					</div>
 				</div>
 				<div class="col-md-6">
+					<div class="form-group">
 					<label for="iNomorPtk">Nomor PTK</label>
 					<!-- nomor PTK ambil dari table PTK -->
 					<select class="form-control select2" style="width: 100%;" id="iNomorPtk" name="iNomorPtk" {{ $field_rules['iNomorPtk'] }}>
@@ -49,6 +59,7 @@
 						<option>PTK/0920903123490349</option>
 						<option>PTK/0920903123490350</option>
 					</select>
+					</div>
 				</div>
 			</div>
 		</div>
@@ -102,7 +113,7 @@
 	<div class="panel panel-default">
 		<div class="panel-body">
 			<div class="form-group">
-				<div class="col-xs-12" id="no-more-tables">
+				<div class="col-xs-12 table-responsive">
 					<table id="demosi-table" class="table table-bordered cf">
 						<thead class="cf">
 							<tr>
@@ -233,8 +244,8 @@
 	<div class="panel-heading">Perubahan Status</div>
 	<div class="panel-body">
 		<div class="form-group">
-			<div class="col-xs-12">
-				<table id="demosi-table" class="table table-bordered responsive">
+			<div class="col-xs-12 table-responsive">
+				<table id="demosi-table" class="table table-bordered">
 					<thead>
 						<tr>
 							<th style="width:5%;">No</th>

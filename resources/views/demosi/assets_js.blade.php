@@ -211,46 +211,47 @@ function validateForm(i)
     }
 }
 
-function getDataEmp()
-{
+
+  function getDataEmp()
+  {
     var nik = $.trim($('#iNikSap').val());
-	console.log(nik);
-	if(nik!='') {
-		$.ajax({
-			url : "http://tap-flowdev.tap-agri.com/api/GetEmpByNIK",
-			type : 'GET',
-			data : {
-				'nik': nik,
-			},
-			dataType : 'json',
-			success : function(json) {
-				if(json == 0) {
+    if(nik!='') {
+      $.ajax({
+        url : "http://tap-flowdev.tap-agri.com/api/GetEmpByNIK",
+        type : 'GET',
+        data : {
+          'nik': nik,
+        },
+        dataType : 'json',
+        success : function(json) {
+          if(json == 0) {
             console.log(0);
-				} else {
-          	console.log(json[0].COMP_NAME);
-          	$('#iNama').val(json[0].EMPLOYEE_NAME);
-          	$('#iTanggalMasukKerja').val(json[0].JOIN_DATE);
-          	$('#iTanggalLahir').val(json[0].DOB);
+          } else {
+            console.log(json)
+            console.log(json[0].COMP_NAME);
+            $('#iNama').val(json[0].EMPLOYEE_NAME);
+            $('#iTanggalMasukKerja').val(json[0].JOIN_DATE);
+            $('#iTanggalLahir').val(json[0].DOB);
             //attr('checked', true);
             switch (json[0].PSS) {
               case 7:
-                  $('input[name=iSuratTeguran]').filter('[value="7"]').iCheck('check');
-                break;
+              $('input[name=iSuratTeguran]').filter('[value="7"]').iCheck('check');
+              break;
               case 8:
-                  $('input[name=iSuratTeguran]').filter('[value="8"]').iCheck('check');
-                break;
+              $('input[name=iSuratTeguran]').filter('[value="8"]').iCheck('check');
+              break;
               case 9:
-                  $('input[name=iSuratTeguran]').filter('[value="9"]').iCheck('check');
-                  break;
+              $('input[name=iSuratTeguran]').filter('[value="9"]').iCheck('check');
+              break;
               case 10:
-                    $('input[name=iSuratTeguran]').filter('[value="10"]').iCheck('check');
-                  break;
+              $('input[name=iSuratTeguran]').filter('[value="10"]').iCheck('check');
+              break;
               default:
-                $('input[name=iSuratTeguran]').filter('[value=""]').iCheck('check');
+              $('input[name=iSuratTeguran]').filter('[value=""]').iCheck('check');
             }
 
             if (json[0].PSS > "") {
-                $("#iMasaBerlaku").select2().val(json[0].EFFECTIVE_DATE).trigger("change");
+              $("#iMasaBerlaku").select2().val(json[0].EFFECTIVE_DATE).trigger("change");
             }
             $("#iPerusahaanOld").select2().val(json[0].COMP_CODE).trigger("change");
             $('#iBisnisAreaOld').select2().val(json[0].EST_CODE).trigger("change");
@@ -265,62 +266,57 @@ function getDataEmp()
             $('#iGolonganNew').select2().val(json[0].JOB_TYPE).trigger("change");
             $('#iStatusKaryawanNew').select2().val(json[0].STATUS).trigger("change");
             $('#iUmur').val(json[0].AGE);
-				}
-			}
-		});
-	}
-}
+          }
+        }
+      });
 
-function getDataEmpProd()
-{
-    var nik = $.trim($('#iNikSap').val());
-	console.log(nik);
-	if(nik!='') {
-		$.ajax({
-			url : "http://tap-flowdev.tap-agri.com/api/GetEmpProductivity",
-			type : 'GET',
-			data : {
-				'nik': nik,
-			},
-			dataType : 'json',
-			success : function(json) {
-				if(json == 0) {
+      $.ajax({
+        url : "http://tap-flowdev.tap-agri.com/api/GetEmpProductivity",
+        type : 'GET',
+        data : {
+          'nik': nik,
+        },
+        dataType : 'json',
+        success : function(json) {
+          if(json == 0) {
             console.log(0);
-				} else {
-          	$('#iAtt3yAgo').val(json[0].KEHADIRAN);
+          } else {
+            console.log(json);
+            $('#iAtt3yAgo').val(json[0].KEHADIRAN);
             $('#iAtt2yAgo').val(json[1].KEHADIRAN);
             $('#iAtt1yAgo').val(json[2].KEHADIRAN);
-          	$('#iProd3yAgo').val(json[0].PRODUCTIVITY);
+            $('#iProd3yAgo').val(json[0].PRODUCTIVITY);
             $('#iProd3yAgo').val(json[2].PRODUCTIVITY);
             $('#iProd3yAgo').val(json[3].PRODUCTIVITY);
-				}
-			}
-		});
-	}
-}
+          }
+        }
+      });
+    }
+  }
+
 
 $(document).ready(function(){
-    // Constructing the suggestion engine
-    var nik = new Bloodhound({
-        datumTokenizer: Bloodhound.tokenizers.whitespace,
-        queryTokenizer: Bloodhound.tokenizers.whitespace,
-        prefetch: {
-          url: '{!! $urlGetEmpAutoComplete !!}',
-        }
-    });
-    // Initializing the typeahead
+  // Constructing the suggestion engine
+  var nik = new Bloodhound({
+    datumTokenizer: Bloodhound.tokenizers.whitespace,
+    queryTokenizer: Bloodhound.tokenizers.whitespace,
+    prefetch: {
+      url: '{!! $urlGetEmpAutoComplete !!}',
+    }
+  });
+  // Initializing the typeahead
 
-    $('#iNikSap').typeahead({
-        hint: true,
-        highlight: true, /* Enable substring highlighting */
-        minLength: 1 /* Specify minimum characters required for showing result */
-    },
-    {
-        name: 'nik',
-        limit: 10,
-        source: nik
-    })
-    .on('typeahead:selected', getDataEmp);
+  $('#iNikSap').typeahead({
+    hint: true,
+    highlight: true, /* Enable substring highlighting */
+    minLength: 1 /* Specify minimum characters required for showing result */
+  },
+  {
+    name: 'nik',
+    limit: 10,
+    source: nik
+  })
+  .on('typeahead:selected', getDataEmp);
 });
 
 </script>

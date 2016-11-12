@@ -107,7 +107,11 @@ class ApiController extends Controller
     		$result = array();
     		if(isset($array->data)) {
     			foreach ($array->data as $value) {
-    				array_push($result, array('id' => $value->COMP_CODE, 'text' => $value->COMP_NAME));
+    				array_push($result, array(
+							'REGION_CODE' => $value->REGION_CODE, 
+							'COMP_CODE' => $value->COMP_CODE,
+							'COMP_NAME' => $value->COMP_NAME
+						));
     			}
         	}
         //}
