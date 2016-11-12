@@ -120,7 +120,7 @@ class ApiController extends Controller
     public static function GetOptBusinessArea()
     {
 			$curlService = new \Ixudra\Curl\CurlService();
-			$nik = base64_encode('/area/region');//?NIK=' . urlencode($nik_national));
+			$nik = base64_encode('/area/estate');//?NIK=' . urlencode($nik_national));
     	$url = self::$_devUrl . $nik;
 
 			$response = $curlService->to($url)->get();
@@ -140,7 +140,7 @@ class ApiController extends Controller
     		$result = array();
     		if(isset($array->data)) {
     			foreach ($array->data as $value) {
-    				array_push($result, array('id' => $value->REGION_CODE, 'text' => $value->REGION_NAME));
+    				array_push($result, array('id' => $value->EST_CODE, 'text' => $value->EST_NAME));
     			}
         	}
         // }
@@ -335,7 +335,7 @@ class ApiController extends Controller
 	{
 			$curlService = new \Ixudra\Curl\CurlService();
 			$nik_national = Input::get('nik');
-    	$nik = base64_encode('/employee/search?JOB_CODE=SATPAM');
+    	$nik = base64_encode('/employee/search');//?JOB_CODE=SATPAM');
     	$url = self::$_devUrl . $nik;
     	//if(self::$_online == 0) $url = self::$_testUrl . 'getEmpSearch';
 
@@ -434,7 +434,7 @@ class ApiController extends Controller
 	{
 			$curlService = new \Ixudra\Curl\CurlService();
 			$nik_national = Input::get('nik');
-    	$nik = base64_encode('/employee/getProductivity?NIK=' . urlencode($nik_national) . '&date_start=' . date('Y-m-d') . '&date_end=4');
+    	$nik = base64_encode('/employee/getProductivity?NIK=' . urlencode($nik_national) . '&date_start=' . date('Y-m-d') . '&date_end=3');
     	$url = self::$_devUrl . $nik;
 
 			$response = $curlService->to($url)->get();
