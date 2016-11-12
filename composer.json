@@ -12,7 +12,9 @@
         "kozz/laravel-guzzle-provider": "~6.0",
         "ramsey/uuid": "^3.5",
         "laravelcollective/html": "^5.3.0",
-        "barryvdh/laravel-cors": "^0.8.2"
+        "barryvdh/laravel-cors": "^0.8.2",
+	"ixudra/curl": "6.*",
+	"ritey/nusoap":"0.9.5"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
@@ -32,7 +34,10 @@
     "autoload-dev": {
         "classmap": [
             "tests/TestCase.php"
-        ]
+        ],
+	"files": [
+            "vendor/ritey/nusoap/lib/nusoap.php"
+       ]
     },
     "scripts": {
         "post-root-package-install": [
