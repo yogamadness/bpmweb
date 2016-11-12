@@ -535,7 +535,7 @@ class DemosiController extends Controller
     	$data->nik_national = $input['iNikNasional'];
     	$data->nik_sap = $input['iNikSap'];
     	$data->notes = $input['iKeterangan']; // notes disimpan di TR_HC_PDM_PROC_STAT_HIST di kolom  APPROV_REV_NOTES
-    	$data->comp_code = 1;//ambil dari COMP_CODE
+    	$data->comp_code = 1;
     	$data->bpm_code = 1;
     	if($type == 'insert') $data->created_by = 1;
     	if($type == 'insert') $data->created_at = date('Y/m/d H:i:s');
@@ -626,60 +626,72 @@ class DemosiController extends Controller
 
 	function saveAllDemosiDetail($type, $input)
     {
-    	//Penilaian Karya / IPE 3 Tahun yg lalu
+      //Mulai Periode pengangkatan karyawan
     	$i = array('h_id'=>$input['h_id'], 'version_code'=>$input['version_code'], 'param_id'=>1, 'new_value'=>(isset($input['iIpe3yAgo']) ? $input['iIpe3yAgo'] : ''));
     	$this->saveDemosiDetail($type,$i);
 
+      //Berakhir Periode pengangkatan karyawan
+    	$i = array('h_id'=>$input['h_id'], 'version_code'=>$input['version_code'], 'param_id'=>2, 'new_value'=>(isset($input['iIpe3yAgo']) ? $input['iIpe3yAgo'] : ''));
+    	$this->saveDemosiDetail($type,$i);
+
+      //Penilaian Karya / IPE 3 Tahun yg lalu
+    	$i = array('h_id'=>$input['h_id'], 'version_code'=>$input['version_code'], 'param_id'=>3, 'new_value'=>(isset($input['iIpe3yAgo']) ? $input['iIpe3yAgo'] : ''));
+    	$this->saveDemosiDetail($type,$i);
+
     	//Penilaian Karya / IPE 2 Tahun yg lalu
-    	$i = array('h_id'=>$input['h_id'], 'version_code'=>$input['version_code'], 'param_id'=>2, 'new_value'=>(isset($input['iIpe2yAgo']) ? $input['iIpe2yAgo'] : ''));
+    	$i = array('h_id'=>$input['h_id'], 'version_code'=>$input['version_code'], 'param_id'=>4, 'new_value'=>(isset($input['iIpe2yAgo']) ? $input['iIpe2yAgo'] : ''));
     	$this->saveDemosiDetail($type,$i);
 
     	//Penilaian Karya / IPE 1 Tahun yg lalu
-    	$i = array('h_id'=>$input['h_id'], 'version_code'=>$input['version_code'], 'param_id'=>3, 'new_value'=>(isset($input['iIpe1yAgo']) ? $input['iIpe1yAgo'] : ''));
+    	$i = array('h_id'=>$input['h_id'], 'version_code'=>$input['version_code'], 'param_id'=>5, 'new_value'=>(isset($input['iIpe1yAgo']) ? $input['iIpe1yAgo'] : ''));
     	$this->saveDemosiDetail($type,$i);
 
     	//ST
-    	$i = array('h_id'=>$input['h_id'], 'version_code'=>$input['version_code'], 'param_id'=>4, 'new_value'=>(isset($input['iSuratTeguran']) ? $input['iSuratTeguran'] : ''));
-    	$this->saveDemosiDetail($type,$i);
-
-    	//SP1
-    	$i = array('h_id'=>$input['h_id'], 'version_code'=>$input['version_code'], 'param_id'=>5, 'new_value'=>(isset($input['iSuratTeguran']) ? $input['iSuratTeguran'] : ''));
-    	$this->saveDemosiDetail($type,$i);
-
-    	//SP2
     	$i = array('h_id'=>$input['h_id'], 'version_code'=>$input['version_code'], 'param_id'=>6, 'new_value'=>(isset($input['iSuratTeguran']) ? $input['iSuratTeguran'] : ''));
     	$this->saveDemosiDetail($type,$i);
 
-    	//SP3
+    	//SP1
     	$i = array('h_id'=>$input['h_id'], 'version_code'=>$input['version_code'], 'param_id'=>7, 'new_value'=>(isset($input['iSuratTeguran']) ? $input['iSuratTeguran'] : ''));
     	$this->saveDemosiDetail($type,$i);
 
-    	//Tidak Ada
+    	//SP2
     	$i = array('h_id'=>$input['h_id'], 'version_code'=>$input['version_code'], 'param_id'=>8, 'new_value'=>(isset($input['iSuratTeguran']) ? $input['iSuratTeguran'] : ''));
     	$this->saveDemosiDetail($type,$i);
 
+    	//SP3
+    	$i = array('h_id'=>$input['h_id'], 'version_code'=>$input['version_code'], 'param_id'=>9, 'new_value'=>(isset($input['iSuratTeguran']) ? $input['iSuratTeguran'] : ''));
+    	$this->saveDemosiDetail($type,$i);
+
+    	//Tidak Ada
+    	$i = array('h_id'=>$input['h_id'], 'version_code'=>$input['version_code'], 'param_id'=>10, 'new_value'=>(isset($input['iSuratTeguran']) ? $input['iSuratTeguran'] : ''));
+    	$this->saveDemosiDetail($type,$i);
+
+      //Masa berlaku surat
+    	$i = array('h_id'=>$input['h_id'], 'version_code'=>$input['version_code'], 'param_id'=>11, 'new_value'=>(isset($input['iMasaBerlaku']) ? $input['iMasaBerlaku'] : ''));
+    	$this->saveDemosiDetail($type,$i);
+
     	//Perusahaan
-    	$i = array('h_id'=>$input['h_id'], 'version_code'=>$input['version_code'], 'param_id'=>9, 'new_value'=>(isset($input['iPerusahaanNew']) ? $input['iPerusahaanNew'] : ''));
+    	$i = array('h_id'=>$input['h_id'], 'version_code'=>$input['version_code'], 'param_id'=>12, 'new_value'=>(isset($input['iPerusahaanNew']) ? $input['iPerusahaanNew'] : ''));
     	$this->saveDemosiDetail($type,$i);
 
     	//Business Area / Estate / Divisi
-    	$i = array('h_id'=>$input['h_id'], 'version_code'=>$input['version_code'], 'param_id'=>10, 'new_value'=>(isset($input['iBisnisAreaNew']) ? $input['iBisnisAreaNew'] : ''));
+    	$i = array('h_id'=>$input['h_id'], 'version_code'=>$input['version_code'], 'param_id'=>13, 'new_value'=>(isset($input['iBisnisAreaNew']) ? $input['iBisnisAreaNew'] : ''));
     	$this->saveDemosiDetail($type,$i);
 
     	//Afdeling / Departemen
-    	$i = array('h_id'=>$input['h_id'], 'version_code'=>$input['version_code'], 'param_id'=>11, 'new_value'=>(isset($input['iAfdelingNew']) ? $input['iAfdelingNew'] : ''));
+    	$i = array('h_id'=>$input['h_id'], 'version_code'=>$input['version_code'], 'param_id'=>14, 'new_value'=>(isset($input['iAfdelingNew']) ? $input['iAfdelingNew'] : ''));
     	$this->saveDemosiDetail($type,$i);
 
     	//Jabatan
-    	$i = array('h_id'=>$input['h_id'], 'version_code'=>$input['version_code'], 'param_id'=>12, 'new_value'=>(isset($input['iJabatanNew']) ? $input['iJabatanNew'] : ''));
+    	$i = array('h_id'=>$input['h_id'], 'version_code'=>$input['version_code'], 'param_id'=>15, 'new_value'=>(isset($input['iJabatanNew']) ? $input['iJabatanNew'] : ''));
     	$this->saveDemosiDetail($type,$i);
 
     	//Golongan
-    	$i = array('h_id'=>$input['h_id'], 'version_code'=>$input['version_code'], 'param_id'=>13, 'new_value'=>(isset($input['iGolonganNew']) ? $input['iGolonganNew'] : ''));
+    	$i = array('h_id'=>$input['h_id'], 'version_code'=>$input['version_code'], 'param_id'=>16, 'new_value'=>(isset($input['iGolonganNew']) ? $input['iGolonganNew'] : ''));
     	$this->saveDemosiDetail($type,$i);
 
     	//Status Karyawan
-    	$i = array('h_id'=>$input['h_id'], 'version_code'=>$input['version_code'], 'param_id'=>14, 'new_value'=>(isset($input['iStatusKaryawanNew']) ? $input['iStatusKaryawanNew'] : ''));
+    	$i = array('h_id'=>$input['h_id'], 'version_code'=>$input['version_code'], 'param_id'=>17, 'new_value'=>(isset($input['iStatusKaryawanNew']) ? $input['iStatusKaryawanNew'] : ''));
     	$this->saveDemosiDetail($type,$i);
 
     	//Gaji Pokok

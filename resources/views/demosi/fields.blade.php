@@ -31,7 +31,7 @@
 						<div class="input-group-addon">
 							<i class="fa fa-calendar"></i>
 						</div>
-						<input type="text" class="form-control pull-right datepicker" id="iTanggalEfektifBerlaku" name="iTanggalEfektifBerlaku"  value="{{ isset($dHeader) ? (date('d-M-Y', strtotime($dHeader->effective_date))) : ''  }}" {{ $field_rules['iTanggalEfektifBerlaku'] }}>
+						<input type="text" class="form-control pull-right tglberlaku" id="iTanggalEfektifBerlaku" name="iTanggalEfektifBerlaku"  value="{{ isset($dHeader) ? (date('d-M-Y', strtotime($dHeader->effective_date))) : ''  }}" {{ $field_rules['iTanggalEfektifBerlaku'] }}>
 					</div>
 				</div>
 			</div>

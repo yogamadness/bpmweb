@@ -420,6 +420,7 @@ class ApiController extends Controller
                             		'NO_KTP' => $value->NO_KTP,
                             		'AGE' => date_diff(date_create($value->DOB), date_create('today'))->format('%y Tahun %m Bulan %d Hari'),
                             		'PSS' => (isset($pss) ? $pss->trans_type_id : ''),
+																'EFFECTIVE_DATE' => (isset($pss) ? $pss->effective_date : ''),
             					));
     			}
         	// }

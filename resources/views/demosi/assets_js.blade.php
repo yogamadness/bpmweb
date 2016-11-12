@@ -8,7 +8,7 @@
 <script src="{{ asset('/plugins/iCheck/icheck.min.js') }}" type="text/javascript"></script>
 <script src="{{ asset('/plugins/fastclick/fastclick.js') }}" type="text/javascript"></script>
 <script src="http://parsleyjs.org/dist/parsley.min.js" type="text/javascript"></script>
-
+<script src="{{ asset('/dist/plugins/datetimepicker/js/bootstrap-datetimepicker.min.js') }}"></script>
 <!--
 <script src="{{ asset('/plugins/datatables/jquery.dataTables.min.js') }}" type="text/javascript"></script>
 <script src="{{ asset('/plugins/datatables/dataTables.bootstrap.min.js') }}" type="text/javascript"></script>
@@ -76,7 +76,6 @@ $(function () {
         $('#iPeriodePengangkatanKaryawanKontrak span').html(start.format('DD-MMM-YYYY') + ' - ' + end.format('DD-MMM-YYYY'));
         startDate = start;
          endDate = end;
-
        }
     );
 
@@ -106,7 +105,10 @@ $(function () {
     autoclose: true,
     format: 'dd-M-yyyy',
   });
-
+  $('.tglberlaku').datetimepicker({
+    minDate: moment().add('h', 1),
+    format: 'DD-MMM-YYYY'
+  });
   //iCheck for checkbox and radio inputs
   $('input[type="checkbox"].minimal, input[type="radio"].minimal').iCheck({
     checkboxClass: 'icheckbox_minimal-blue',
@@ -229,7 +231,27 @@ function getDataEmp()
           	$('#iNama').val(json[0].EMPLOYEE_NAME);
           	$('#iTanggalMasukKerja').val(json[0].JOIN_DATE);
           	$('#iTanggalLahir').val(json[0].DOB);
-          	$('input[name=iSuratTeguran]').filter('[value="7"]').iCheck('check');//attr('checked', true);
+            //attr('checked', true);
+            switch (json[0].PSS) {
+              case 7:
+                  $('input[name=iSuratTeguran]').filter('[value="7"]').iCheck('check');
+                break;
+              case 8:
+                  $('input[name=iSuratTeguran]').filter('[value="8"]').iCheck('check');
+                break;
+              case 9:
+                  $('input[name=iSuratTeguran]').filter('[value="9"]').iCheck('check');
+                  break;
+              case 10:
+                    $('input[name=iSuratTeguran]').filter('[value="10"]').iCheck('check');
+                  break;
+              default:
+                $('input[name=iSuratTeguran]').filter('[value=""]').iCheck('check');
+            }
+
+            if (json[0].PSS > "") {
+                $("#iMasaBerlaku").select2().val(json[0].EFFECTIVE_DATE).trigger("change");
+            }
             $("#iPerusahaanOld").select2().val(json[0].COMP_CODE).trigger("change");
             $('#iBisnisAreaOld').select2().val(json[0].EST_CODE).trigger("change");
             $('#iAfdelingOld').select2().val(json[0].AFD_CODE).trigger("change");
@@ -265,11 +287,12 @@ function getDataEmpProd()
 				if(json == 0) {
             console.log(0);
 				} else {
-            console.log(json);
-          	//console.log(json[0].BULAN);
-          	//$('#iNama').val(json[0].BULAN);
-          	//$('#iAtt3yAgo').val(json[0].KEHADIRAN);
-          	//$('#iProd3yAgo').val(json[0].PRODUCTIVITY);
+          	$('#iAtt3yAgo').val(json[0].KEHADIRAN);
+            $('#iAtt2yAgo').val(json[1].KEHADIRAN);
+            $('#iAtt1yAgo').val(json[2].KEHADIRAN);
+          	$('#iProd3yAgo').val(json[0].PRODUCTIVITY);
+            $('#iProd3yAgo').val(json[2].PRODUCTIVITY);
+            $('#iProd3yAgo').val(json[3].PRODUCTIVITY);
 				}
 			}
 		});
@@ -298,7 +321,6 @@ $(document).ready(function(){
         source: nik
     })
     .on('typeahead:selected', getDataEmp);
-    //.on('typeahead:selected', getDataEmpProd);
 });
 
 </script>
