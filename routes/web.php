@@ -98,9 +98,7 @@ Route::get('fptk', 'FptkController@index2');
 
 Route::get('/respons', 'BalikanStringHtmlController@index');
 
-/*
-* PDM and PSS
-*/
+/* -------------- PDM and PSS --------------*/
 /* -------------- API ROUTES -------------- */
 //getEmpWorkStatus
 Route::get('/api/urlGetEmployee', 'ApiController@UrlGetEmployee');

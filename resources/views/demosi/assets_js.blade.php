@@ -318,5 +318,4 @@ $(document).ready(function(){
   })
   .on('typeahead:selected', getDataEmp);
 });
-
 </script>
