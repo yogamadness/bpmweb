@@ -76,29 +76,10 @@ $(function () {
         $('#iPeriodePengangkatanKaryawanKontrak span').html(start.format('DD-MMM-YYYY') + ' - ' + end.format('DD-MMM-YYYY'));
         startDate = start;
          endDate = end;
+         $("#sqldate_from").val(startDate);
+         $("#sqldate_to").val(endDate);
        }
     );
-
-  // $('#iPeriodePengangkatanKaryawanKontrak').daterangepicker(
-  //     {
-  //       ranges: {
-          // '1 Month': [moment().startOf('month'), moment().endOf('month')],
-          // '2 Month': [moment().startOf('month'), moment().add(1, 'month').endOf('month')],
-          // '3 Month': [moment().startOf('month'), moment().add(2, 'month').endOf('month')],
-          // '4 Month': [moment().startOf('month'), moment().add(3, 'month').endOf('month')],
-          // '5 Month': [moment().startOf('month'), moment().add(4, 'month').endOf('month')],
-          // '6 Month': [moment().startOf('month'), moment().add(5, 'month').endOf('month')],
-          // '12 Month': [moment().startOf('month'), moment().add(11, 'month').endOf('month')],
-          // '18 Month': [moment().startOf('month'), moment().add(17, 'month').endOf('month')],
-          // '24 Month': [moment().startOf('month'), moment().add(23, 'month').endOf('month')]
-  //       },
-  //       startDate: moment().subtract(29, 'days'),
-  //       endDate: moment()
-  //     },
-  //     function (start, end) {
-  //       $('#iPeriodePengangkatanKaryawanKontrak span').html(start.format('DD-MMM-YYYY') + ' - ' + end.format('DD-MMM-YYYY'));
-  //     }
-  // );
 
   //Date picker
   $('.datepicker').datepicker({
@@ -132,37 +113,59 @@ $(function () {
   })
   .change();
 @endif
-  //apply data table
-/*
-  $('#demosi-table').DataTable( {
-    "paging":   false,
-    "ordering": false,
-    "info":     false,
-    "responsive": true,
-  } );
-
-  //parsley implementation
-  $('#valid-form').parsley().on('field:validated', function() {
-    var ok = $('.parsley-error').length === 0;
-    $('.bs-callout-info').toggleClass('hidden', !ok);
-    $('.bs-callout-warning').toggleClass('hidden', ok);
-  })
-  .on('form:submit', function() {
-    return false; // Don't submit form for this demo
-  });
-  */
+// $( "#iNomorPtk" )
+// .change(function () {
+//   val = $("#iNomorPtk :selected").index();
+//   $( "#iNomorPtk option:selected" ).each(function() {
+//     if (val == 0) {
+//       $( "#iPerusahaanNew" ).prop( "disabled", true );
+//       $( "#iBisnisAreaNew" ).prop( "disabled", true );
+//       $( "#iAfdelingNew" ).prop( "disabled", true );
+//       $( "#iJabatanNew" ).prop( "disabled", true );
+//       //enable if "tidak ada PTK"
+//       $( "#iGolonganNew" ).prop( "disabled", false );
+//       $( "#iStatusKaryawanNew" ).prop( "disabled", false );
+//     }
+//   });
+// })
+// .change();
 });
 
 //api for get perubahan status
-var optCompany = {!! $getOptCompany !!};
-$(".company").select2({ data: optCompany });
+var optCompany = {!! $getOptAfdeling !!};
+//$(".company").select2({ data: optCompany });
+$('#iPerusahaanNew').select2({ data: optCompany }).on('change', function() {
+    $('#iBisnisAreaNew').html('').select2({data: {id:null, text: null}});
+	var val = $(this).val();
+	var filtered = $(optCompany).filter(function(index){
+        return this.id == val;
+    });
+    if(filtered.length > 0){
+    	//console.log(filtered[0]['data']);
+    	$('#iBisnisAreaNew').select2({data:filtered[0]['data']}).on('change', function() {
+    		$('#iAfdelingNew').html('').select2({data: {id:null, text: null}});
+			var val = $(this).val();
+			var filtered2 = $(filtered[0]['data']).filter(function(index){
+        		return this.id == val;
+    		});
+    		if(filtered2.length > 0){
+    			//console.log(filtered2[0]['data']);
+    			$('#iAfdelingNew').select2({data:filtered2[0]['data']});
+    		}
+		}).trigger('change');
 
+    }
+}).trigger('change');
+
+<?php
+/*
 var optBusinessArea = {!! $getOptBusinessArea !!};
-$(".business-area").select2({ data: optBusinessArea });
+//$(".business-area").select2({ data: optBusinessArea });
 
 var optAfdeling = {!! $getOptAfdeling !!};
 $(".afdeling").select2({ data: optAfdeling });
-
+*/
+?>
 var optJobCode = {!! $getOptJobCode !!};
 $(".job-code").select2({ data: optJobCode });
 
@@ -217,7 +220,7 @@ function validateForm(i)
     var nik = $.trim($('#iNikSap').val());
     if(nik!='') {
       $.ajax({
-        url : "http://tap-flowdev.tap-agri.com/api/GetEmpByNIK",
+        url : "http://tap-flowdev.tap-agri.com/api/getEmpByNIK",
         type : 'GET',
         data : {
           'nik': nik,
@@ -253,15 +256,16 @@ function validateForm(i)
             if (json[0].PSS > "") {
               $("#iMasaBerlaku").select2().val(json[0].EFFECTIVE_DATE).trigger("change");
             }
-            $("#iPerusahaanOld").select2().val(json[0].COMP_CODE).trigger("change");
-            $('#iBisnisAreaOld').select2().val(json[0].EST_CODE).trigger("change");
-            $('#iAfdelingOld').select2().val(json[0].AFD_CODE).trigger("change");
-            $('#iJabatanOld').select2().val(json[0].JOB_CODE).trigger("change");
-            $('#iGolonganOld').select2().val(json[0].JOB_TYPE).trigger("change");
-            $('#iStatusKaryawanOld').select2().val(json[0].STATUS).trigger("change");
-            $('#iPerusahaanNew').select2().val(json[0].COMP_CODE).trigger("change");
-            $('#iBisnisAreaNew').select2().val(json[0].EST_CODE).trigger("change");
-            $('#iAfdelingNew').select2().val(json[0].AFD_CODE).trigger("change");
+            //$("#iPerusahaanOld").select2().val(json[0].COMP_NAME).trigger("change");
+            $("#iPerusahaanOld").val(json[0].COMP_NAME);
+            $('#iBisnisAreaOld').val(json[0].EST_NAME);
+            $('#iAfdelingOld').val(json[0].AFD_NAME);
+            $('#iJabatanOld').val(json[0].JOB_CODE);
+            $('#iGolonganOld').val(json[0].JOB_TYPE);
+            $('#iStatusKaryawanOld').val(json[0].STATUS);
+            $('#iPerusahaanNew').select2().val(json[0].COMP_NAME).trigger("change");
+            $('#iBisnisAreaNew').select2().val(json[0].EST_NAME).trigger("change");
+            $('#iAfdelingNew').select2().val(json[0].AFD_NAME).trigger("change");
             $('#iJabatanNew').select2().val(json[0].JOB_CODE).trigger("change");
             $('#iGolonganNew').select2().val(json[0].JOB_TYPE).trigger("change");
             $('#iStatusKaryawanNew').select2().val(json[0].STATUS).trigger("change");
@@ -271,7 +275,7 @@ function validateForm(i)
       });
 
       $.ajax({
-        url : "http://tap-flowdev.tap-agri.com/api/GetEmpProductivity",
+        url : "http://tap-flowdev.tap-agri.com/api/getEmpProductivity",
         type : 'GET',
         data : {
           'nik': nik,

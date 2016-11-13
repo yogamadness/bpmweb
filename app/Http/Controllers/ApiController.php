@@ -3,39 +3,97 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use Session;
 use App\Http\Requests;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Input;
+use Ixudra\Curl\CurlService;
+use nusoap_client;
 
 use App\Http\Models\General;
 use App\Http\Models\SanksiHeader;
 
 class ApiController extends Controller
 {
-		private static $_testUrl = "http://tap-flowdev.tap-agri.com/api/";
-    private static $_devUrl = "http://apidev.tap-agri.com/";
-    private static $_fakeUrl = "http://tap-flowdev.tap-agri.com/urlGetEmployee";
+	private static $_webUrl = "http://tap-flowdev.tap-agri.com/api/";
+    private static $_apiUrl = "http://apidev.tap-agri.com/";
+    private static $_testUrl = "http://tap-flowdev.tap-agri.com/urlGetEmployee";
+    private static $_soapPdmUrl = "https://qa-bpm:9443/teamworks/webservices/TAPHC/WS_PDM.tws?WSDL";
+    private static $_soapPsaUrl = "https://qa-bpm:9443/teamworks/webservices/TAPHC/WS_PSA.tws?WSDL";
+
+	public  $doc_code;
+	public  $bpm_code;
+	public  $status;
+	public  $notes;
+
     private static $_online = 0; // 1 = online, 0 = offline
 
     public function __construct()
     {
-        //$this->middleware('auth');
-				//$this->middleware('ceklogin');
+        //$this->middleware('ceklogin');
     }
 
-	public function index()
+	public function PushWsdl($endpoint, $params)
     {
-    	//
+    	$client = new nusoap_client(self::$_soapPdmUrl, true);
+
+        $err = $client->getError();
+    	if ($err) {
+    		$message = $err;
+        } else {
+    		$res = $client->call($endpoint, $params);
+        	if ($client->fault) {
+    			$message = $res;
+        	} else {
+        		$err = $client->getError();
+        		if ($err) {
+                	$message = $err; //cause:wrong url,etc.
+                } else {
+                	$message = $res; //success
+                }
+        	}
+        }
+
+    	return $message;
     }
 
+	public function PostWsdlPdmCreate()
+    {
+    	$doc_code = Input::get('doc_code') ? Input::get('doc_code') : $this->doc_code; //'16.11/HC/PDM-NS/00001'
+
+    	$params = array(
+        				'userId' => Session::get('user_id'),
+        				'docCode' => $doc_code,
+        				'areaCode' => Session::get('area_code'),
+        			);
+    	return $this->PushWsdl('createPDM', $params);
+    }
+
+	public function PostWsdlPdmApprove()
+    {
+    	$bpm_code = Input::get('bpm_code') ? Input::get('bpm_code') : $this->bpm_code;
+    	$status = Input::get('status') ? Input::get('status') : $this->status;
+    	$notes = Input::get('notes') ? Input::get('notes') : $this->notes;
+
+    	$params = array(
+        				'userId' => Session::get('user_id'),
+        				'bpmCode' => $bpm_code,
+        				'status' => $status,
+        				'notes' => $notes,
+        				'areaCode' => Session::get('area_code'),
+        			);
+    	return $this->PushWsdl('approvePDM', $params);
+    }
+/*
 	public function UrlGetEmployee()
     {
 		$data = ["data"=>["NIK_NASIONAL"=>null,"NIK"=>"21/2131/0111/51","EMPLOYEE_NAME"=>"JUNAIDI","POB"=>"TEMBILAHAN","DOB"=>"06-JUL-78","SEX"=>"MALE","RELIGION"=>"ISLAM","ADDRESS"=>"TELUK KETAPANG KEC PEMAYUNG.KAB BATANG HARI","WERKS"=>"2131","COMP_CODE"=>"KK","COMP_NAME"=>"Karyawan Kontrak","EST_CODE"=>"31","EST_NAME"=>"PLASMA PEMAYUNG ESTATE","AFD_CODE"=>"A","AFD_NAME"=>"Afdeling A","SPV_NIK"=>null,"JOB_CODE"=>"PEMANEN","JOB_TYPE"=>"HV","STATUS"=>"KT","START_VALID"=>"01-JUL-16","END_VALID"=>"31-DEC-99","RES_DATE"=>null,"JOIN_DATE"=>"01-OCT-12","NO_KTP"=>null,"NPWP"=>null],"count"=>1];
 
     	return response()->json($data);
     }
+*/
 	//for testing purposes only
     public function UrlEmpWorkStatus()
     {
@@ -51,354 +109,251 @@ class ApiController extends Controller
     	return response()->json($result);
     }
 
-    public static function GetEmpWorkStatus()
-    {
-    	$url = self::$_testUrl. 'urlEmpWorkStatus';
-    	$json = file_get_contents($url);
-		$array = json_decode($json);
-		$result=array();
-		foreach ($array->data as $value) {
-        	array_push($result, array('id' => $value->id, 'text' => $value->text));
-		}
-
-    	//return view('api')->with('result', $result);
-    	//return response()->json($result);
-    	header('Content-type: application/json');
-    	return json_encode($result);
-    }
-
     public static function GetOptEmpWorkStatus()
     {
-    	$url = self::$_testUrl. 'urlEmpWorkStatus';
-    	$json = file_get_contents($url);
-		$array = json_decode($json);
-		$result=array();
-		foreach ($array->data as $value) {
-        	array_push($result, array('id' => $value->id, 'text' => $value->text));
-		}
+    /*
+    	$url = self::$_webUrl. 'urlEmpWorkStatus';
 
-    	//return view('api')->with('result', $result);
+    	$curlService = new CurlService;
+    	$json = $curlService->to($url)->get();
+		$array = json_decode($json);
+    */
+    	$rows = General::where('general_code','EMP_WORK_STATUS');
+		$result=array();
+    	//if(isset($array->data)) {
+			//foreach ($array->data as $value) {
+			foreach ($rows->get() as $value) {
+        		//array_push($result, array('id' => $value->text, 'text' => $value->text));
+        		array_push($result, array('id' => $value->description, 'text' => $value->description));
+			}
+		//}
     	//return response()->json($result);
-    	header('Content-type: application/json');
     	return json_encode($result);
     }
 
     public static function GetOptCompany()
     {
-			$curlService = new \Ixudra\Curl\CurlService();
+    	$nik = strtr(base64_encode('/area/company'), '+/=', '-_,');
+    	$url = self::$_apiUrl . $nik;
 
-    	$nik = base64_encode('/area/company');//?NIK=' . urlencode($nik_national));
-    	$url = self::$_devUrl . $nik;
+    	$curlService = new CurlService;
+    	$json = $curlService->to($url)->get();
+    	$array = json_decode($json);
 
-			$response = $curlService->to($url)->get();
-			$array = json_decode($response);
-
-    	// $getUrl = Input::get('url');
-    	// if($getUrl == 1){
-      //   	dd($url);
-      //   }
-
-    	// if(self::$_online == 1) {
-    	// $json = @file_get_contents($url);
-    	// if($json === false) {
-      //   	$result = [];
-      //   } else {
-    		//$array = json_decode($json);
-    		$result = array();
-    		if(isset($array->data)) {
-    			foreach ($array->data as $value) {
-    				array_push($result, array(
-							'REGION_CODE' => $value->REGION_CODE, 
-							'COMP_CODE' => $value->COMP_CODE,
-							'COMP_NAME' => $value->COMP_NAME
-						));
-    			}
-        	}
-        //}
-        // } else { $result = []; }
-
-    	header('Content-type: application/json');
+    	$result = array();
+    	if(isset($array->data)) {
+    		foreach ($array->data as $value) {
+    			array_push($result, array('id' => $value->COMP_NAME, 'text' => $value->COMP_NAME));
+    		}
+    	}
+		
+    	//return response()->json($result);
     	return json_encode($result);
     }
 
     public static function GetOptBusinessArea()
     {
-			$curlService = new \Ixudra\Curl\CurlService();
-			$nik = base64_encode('/area/estate');//?NIK=' . urlencode($nik_national));
-    	$url = self::$_devUrl . $nik;
+    	$nik = strtr(base64_encode('/area/estate'), '+/=', '-_,');
 
-			$response = $curlService->to($url)->get();
-			$array = json_decode($response);
-			//
-    	// $getUrl = Input::get('url');
-    	// if($getUrl == 1){
-      //   	dd($url);
-      //   }
-			//
-    	// if(self::$_online == 1) {
-    	// $json = @file_get_contents($url);
-    	// if($json === false) {
-      //   	$result = [];
-      //   } else {
-    	// 	$array = json_decode($json);
-    		$result = array();
-    		if(isset($array->data)) {
-    			foreach ($array->data as $value) {
-    				array_push($result, array('id' => $value->EST_CODE, 'text' => $value->EST_NAME));
-    			}
-        	}
-        // }
-        // } else { $result = []; }
+    	$url = self::$_apiUrl . $nik;
+    
+    	$curlService = new CurlService;
+    	$json = $curlService->to($url)->get();
+    	$array = json_decode($json);
+    
+    	$result = array();
+    	if(isset($array->data)) {
+    		foreach ($array->data as $value) {
+    			array_push($result, array('id' => $value->EST_NAME, 'text' => $value->EST_NAME));
+    		}
+    	}
 
-    	header('Content-type: application/json');
     	return json_encode($result);
     }
 
     public static function GetOptAfdeling()
     {
-			$curlService = new \Ixudra\Curl\CurlService();
-			$nik = base64_encode('/area/afdeling');//?NIK=' . urlencode($nik_national));
-    	$url = self::$_devUrl . $nik;
+    	$nik = strtr(base64_encode('/area/company'), '+/=', '-_,');
+    	$url = self::$_apiUrl . $nik;
+    	$curlService = new CurlService;
+    	$json = $curlService->to($url)->get();
+    	$arr_comp = json_decode($json);
+    
+    	$nik = strtr(base64_encode('/area/estate'), '+/=', '-_,');
+    	$url = self::$_apiUrl . $nik;
+    	$curlService = new CurlService;
+    	$json = $curlService->to($url)->get();
+    	$arr_est = json_decode($json);
+    
+    	$nik = strtr(base64_encode('/area/afdeling'), '+/=', '-_,');
+    	$url = self::$_apiUrl . $nik;
+    	$curlService = new CurlService;
+    	$json = $curlService->to($url)->get();
+    	$arr_afd = json_decode($json);
+    
+    	$result = array();
+    
+    	if(isset($arr_comp->data)) {
+    		foreach ($arr_comp->data as $val_comp) {
+            	$res_est = array();	
+            /*
+        		$nik = strtr(base64_encode('/area/estate?REGION_CODE='.$val_comp->REGION_CODE.'&COMP_CODE='.$val_comp->COMP_CODE), '+/=', '-_,');
+        		$url = self::$_apiUrl . $nik;
 
-			$response = $curlService->to($url)->get();
-			$array = json_decode($response);
-			//
-    	// $getUrl = Input::get('url');
-    	// if($getUrl == 1){
-      //   	dd($url);
-      //   }
-			//
-    	// if(self::$_online == 1) {
-    	// $json = @file_get_contents($url);
-    	// if($json === false) {
-      //   	$result = [];
-      //   } else {
-    	// 	$array = json_decode($json);
-    		$result = array();
-    		if(isset($array->data)) {
-    			foreach ($array->data as $value) {
-    				array_push($result, array('id' => $value->AFD_CODE, 'text' => $value->AFD_NAME));
+        		$curlService = new CurlService;
+        		$json = $curlService->to($url)->get();
+        		$arr_est = json_decode($json);
+            */
+    			if(isset($arr_est->data)) {
+    				foreach ($arr_est->data as $val_est) {
+                    	if($val_comp->REGION_CODE == $val_est->REGION_CODE && $val_comp->COMP_CODE == $val_est->COMP_CODE) {
+    					$res_afd = array();
+                	/*
+    					$nik = strtr(base64_encode('/area/afdeling?REGION_CODE='.$val_est->REGION_CODE.'&COMP_CODE='.$val_comp->COMP_CODE.'&EST_CODE='.$val_est->EST_CODE), '+/=', '-_,');
+    					$url = self::$_apiUrl . $nik;
+
+    					$curlService = new CurlService;
+    					$json = $curlService->to($url)->get();
+    					$arr_afd = json_decode($json);
+                	*/
+    					if(isset($arr_afd->data)) {
+    						foreach ($arr_afd->data as $val_afd) {
+                            if($val_est->REGION_CODE == $val_afd->REGION_CODE && $val_est->COMP_CODE == $val_afd->COMP_CODE && $val_est->EST_CODE == $val_afd->EST_CODE) {
+                        		array_push($res_afd, array('id' => $val_afd->AFD_NAME, 'text' => $val_afd->AFD_NAME));
+                            }
+    						}
+    					}
+                
+                		array_push($res_est, array('id' => $val_est->EST_NAME, 'text' => $val_est->EST_NAME, 'data' => $res_afd));
+                        }
+    				}
     			}
-        	}
-        // }
-        // } else { $result = []; }
+            
+    			array_push($result, array('id' => $val_comp->COMP_NAME, 'text' => $val_comp->COMP_NAME, 'data' => $res_est));
+    		}
+    	}
 
-    	header('Content-type: application/json');
     	return json_encode($result);
     }
 
     public static function GetOptJobCode()
     {
-		//$rows = DB::table('tm_general')->where('general_code','EMP_WORK_STATUS')->select('description_code ', 'description as text')->get();
-    // 	$result = array();
-		// $rows = General::where('general_code','LEVEL_JABATAN');
-		// foreach($rows->get() as $row) {
-    //     	array_push($result, array('id' => $row->description_code, 'text' => $row->description));
-    //     }
-		//
-    // 	header('Content-type: application/json');
-    // 	return json_encode($result);
-			$curlService = new \Ixudra\Curl\CurlService();
-			$nik = base64_encode('/employee/jabatan');//?NIK=' . urlencode($nik_national));
-			$url = self::$_devUrl . $nik;
+    	$nik = base64_encode('/employee/jabatan');//?NIK=' . urlencode($nik_national));
+    	$url = self::$_apiUrl . $nik;
 
-			$response = $curlService->to($url)->get();
-			$array = json_decode($response);
-			//
-			// $getUrl = Input::get('url');
-			// if($getUrl == 1){
-			// 		dd($url);
-			// 	}
-			//
-			// if(self::$_online == 1) {
-			// $json = @file_get_contents($url);
-			// if($json === false) {
-			// 		$result = [];
-			// 	} else {
-			// 	$array = json_decode($json);
-				$result = array();
-				if(isset($array->data)) {
-					foreach ($array->data as $value) {
-						array_push($result, array('id' => $value->JOB_TYPE, 'text' => $value->JOB_CODE));
-					}
-					}
-				// }
-				// } else { $result = []; }
+    	$curlService = new CurlService;
+    	$json = $curlService->to($url)->get();
+    	$array = json_decode($json);
 
-			header('Content-type: application/json');
-			return json_encode($result);
+    	$result = array();
+    	if(isset($array->data)) {
+    		foreach ($array->data as $value) {
+    			array_push($result, array('id' => $value->JOB_CODE, 'text' => $value->JOB_CODE));
+    		}
+    	}
+
+    	return json_encode($result);
     }
 
     public static function GetOptJobType()
     {
-			$curlService = new \Ixudra\Curl\CurlService();
-			$nik = base64_encode('/area/company');//?NIK=' . urlencode($nik_national));
-    	$url = self::$_devUrl . $nik;
+    	$nik = base64_encode('/area/company');//?NIK=' . urlencode($get_nik));
+    	$url = self::$_apiUrl . $nik;
 
-			$response = $curlService->to($url)->get();
-			$array = json_decode($response);
-			// $getUrl = Input::get('url');
-    	// if($getUrl == 1){
-      //   	dd($url);
-      //   }
-			//
-    	// if(self::$_online == 1) {
-    	// $json = @file_get_contents($url);
-    	// if($json === false) {
-      //   	$result = [];
-      //   } else {
-    	// 	$array = json_decode($json);
-    		$result = array();
-    		if(isset($array->data)) {
-    			foreach ($array->data as $value) {
-    				array_push($result, array('id' => $value->COMP_CODE, 'text' => $value->COMP_NAME));
-    			}
-        	}
-        // }
-        // } else { $result = []; }
+    	$curlService = new CurlService;
+    	$json = $curlService->to($url)->get();
+    	$array = json_decode($json);
 
-    	header('Content-type: application/json');
+    	$result = array();
+    	if(isset($array->data)) {
+    		foreach ($array->data as $value) {
+    			array_push($result, array('id' => $value->COMP_NAME, 'text' => $value->COMP_NAME));
+    		}
+    	}
+
     	return json_encode($result);
     }
 
 	public static function GetEmpAutoComplete()
 	{
-			$curlService = new \Ixudra\Curl\CurlService();
-			$nik_national = Input::get('nik');
-    	$comp_code = Input::get('$comp_code') ? '&comp_code='.Input::get('$comp_code') : '';
-    	$nik = base64_encode('/employee/search');//?' . $comp_code);//?NIK=' . urlencode($nik_national));
-    	$url = self::$_devUrl . $nik;
+    	$get_nik = Input::get('nik');
+    	$comp_code = Input::get('comp_code') ? '&comp_code='.Input::get('comp_code') : '';
+    	$nik = base64_encode('/employee/search');//?' . $comp_code);//?NIK=' . urlencode($get_nik));
+    	$url = self::$_apiUrl . $nik;
 
-			$response = $curlService->to($url)->get();
-			$array = json_decode($response);
+    	$curlService = new CurlService;
+    	$json = $curlService->to($url)->get();
+    	$array = json_decode($json);
 
-			// $getUrl = Input::get('url');
-    	// if($getUrl == 1){
-      //   	dd($url);
-      //   }
-			//
-    	// if(self::$_online == 1) {
-    	// $json = @file_get_contents($url);
-    	// if($json === false) {
-      //   	$result = [];
-      //   } else {
-    	// 	$array = json_decode($json);
-    		$result = array();
+    	$result = array();
+    	if(isset($array->data)) {
+    		foreach ($array->data as $value) {
+    			array_push($result, $value->NIK);
+    		}
+    	}
 
-    		if(isset($array->data)) {
-    			foreach ($array->data as $value) {
-    				array_push($result, $value->NIK);
-    			}
-        	}
-        // }
-        // } else { $result = []; }
-
-    	header('Content-type: application/json');
+    	//return json_encode($result);
     	return $result;
     }
 
 	public static function GetEmpAutoCompletePemanen()
 	{
-			$curlService = new \Ixudra\Curl\CurlService();
-			$nik_national = Input::get('nik');
+    	$get_nik = Input::get('nik');
     	$nik = base64_encode('/employee/search?JOB_CODE=Pemanen');
-    	$url = self::$_devUrl . $nik;
-    	//if(self::$_online == 0) $url = self::$_testUrl . 'getEmpSearch';
+    	$url = self::$_apiUrl . $nik;
 
-			$response = $curlService->to($url)->get();
-			$array = json_decode($response);
-    	// $getUrl = Input::get('url');
-    	// if($getUrl == 1){
-      //   	dd($url);
-      //   }
-			//
-    	// $json = @file_get_contents($url);
-    	// if($json === false) {
-      //   	$result = [];
-      //   } else {
-    	// 	$array = json_decode($json);
-    		$result = array();
-    		if(isset($array->data)) {
-    			foreach ($array->data as $value) {
-    				array_push($result, $value->NIK);
-    			}
-        	}
-        //}
+    	$curlService = new CurlService;
+    	$json = $curlService->to($url)->get();
+    	$array = json_decode($json);
 
-    	header('Content-type: application/json');
+    	$result = array();
+    	if(isset($array->data)) {
+    		foreach ($array->data as $value) {
+    			array_push($result, $value->NIK);
+    		}
+    	}
+
+    	//return json_encode($result);
     	return $result;
-    }
-
-
-	public static function GetEmpSearch()
-    {
-    	return view('emp' );
     }
 
 	public static function GetEmpAutoCompleteNonPemanen()
 	{
-			$curlService = new \Ixudra\Curl\CurlService();
-			$nik_national = Input::get('nik');
+    	$get_nik = Input::get('nik');
     	$nik = base64_encode('/employee/search');//?JOB_CODE=SATPAM');
-    	$url = self::$_devUrl . $nik;
-    	//if(self::$_online == 0) $url = self::$_testUrl . 'getEmpSearch';
+    	$url = self::$_apiUrl . $nik;
 
-			$response = $curlService->to($url)->get();
-			$array = json_decode($response);
+    	$curlService = new CurlService;
+    	$json = $curlService->to($url)->get();
+    	$array = json_decode($json);
 
-    	// $getUrl = Input::get('url');
-    	// if($getUrl == 1){
-      //   	dd($url);
-      //   }
+    	$result = array();
+    	if(isset($array->data)) {
+    		foreach ($array->data as $value) {
+    			array_push($result, $value->NIK);
+    		}
+    	}
 
-    	// $json = @file_get_contents($url);
-    	// if($json === false) {
-      //   	$result = [];
-      //   } else {
-    	// 	$array = json_decode($json);
-    		$result = array();
-    		if(isset($array->data)) {
-    			foreach ($array->data as $value) {
-    				array_push($result, $value->NIK);
-    			}
-        	}
-        // }
-
-    	header('Content-type: application/json');
+    	//return json_encode($result);
     	return $result;
     }
 
 	public static function GetEmpByNIK($nik = null)
 	{
-			$curlService = new \Ixudra\Curl\CurlService();
-			$nik_national = Input::get('nik') == '' ? $nik : Input::get('nik');
-			//$nik = base64_encode('/employee/search?NIK=' . urlencode($nik_national));
-    	$nik = base64_encode('/employee/getEmployee?NIK=' . urlencode($nik_national));
-    	//$nik = urlencode(base64_encode('/employee/search?NIK=21'));
+    	$get_nik = Input::get('nik') == '' ? $nik : Input::get('nik');
+    	$nik = base64_encode('/employee/getEmployee?NIK=' . urlencode($get_nik));
+    	$url = self::$_apiUrl . $nik;
 
-    	$url = self::$_devUrl . $nik;
-    	//$url = self::$_fakeUrl;
-			$response = $curlService->to($url)->get();
-			$array = json_decode($response);
-    	// $getUrl = Input::get('url');
-    	// if($getUrl == 1){
-      //   	dd($url);
-      //   }
+    	$curlService = new CurlService;
+    	$json = $curlService->to($url)->get();
+    	$array = json_decode($json);
 
-    	//if(self::$_online == 1) {
-    	// if(1==1){
-    	// $json = @file_get_contents($url);
-    	// if($json === false) {
-      //   	$result = [];
-      //   } else {
-    	// 	$array = json_decode($json);
-    		$result = array();
-    		if(isset($array->data)) {
-    			//foreach ($array->data as $value) {
-    			$value = $array->data;
-                {
-                	$pss = SanksiHeader::where('nik_sap',$value->NIK)->first();
-    				array_push($result, array(
+    	$result = array();
+    	if(isset($array->data)) {
+    		//foreach ($array->data as $value) {
+    		$value = $array->data;
+    		$pss = SanksiHeader::where('nik_sap',$value->NIK)->first();
+    		array_push($result, array(
                             		'NIK_NASIONAL' => $value->NIK_NASIONAL,
                             		'NIK' => $value->NIK,
                             		'EMPLOYEE_NAME' => $value->EMPLOYEE_NAME,
@@ -425,49 +380,33 @@ class ApiController extends Controller
                             		'AGE' => date_diff(date_create($value->DOB), date_create('today'))->format('%y Tahun %m Bulan %d Hari'),
                             		'PSS' => (isset($pss) ? $pss->trans_type_id : ''),
 																'EFFECTIVE_DATE' => (isset($pss) ? $pss->effective_date : ''),
-            					));
-    			}
-        	// }
-        }
+    		));
+    	}
         // } else { $result = []; }
 
-    	header('Content-type: application/json');
     	return $result;
 	}
 	public static function GetEmpProductivity()
 	{
-			$curlService = new \Ixudra\Curl\CurlService();
-			$nik_national = Input::get('nik');
-    	$nik = base64_encode('/employee/getProductivity?NIK=' . urlencode($nik_national) . '&date_start=' . date('Y-m-d') . '&date_end=3');
-    	$url = self::$_devUrl . $nik;
+    	$get_nik = Input::get('nik');
+    	$nik = base64_encode('/employee/getProductivity?NIK=' . urlencode($get_nik) . '&date_start=' . date('Y-m-d') . '&date_end=3');
+    	$url = self::$_apiUrl . $nik;
 
-			$response = $curlService->to($url)->get();
-			$array = json_decode($response);
-    	// $getUrl = Input::get('url');
-    	// if($getUrl == 1){
-      //   	dd($url);
-      //   }
-			//
-    	// if(self::$_online == 1) {
-    	// $json = @file_get_contents($url);
-    	// if($json === false) {
-      //   	$result = [];
-      //   } else {
-    	// 	$array = json_decode($json);
-    		$result = array();
-				if(isset($array->data)) {
-					foreach ($array->data as $value) {
-						array_push($result, array(
+    	$curlService = new CurlService;
+    	$json = $curlService->to($url)->get();
+    	$array = json_decode($json);
+
+    	$result = array();
+    	if(isset($array->data)) {
+    		foreach ($array->data as $value) {
+    			array_push($result, array(
 							'BULAN' => $value->BULAN,
 							'KEHADIRAN' => $value->KEHADIRAN,
 							'PRODUCTIVITY' => $value->PRODUCTIVITY,
-						));
-					}
-				}
-        // }
-        // } else { $result = []; }
+    			));
+    		}
+    	}
 
-    	header('Content-type: application/json');
     	return $result;
 	}
 }

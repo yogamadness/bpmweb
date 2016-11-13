@@ -96,6 +96,8 @@
 							</span>
 							<i class="fa fa-caret-down"></i>
 						</button>
+						<input id="sqldate_from" type="hidden" name="sqldate_from" />
+						<input id="sqldate_to" type="hidden" name="sqldate_to" />
 					</div>
 					{{--
 					<div class="input-group">
@@ -103,6 +105,7 @@
 							<i class="fa fa-calendar"></i>
 						</div>
 						<input type="text" class="form-control pull-right reservation" id="iPeriodePengangkatanKaryawanKontrak" name="iPeriodePengangkatanKaryawanKontrak" value="{{ isset($dHeader) ? $dHeader->effective_date : ''  }}" {{ $field_rules['iPeriodePengangkatanKaryawanKontrak'] }}>
+
 					</div>
 					--}}
 				</div>
@@ -260,10 +263,7 @@
 							<td>1</td>
 							<td>Perusahaan</td>
 							<td>
-								<select class="form-control select2 company" id="iPerusahaanOld" name="iPerusahaanOld" {{ $field_rules['iPerusahaanOld'] }}>
-									{{ isset($dDetail['iPerusahaanOld']) ? '<option>'.$dDetail['iPerusahaanOld'].'</option>' : ''  }}
-									{{ isset($dDetail['iPerusahaanNew']) ? '<option>'.$dDetail['iPerusahaanNew'].'</option>' : ''  }}
-								</select>
+                            	<input type="text" class="form-control" id="iPerusahaanOld" name="iPerusahaanOld" readonly value="{{ isset($dDetail['iPerusahaanOld']) ? $dDetail['iPerusahaanOld'] : '' }}">
 							</td>
 							<td>
 								<select class="form-control select2 company" id="iPerusahaanNew" name="iPerusahaanNew" {{ $field_rules['iPerusahaanNew'] }}>
@@ -276,10 +276,7 @@
 							<td>2</td>
 							<td>Bisnis Area/Divisi</td>
 							<td>
-								<select class="form-control select2 business-area" id="iBisnisAreaOld" name="iBisnisAreaOld" {{ $field_rules['iBisnisAreaOld'] }}>
-									{{ isset($dDetail['iBisnisAreaOld']) ? '<option>'.$dDetail['iBisnisAreaOld'].'</option>' : ''  }}
-									{{ isset($dDetail['iBisnisAreaNew']) ? '<option>'.$dDetail['iBisnisAreaNew'].'</option>' : ''  }}
-								</select>
+                            	<input type="text" class="form-control" id="iBisnisAreaOld" name="iBisnisAreaOld" readonly value="{{ isset($dDetail['iBisnisAreaOld']) ? $dDetail['iBisnisAreaOld'] : '' }}">
 							</td>
 							<td>
 								<select class="form-control select2 business-area" id="iBisnisAreaNew" name="iBisnisAreaNew" {{ $field_rules['iBisnisAreaNew'] }}>
@@ -292,10 +289,7 @@
 							<td>3</td>
 							<td>Afdeling/Departemen</td>
 							<td>
-								<select class="form-control select2 afdeling" id="iAfdelingOld" name="iAfdelingOld" {{ $field_rules['iAfdelingOld'] }}>
-									{{ isset($dDetail['iAfdelingOld']) ? '<option>'.$dDetail['iAfdelingOld'].'</option>' : ''  }}
-									{{ isset($dDetail['iAfdelingNew']) ? '<option>'.$dDetail['iAfdelingNew'].'</option>' : ''  }}
-								</select>
+                            	<input type="text" class="form-control" id="iAfdelingOld" name="iAfdelingOld" readonly value="{{ isset($dDetail['iAfdelingOld']) ? $dDetail['iAfdelingOld'] : '' }}">
 							</td>
 							<td>
 								<select class="form-control select2 afdeling" id="iAfdelingNew" name="iAfdelingNew" {{ $field_rules['iAfdelingNew'] }}>
@@ -308,10 +302,7 @@
 							<td>4</td>
 							<td>Jabatan</td>
 							<td>
-								<select class="form-control select2 job-code" id="iJabatanOld" name="iJabatanOld" {{ $field_rules['iJabatanOld'] }}>
-									{{ isset($dDetail['iJabatanOld']) ? '<option>'.$dDetail['iJabatanOld'].'</option>' : ''  }}
-									{{ isset($dDetail['iJabatanNew']) ? '<option>'.$dDetail['iJabatanNew'].'</option>' : ''  }}
-								</select>
+                            	<input type="text" class="form-control" id="iJabatanOld" name="iJabatanOld" readonly value="{{ isset($dDetail['iJabatanOld']) ? $dDetail['iJabatanOld'] : '' }}">
 							</td>
 							<td>
 								<select class="form-control select2 job-code"  id="iJabatanNew" name="iJabatanNew" {{ $field_rules['iJabatanNew'] }}>
@@ -324,15 +315,21 @@
 							<td>5</td>
 							<td>Golongan</td>
 							<td>
-								<select class="form-control select2 job-type" id="iGolonganOld" name="iGolonganOld" {{ $field_rules['iGolonganOld'] }}>
-									{{ isset($dDetail['iGolonganOld']) ? '<option>'.$dDetail['iGolonganOld'].'</option>' : ''  }}
-									{{ isset($dDetail['iGolonganNew']) ? '<option>'.$dDetail['iGolonganNew'].'</option>' : ''  }}
-								</select>
+                            	<input type="text" class="form-control" id="iGolonganOld" name="iGolonganOld" readonly value="{{ isset($dDetail['iGolonganOld']) ? $dDetail['iGolonganOld'] : '' }}">
 							</td>
 							<td>
 								<select class="form-control select2 job-type" id="iGolonganNew" name="iGolonganNew" {{ $field_rules['iGolonganNew'] }}>
-									{{ isset($dDetail['iGolonganOld']) ? '<option>'.$dDetail['iGolonganOld'].'</option>' : ''  }}
-									{{ isset($dDetail['iGolonganNew']) ? '<option>'.$dDetail['iGolonganNew'].'</option>' : ''  }}
+									{{-- isset($dDetail['iGolonganOld']) ? '<option>'.$dDetail['iGolonganOld'].'</option>' : ''  --}}
+									{{-- isset($dDetail['iGolonganNew']) ? '<option>'.$dDetail['iGolonganNew'].'</option>' : ''  --}}
+
+									<option value="0">1A</option>
+									<option value="1">1B</option>
+									<option value="2">2A</option>
+									<option value="3">2B</option>
+									<option value="4">3A</option>
+									<option value="5">3B</option>
+									<option value="6">4A</option>
+									<option value="7">4B</option>
 								</select>
 							</td>
 						</tr>
@@ -340,10 +337,7 @@
 							<td>6</td>
 							<td>Status Karyawan</td>
 							<td>
-								<select class="form-control select2 emp-work-status" id="iStatusKaryawanOld" name="iStatusKaryawanOld" {{ $field_rules['iStatusKaryawanOld'] }}>
-									{{ isset($dDetail['iStatusKaryawanOld']) ? '<option>'.$dDetail['iStatusKaryawanOld'].'</option>' : ''  }}
-									{{ isset($dDetail['iStatusKaryawanNew']) ? '<option>'.$dDetail['iStatusKaryawanNew'].'</option>' : ''  }}
-								</select>
+                            	<input type="text" class="form-control" id="iStatusKaryawanOld" name="iStatusKaryawanOld"readonly value="{{ isset($dDetail['iStatusKaryawanOld']) ? $dDetail['iStatusKaryawanOld'] : '' }}">
 							</td>
 							<td>
 								<select class="form-control select2 emp-work-status" id="iStatusKaryawanNew" name="iStatusKaryawanNew" {{ $field_rules['iStatusKaryawanNew'] }}>
@@ -460,7 +454,7 @@
 			<input type="hidden" name="h_id" value="{{ isset($input['h_id']) ? $input['h_id'] : ''  }}">
 @if($form_type === 'approve')
 			<input type="hidden" name="form_type" value="approve">
-			<button type="button" class="btn btn-success" data-toggle="modal" data-target="#modal-ask" id="submitBtn">Tanya</button>
+			<button type="button" class="btn btn-warning" data-toggle="modal" data-target="#modal-ask" id="submitBtn">Tanya</button>
 			<button type="button" class="btn btn-success" data-toggle="modal" data-target="#modal-confirmation" id="submitBtn">Setuju</button>
 			<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modal-rejection" id="submitBtn">Tolak</button>
 @else

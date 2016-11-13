@@ -11,4 +11,9 @@ class DemosiHeader extends Model
     protected $primaryKey = 'h_id';
     //protected $incrementing = false;
 	public $timestamps = false;
+
+    public function created_by_name()
+    {
+        return $this->belongsTo('App\TR_Users', 'created_by', 'user_id');
+    }
 }

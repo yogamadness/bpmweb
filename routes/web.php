@@ -115,6 +115,8 @@ Route::get('/api/getOptAfdeling', 'ApiController@GetOptAfdeling');
 Route::get('/api/getOptJobCode', 'ApiController@GetOptJobCode');
 Route::get('/api/getOptJobType', 'ApiController@GetOptJobType');
 Route::get('/api/getEmpSearch', 'ApiController@GetEmpSearch');
+Route::get('/api/postWsdlPdmCreate', 'ApiController@PostWsdlPdmCreate');
+Route::get('/api/postWsdlPdmApprove', 'ApiController@PostWsdlPdmApprove');
 /* -------------- END - API ROUTES -------------- */
 
 /* -------------- PAGE ROUTES -------------- */
