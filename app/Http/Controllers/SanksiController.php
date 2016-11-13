@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 //common
+use Session;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
@@ -10,6 +11,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Controllers\ApiController;
 //models
 use App\Http\Models\ProcessStatusHistory;
+use App\Http\Models\SanksiHeader;
 
 class SanksiController extends Controller
 {
@@ -18,7 +20,7 @@ class SanksiController extends Controller
         //$this->middleware('auth');
         //$this->middleware('ceklogin');
     }
-    public function index()
+    public function index($notifData = null)
     {
         $data = SanksiHeader::all();
         return view('sanksi.index', ['data' => $data, 'notification' => $notifData] );
@@ -28,7 +30,7 @@ class SanksiController extends Controller
     {
         //
         return view('sanksi.create',[
-            'getEmpWorkStatus' => ApiController::GetEmpWorkStatus(),
+            'getOptEmpWorkStatus' => ApiController::GetOptEmpWorkStatus(),
         ]);
     }
 
