@@ -20,8 +20,8 @@ class ApiController extends Controller
 	private static $_webUrl = "http://tap-flowdev.tap-agri.com/api/";
     private static $_apiUrl = "http://apidev.tap-agri.com/";
     private static $_testUrl = "http://tap-flowdev.tap-agri.com/urlGetEmployee";
-    private static $_soapPdmUrl = "https://qa-bpm:9443/teamworks/webservices/TAPHC/WS_PDM.tws?WSDL";
-    private static $_soapPsaUrl = "https://qa-bpm:9443/teamworks/webservices/TAPHC/WS_PSA.tws?WSDL";
+    private static $_soapPdmUrl = "https://10.20.1.243:9443/teamworks/webservices/TAPHC/WS_PDM.tws?WSDL";
+    private static $_soapPsaUrl = "https://10.20.1.243:9443/teamworks/webservices/TAPHC/WS_PSA.tws?WSDL";
 
 	public  $doc_code;
 	public  $bpm_code;
@@ -146,7 +146,7 @@ class ApiController extends Controller
     			array_push($result, array('id' => $value->COMP_NAME, 'text' => $value->COMP_NAME));
     		}
     	}
-		
+
     	//return response()->json($result);
     	return json_encode($result);
     }
@@ -156,11 +156,11 @@ class ApiController extends Controller
     	$nik = strtr(base64_encode('/area/estate'), '+/=', '-_,');
 
     	$url = self::$_apiUrl . $nik;
-    
+
     	$curlService = new CurlService;
     	$json = $curlService->to($url)->get();
     	$array = json_decode($json);
-    
+
     	$result = array();
     	if(isset($array->data)) {
     		foreach ($array->data as $value) {
@@ -178,24 +178,24 @@ class ApiController extends Controller
     	$curlService = new CurlService;
     	$json = $curlService->to($url)->get();
     	$arr_comp = json_decode($json);
-    
+
     	$nik = strtr(base64_encode('/area/estate'), '+/=', '-_,');
     	$url = self::$_apiUrl . $nik;
     	$curlService = new CurlService;
     	$json = $curlService->to($url)->get();
     	$arr_est = json_decode($json);
-    
+
     	$nik = strtr(base64_encode('/area/afdeling'), '+/=', '-_,');
     	$url = self::$_apiUrl . $nik;
     	$curlService = new CurlService;
     	$json = $curlService->to($url)->get();
     	$arr_afd = json_decode($json);
-    
+
     	$result = array();
-    
+
     	if(isset($arr_comp->data)) {
     		foreach ($arr_comp->data as $val_comp) {
-            	$res_est = array();	
+            	$res_est = array();
             /*
         		$nik = strtr(base64_encode('/area/estate?REGION_CODE='.$val_comp->REGION_CODE.'&COMP_CODE='.$val_comp->COMP_CODE), '+/=', '-_,');
         		$url = self::$_apiUrl . $nik;
@@ -223,12 +223,12 @@ class ApiController extends Controller
                             }
     						}
     					}
-                
+
                 		array_push($res_est, array('id' => $val_est->EST_NAME, 'text' => $val_est->EST_NAME, 'data' => $res_afd));
                         }
     				}
     			}
-            
+
     			array_push($result, array('id' => $val_comp->COMP_NAME, 'text' => $val_comp->COMP_NAME, 'data' => $res_est));
     		}
     	}
