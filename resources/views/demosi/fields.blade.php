@@ -53,11 +53,12 @@
 					<div class="form-group">
 					<label for="iNomorPtk">Nomor PTK</label>
 					<!-- nomor PTK ambil dari table PTK -->
-					<select class="form-control select2" style="width: 100%;" id="iNomorPtk" name="iNomorPtk" {{ $field_rules['iNomorPtk'] }}>
-						<option>PTK/0920903123490347</option>
-						<option>PTK/0920903123490348</option>
-						<option>PTK/0920903123490349</option>
-						<option>PTK/0920903123490350</option>
+					<select class="form-control select2" placeholder="pilih PTK" style="width: 100%;" id="iNomorPtk" name="iNomorPtk" {{ $field_rules['iNomorPtk'] }}>
+						<option value="0">Tidak Ada PTK</option>
+						<option value="1">PTK/0920903123490347</option>
+						<option value="2">PTK/0920903123490348</option>
+						<option value="3">PTK/0920903123490349</option>
+						<option value="4">PTK/0920903123490350</option>
 					</select>
 					</div>
 				</div>
