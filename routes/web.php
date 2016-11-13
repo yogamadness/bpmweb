@@ -1,4 +1,3 @@
-
 <?php
 
 /*
@@ -106,13 +105,13 @@ Route::get('/respons', 'BalikanStringHtmlController@index');
 //getEmpWorkStatus
 Route::get('/api/urlGetEmployee', 'ApiController@UrlGetEmployee');
 Route::get('/api/urlEmpWorkStatus', 'ApiController@UrlEmpWorkStatus');
-Route::get('/api/getEmpWorkStatus', 'ApiController@GetEmpWorkStatus');
-Route::get('/api/GetEmpByNIK', 'ApiController@GetEmpByNIK');
-Route::get('/api/GetEmpAutoComplete', 'ApiController@GetEmpAutoComplete');
-Route::get('/api/GetEmpAutoCompletePemanen', 'ApiController@GetEmpAutoCompletePemanen');
-Route::get('/api/GetEmpAutoCompleteNonPemanen', 'ApiController@GetEmpAutoCompleteNonPemanen');
-Route::get('/api/GetEmpProductivity', 'ApiController@GetEmpProductivity');
+Route::get('/api/getOptEmpWorkStatus', 'ApiController@GetOptEmpWorkStatus');
 Route::get('/api/getOptCompany', 'ApiController@GetOptCompany');
+Route::get('/api/getEmpByNIK', 'ApiController@GetEmpByNIK');
+Route::get('/api/getEmpAutoComplete', 'ApiController@GetEmpAutoComplete');
+Route::get('/api/getEmpAutoCompletePemanen', 'ApiController@GetEmpAutoCompletePemanen');
+Route::get('/api/getEmpAutoCompleteNonPemanen', 'ApiController@GetEmpAutoCompleteNonPemanen');
+Route::get('/api/getEmpProductivity', 'ApiController@GetEmpProductivity');
 Route::get('/api/getOptBusinessArea', 'ApiController@GetOptBusinessArea');
 Route::get('/api/getOptAfdeling', 'ApiController@GetOptAfdeling');
 Route::get('/api/getOptJobCode', 'ApiController@GetOptJobCode');
