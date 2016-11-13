@@ -135,8 +135,8 @@ class DemosiController extends Controller
 
         return view('demosi.create',[
             'getOptEmpWorkStatus' => ApiController::GetOptEmpWorkStatus(),
-            'getOptCompany' => ApiController::GetOptCompany(), //GetOptCompany
-            'getOptBusinessArea' => ApiController::GetOptBusinessArea(), //GetOptBusinessArea
+            //'getOptCompany' => ApiController::GetOptCompany(), //GetOptCompany
+            //'getOptBusinessArea' => ApiController::GetOptBusinessArea(), //GetOptBusinessArea
             'getOptAfdeling' => ApiController::GetOptAfdeling(), //GetOptAfdeling
             'getOptJobCode' => ApiController::GetOptJobCode(), //GetOptJobCode
             'getOptJobType' => ApiController::GetOptJobType(), //GetOptJobType
@@ -194,8 +194,8 @@ class DemosiController extends Controller
 
         return view('demosi.create',[
             'getOptEmpWorkStatus' => ApiController::GetOptEmpWorkStatus(),
-            'getOptCompany' => ApiController::GetOptCompany(),
-            'getOptBusinessArea' => ApiController::GetOptBusinessArea(),
+            //'getOptCompany' => ApiController::GetOptCompany(),
+            //'getOptBusinessArea' => ApiController::GetOptBusinessArea(),
             'getOptAfdeling' => ApiController::GetOptAfdeling(),
             'getOptJobCode' => ApiController::GetOptJobCode(),
             'getOptJobType' => ApiController::GetOptJobType(),
@@ -275,29 +275,31 @@ class DemosiController extends Controller
 
     	$data = DemosiDetail::where('h_id',$id)->get();
     	foreach($data as $row) {
-        	if($row->param_id == 1) $dDetail['iIpe3yAgo'] = $row->new_value; //Penilaian Karya / IPE 3 Tahun yg lalu
-        	if($row->param_id == 2) $dDetail['iIpe2yAgo'] = $row->new_value; //Penilaian Karya / IPE 2 Tahun yg lalu
-        	if($row->param_id == 3) $dDetail['iIpe1yAgo'] = $row->new_value; //Penilaian Karya / IPE 1 Tahun yg lalu
-        	if($row->param_id == 4) $dDetail['iSuratTeguran'] = $row->new_value; //ST
-        	if($row->param_id == 5) $dDetail['iSuratTeguran'] = $row->new_value; //SP1
-        	if($row->param_id == 6) $dDetail['iSuratTeguran'] = $row->new_value; //SP2
-        	if($row->param_id == 7) $dDetail['iSuratTeguran'] = $row->new_value; //SP3
-        	if($row->param_id == 8) $dDetail['iSuratTeguran'] = $row->new_value; //Tidak Ada
-        	if($row->param_id == 9) $dDetail['iPerusahaanNew'] = $row->new_value; //Perusahaan
-        	if($row->param_id == 10) $dDetail['iBisnisAreaNew'] = $row->new_value; //Business Area / Estate / Divisi
-        	if($row->param_id == 11) $dDetail['iAfdelingNew'] = $row->new_value; //Afdeling / Departemen
-        	if($row->param_id == 12) $dDetail['iJabatanNew'] = $row->new_value; //Jabatan
-        	if($row->param_id == 13) $dDetail['iGolonganNew'] = $row->new_value; //Golongan
-        	if($row->param_id == 14) $dDetail['iStatusKaryawanNew'] = $row->new_value; //Status Karyawan
-        	if($row->param_id == 15) $dDetail['iGajiPokokNew'] = $row->new_value; //Gaji Pokok
-        	if($row->param_id == 16) $dDetail['iCatuBerasNew'] = $row->new_value; //Catu Beras
+        if($row->param_id == 1) $dDetail['iIpe3yAgo'] = $row->new_value; //Penilaian Karya / IPE 3 Tahun yg lalu
+        if($row->param_id == 2) $dDetail['iIpe2yAgo'] = $row->new_value; //Penilaian Karya / IPE 2 Tahun yg lalu
+        	if($row->param_id == 3) $dDetail['iIpe3yAgo'] = $row->new_value; //Penilaian Karya / IPE 3 Tahun yg lalu
+        	if($row->param_id == 4) $dDetail['iIpe2yAgo'] = $row->new_value; //Penilaian Karya / IPE 2 Tahun yg lalu
+        	if($row->param_id == 5) $dDetail['iIpe1yAgo'] = $row->new_value; //Penilaian Karya / IPE 1 Tahun yg lalu
+        	if($row->param_id == 6) $dDetail['iSuratTeguran'] = $row->new_value; //ST
+        	if($row->param_id == 7) $dDetail['iSuratTeguran'] = $row->new_value; //SP1
+        	if($row->param_id == 8) $dDetail['iSuratTeguran'] = $row->new_value; //SP2
+        	if($row->param_id == 9) $dDetail['iSuratTeguran'] = $row->new_value; //SP3
+        	if($row->param_id == 10) $dDetail['iSuratTeguran'] = $row->new_value; //Tidak Ada
+        	if($row->param_id == 11) $dDetail['iPerusahaanNew'] = $row->new_value; //Perusahaan
+        	if($row->param_id == 12) $dDetail['iBisnisAreaNew'] = $row->new_value; //Business Area / Estate / Divisi
+        	if($row->param_id == 13) $dDetail['iAfdelingNew'] = $row->new_value; //Afdeling / Departemen
+        	if($row->param_id == 14) $dDetail['iJabatanNew'] = $row->new_value; //Jabatan
+        	if($row->param_id == 15) $dDetail['iGolonganNew'] = $row->new_value; //Golongan
+        	if($row->param_id == 16) $dDetail['iStatusKaryawanNew'] = $row->new_value; //Status Karyawan
+        	//if($row->param_id == 17) $dDetail['iGajiPokokNew'] = $row->new_value; //Gaji Pokok
+        	//if($row->param_id == 18) $dDetail['iCatuBerasNew'] = $row->new_value; //Catu Beras
         	if($row->param_id == 17) $dDetail['iKeterangan'] = $row->new_value; //Keterangan
         }
 
         return view('demosi.approve',[
             'getOptEmpWorkStatus' => ApiController::GetOptEmpWorkStatus(),
-            'getOptCompany' => ApiController::GetOptCompany(),
-            'getOptBusinessArea' => ApiController::GetOptBusinessArea(),
+            //'getOptCompany' => ApiController::GetOptCompany(),
+            //'getOptBusinessArea' => ApiController::GetOptBusinessArea(),
             'getOptAfdeling' => ApiController::GetOptAfdeling(),
             'getOptJobCode' => ApiController::GetOptJobCode(),
             'getOptJobType' => ApiController::GetOptJobType(),

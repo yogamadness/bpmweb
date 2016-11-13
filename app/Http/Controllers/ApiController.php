@@ -20,8 +20,8 @@ class ApiController extends Controller
 	private static $_webUrl = "http://tap-flowdev.tap-agri.com/api/";
     private static $_apiUrl = "http://apidev.tap-agri.com/";
     private static $_testUrl = "http://tap-flowdev.tap-agri.com/urlGetEmployee";
-    private static $_soapPdmUrl = "https://10.20.1.243:9443/teamworks/webservices/TAPHC/WS_PDM.tws?WSDL";
-    private static $_soapPsaUrl = "https://10.20.1.243:9443/teamworks/webservices/TAPHC/WS_PSA.tws?WSDL";
+    private static $_soapPdmUrl = "https://qa-bpm:9443/teamworks/webservices/TAPHC/WS_PDM.tws?WSDL";
+    private static $_soapPsaUrl = "https://qa-bpm:9443/teamworks/webservices/TAPHC/WS_PSA.tws?WSDL";
 
 	public  $doc_code;
 	public  $bpm_code;
