@@ -365,7 +365,7 @@ class DemosiController extends Controller
     	if($input) {
         	//validation
         	if($input['iCatatan']) {
-            	$input['proc_stat_code'] = 'PSL';
+            	$input['proc_stat_code'] = 'PSL'; //process_stat_code : SDP	: Sedang di proses,PSL: persetujuan selesai,TLK	: ditolak,BTL	: Dibatalkan
             	//dd($input);
             	$proc_stat = $this->saveProcessStatusHistory($input);
             	//return success
