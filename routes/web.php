@@ -89,9 +89,6 @@ Route::get('/profile', function(){
 Route::get('/', function(){
 	return view('master/ost');
 });
-Route::get('/login', function(){
-	return view('master/login');
-});
 
 /*Using SB-ADMIN*/
 Route::get('fptk', 'FptkController@index2');
@@ -117,6 +114,10 @@ Route::get('/api/getOptJobType', 'ApiController@GetOptJobType');
 Route::get('/api/getEmpSearch', 'ApiController@GetEmpSearch');
 Route::get('/api/postWsdlPdmCreate', 'ApiController@PostWsdlPdmCreate');
 Route::get('/api/postWsdlPdmApprove', 'ApiController@PostWsdlPdmApprove');
+Route::get('/api/getOptLevelJabatan' , 'DataMasterController@getLevelJabatan');
+Route::get('/api/getOptJabatan/{key}' , 'DataMasterController@getJabatan');
+Route::get('/api/getCompany' , 'DataMasterController@getCompany');
+
 /* -------------- END - API ROUTES -------------- */
 
 /* -------------- PAGE ROUTES -------------- */

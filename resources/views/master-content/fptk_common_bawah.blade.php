@@ -9,11 +9,14 @@
     <span class="pull-left">
       Lampiran
     </span>
-  </label>
-  <div class="col-sm-3">
+  </label> 
+  <div class="col-sm-3" id="file">
     <input type="file" name="lampiran" id="lampiran">
+    <div >
+      
+    </div>
   </div>
   <div class="col-sm-2">
-  	<button class="btn btn-primary"><i class="fa fa-plus"></i></button>
+  	<span class="btn btn-primary" id="plus"><i class="fa fa-plus"></i></span>
   </div>
 </div>

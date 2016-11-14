@@ -120,3 +120,10 @@
     </div>
   </div>
 </div>
+@push('js')
+<script type="text/javascript">
+  $(document).ready(function(){
+    alert("Berhasil berhasil hore");
+  });
+</script>
+@endpush()

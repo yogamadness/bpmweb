@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use App\TR_Users;
 use Datatables;
 use DB;
+use Session;
 
 use Illuminate\Http\Request;
 
@@ -35,15 +36,20 @@ class UserController extends Controller
 	}
 
     public function save(Request $request){
-    	$seq = DB::table('dual')->select(DB::raw("SEQ_TR_USER.NEXTVAL as id"))->get()->first();
-    	// $id = DB::raw("SELECT SEQ_TR_USER.NEXTVAL from dual");
-    	$request['user_id'] = $seq->id;
-
-	    $user = TR_Users::create($request->all());
-	    $data['success'] = true;
-	    $data['User'] = $user;
-    	return response()->json($data);
+    	// if ($request->username == Session::get('username')) {
+	    	$seq = DB::table('dual')->select(DB::raw("SEQ_TR_USER.NEXTVAL as id"))->get()->first();
+	    	$request['user_id'] = $seq->id;
+		    $user = TR_Users::create($request->all());
+		    $data['success'] = true;
+		    $data['User'] = $user;
+	    	return response()->json($data);	
+    	// } else {
+    	// 	$data['success'] = false;
+    	// 	$data['User'] = "Username Tidak Sama Dengan Username Login";
+    	// 	return response()->json($data);	
+    	// }	
   	}
+
   	public function update(Request $request,$ID){
 	    $user = TR_Users::where('user_id', $ID)->update($request->all());
 	    $data['success'] = true;

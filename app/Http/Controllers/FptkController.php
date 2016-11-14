@@ -9,6 +9,9 @@ use App\File;
 use App\Ro;
 use App\Estate;
 
+include 'Soap/nusoap.php';
+use nusoap_client;
+
 use DB;
 use App\Http\Controllers\DataMasterController;
 use Response;
@@ -17,10 +20,10 @@ use Response;
 class FptkController extends Controller
 {
 
-    public function __construct()
-    {
-        $this->middleware('ceklogin');    
-    }
+    // public function __construct()
+    // {
+    //     $this->middleware('ceklogin');    
+    // }
 
     public function index()
     {
@@ -82,6 +85,7 @@ class FptkController extends Controller
                     'skill' => $requests->skill,
                     'last_education' => $requests->last_education,
                     'level_jbt' => $requests->level_jbt,
+                     'jbt' => $requests->jbt,
                     'needs_date' => $requests->needs_date,
                     'number_of_needs' => $requests->number_of_needs,
                     'request_date' => $requests->request_date,
@@ -218,10 +222,10 @@ class FptkController extends Controller
                         'pba_ha_tm' => $requests->pba_ha_tm,
                         'pba_ha_tanam' => $requests->pba_ha_tanam,
                         'pba_produksi' => $requests->pba_produksi,
-                        'pba_bbc_b1' => $requests->pba_bbc_b1,
-                        'pba_bbc_b2' => $requests->pba_bbc_b2,
-                        'pba_bbc_b3' => $requests->pba_bbc_b3,
-                        'pba_bbc_b4' => $requests->pba_bbc_b4,
+                        'pba_bbc_b1' => $requests->pba_bbc_1,
+                        'pba_bbc_b2' => $requests->pba_bbc_2,
+                        'pba_bbc_b3' => $requests->pba_bbc_3,
+                        'pba_bbc_b4' => $requests->pba_bbc_4,
                         'estimate_ha_panen_m1' => $requests->estimate_ha_panen_m1,
                         'estimate_ha_panen_m2' => $requests->estimate_ha_panen_m2,
                         'estimate_ha_panen_m3' => $requests->estimate_ha_panen_m3,
@@ -255,18 +259,22 @@ class FptkController extends Controller
                 dd($dataDetail);
             }
 
+            $client = new nusoap_client('https://10.20.1.243:9443/teamworks/webservices/TAPHC/WS_PTK.tws?WSDL', true);
+            $error  = $client->getError();
+         
+            $result = $client->call("createPTK", array("idUser" => Session::get('user_id'), "docCode" => $data->doc_code, "areaCode" => Session::get('area_code')));
+
             // //insert file 
-            // $data3 = File::cerate(
+            // $file = $requests->file('lampiran');
+            // $data3 = File::create(
             //     array('file_id' => '1',
-            //         'blob_content' => $contents
+            //         'blob_content' => file_get_contents($file->getRealPath())
             //         // 'doc_size' => $file->getSize();,
             //         // 'file_name' => $file->getContentName
             //     )
             // );
-
-        // // });
         
 
-        return 'true';
+        return $result;
     }
 }

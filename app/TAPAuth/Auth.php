@@ -12,7 +12,6 @@ class Auth
 		$response = $curlService->to('http://apidev.tap-agri.com/'.$url)->get();
 		//$response = $curlService->to('http://apidev.tap-agri.com/saas/public/index.php/'.$url)->get();
 		$valid = json_decode($response);
-
 		return $valid;
 	}
 }

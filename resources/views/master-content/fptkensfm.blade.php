@@ -130,37 +130,37 @@
 	    <div class="col-sm-1" style="padding-right: 5px;margin-left: 15px;">
 	    	<div class="form-group">
 	    		<label>M+1</label>
-	        	<input type="text" placeholder="" id="pba_ha_panen_m1" name="pba_ha_panen_m1" class="form-control">
+	        	<input type="text" placeholder="" id="estimate_ha_panen_m1" name="estimate_ha_panen_m1" class="form-control">
 	        </div>
 	    </div>
 	    <div class="col-sm-1" style="padding-right: 5px;margin-left: 15px;">
 	    	<div class="form-group">
 	    		<label>M+2</label>
-	        	<input type="text" placeholder="" id="pba_ha_panen_m2" name="pba_ha_panen_m2" class="form-control">
+	        	<input type="text" placeholder="" id="estimate_ha_panen_m2" name="estimate_ha_panen_m2" class="form-control">
 	        </div>
 	    </div>
 	    <div class="col-sm-1" style="padding-right: 5px;margin-left: 15px;">
 	    	<div class="form-group">
 	    		<label>M+3</label>
-	        	<input type="text" placeholder="" id="pba_ha_panen_m3" name="pba_ha_panen_m3" class="form-control">
+	        	<input type="text" placeholder="" id="estimate_ha_panen_m3" name="estimate_ha_panen_m3" class="form-control">
 	        </div>
 	    </div>
 	    <div class="col-sm-1" style="padding-right: 5px;margin-left: 15px;">
 	    	<div class="form-group">
 	    		<label>M+4</label>
-	        	<input type="text" placeholder="" id="pba_ha_panen_m4" name="pba_ha_panen_m4" class="form-control">
+	        	<input type="text" placeholder="" id="estimate_ha_panen_m4" name="estimate_ha_panen_m4" class="form-control">
 	        </div>
 	    </div>
 	    <div class="col-sm-1" style="padding-right: 5px;margin-left: 15px;">
 	    	<div class="form-group">
 	    		<label>M+5</label>
-	        	<input type="text" placeholder="" id="pba_ha_panen_m5" name="pba_ha_panen_m5" class="form-control">
+	        	<input type="text" placeholder="" id="estimate_ha_panen_m5" name="estimate_ha_panen_m5" class="form-control">
 	        </div>
 	    </div>
 	    <div class="col-sm-1" style="padding-right: 5px;margin-left: 15px;">
 	    	<div class="form-group">
 	    		<label>M+6</label>
-	        	<input type="text" placeholder="" id="pba_ha_panen_m6" name="pba_ha_panen_m6" class="form-control">
+	        	<input type="text" placeholder="" id="estimate_ha_panen_m6" name="estimate_ha_panen_m6" class="form-control">
 	        </div>
 	    </div>
 	</div>
@@ -171,32 +171,32 @@
 	    </div>
 	    <div class="col-sm-1" style="padding-right: 5px;margin-left: 15px;">
 	    	<div class="form-group">
-	        	<input type="text" placeholder="" id="pba_prod_1" name="pba_prod_1" class="form-control">
+	        	<input type="text" placeholder="" id="estimate_prod_m1" name="estimate_prod_m1" class="form-control">
 	        </div>
 	    </div>
 	    <div class="col-sm-1" style="padding-right: 5px;margin-left: 15px;">
 	    	<div class="form-group">
-	        	<input type="text" placeholder="" id="pba_prod_2" name="pba_prod_2" class="form-control">
+	        	<input type="text" placeholder="" id="estimate_prod_m2" name="estimate_prod_m2" class="form-control">
 	        </div>
 	    </div>
 	    <div class="col-sm-1" style="padding-right: 5px;margin-left: 15px;">
 	    	<div class="form-group">
-	        	<input type="text" placeholder="" id="pba_prod_3" name="pba_prod_3" class="form-control">
+	        	<input type="text" placeholder="" id="estimate_prod_m3" name="estimate_prod_m3" class="form-control">
 	        </div>
 	    </div>
 	    <div class="col-sm-1" style="padding-right: 5px;margin-left: 15px;">
 	    	<div class="form-group">
-	        	<input type="text" placeholder="" id="pba_prod_4" name="pba_prod_4" class="form-control">
+	        	<input type="text" placeholder="" id="estimate_prod_m4" name="estimate_prod_m4" class="form-control">
 	        </div>
 	    </div>
 	    <div class="col-sm-1" style="padding-right: 5px;margin-left: 15px;">
 	    	<div class="form-group">
-	        	<input type="text" placeholder="" id="pba_prod_5" name="pba_prod_5" class="form-control">
+	        	<input type="text" placeholder="" id="estimate_prod_m5" name="estimate_prod_m5" class="form-control">
 	        </div>
 	    </div>
 	    <div class="col-sm-1" style="padding-right: 5px;margin-left: 15px;">
 	    	<div class="form-group">
-	        	<input type="text" placeholder="" id="pba_prod_6" name="pba_prod_6" class="form-control">
+	        	<input type="text" placeholder="" id="estimate_prod_m6" name="estimate_prod_m6" class="form-control">
 	        </div>
 	    </div>
 	</div>

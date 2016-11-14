@@ -4,6 +4,7 @@
 
 @section('cascanding')
 <link rel="stylesheet" href="dist/plugins/datetimepicker/css/bootstrap-datetimepicker.min.css">
+<link rel="stylesheet" type="text/css" href="dist/Parsley.js-2.6.0/src/parsley.css">
 @endsection()
 
 @section('content')
@@ -24,7 +25,7 @@
       </div>
       <!-- /.box-header -->
       <div class="box-body">
-        <form method="post" enctype="multipart/form-data" id="formFptk" class="form-horizontal" role="form">
+        <form enctype="multipart/form-data" id="formFptk" class="form-horizontal">
           <input type="hidden" name="tipePtk" id="tipePtk">
           @include('master-content.fptk_common')
           <div class="fptk">
@@ -42,7 +43,7 @@
       <!-- /.box-body -->
       <div class="box-footer">
       <button class="btn btn-default" type="submit">Batal</button>
-      <button class="btn btn-success pull-right" type="submit" id="ajukan">Ajukan</button>
+      <button class="btn btn-success pull-right" type="button" id="ajukan">Ajukan</button>
       </div><!-- /.box-footer -->
     </div>
   </div>
@@ -54,9 +55,20 @@
 <script src="dist/plugins/datetimepicker/js/moment.min.js"></script>
 <script src="dist/plugins/datetimepicker/js/bootstrap-datetimepicker.min.js"></script>
 <script src="dist/plugins/Typeahead-master/bootstrap3-typeahead.js"></script>
+<script src="dist/plugins/select2/select2.full.js"></script>
+<script type="text/javascript" src="dist/plugins/parsley/js/parsley-2.1.2.min.js"></script>
+<script src="dist/plugins/parsley/js/id.js"></script>
 
 <script type="text/javascript">
   $('#ajukan').click(function(){
+    // $('#formFptk').parsley().validate("first");
+    // if ($('#formFptk').parsley().isValid("first")) {
+    //   $('#formFptk').parsley().destroy();
+    //   console.log('valid');
+    // } else {
+    //   console.log('not valid');
+    // }
+
     $.ajaxSetup({
       headers: {
           'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -85,10 +97,12 @@
         console.log('gagal');
       }
     });
+    
+    
   }); 
 
   //include form
-  $('#jabatan').change(function(){
+  $('#jbt').change(function(){
     // $('#fptk').html().remove();
     var level = $('#level_jbt').val();
     var value = this.value;
@@ -163,6 +177,10 @@
           $('#tipePtk').val('regionalOffice');
       });      
     }
+  });
+
+  $("#plus").click(function(){
+    $("#lampiran").clone().appendTo("#file");
   });
       
 

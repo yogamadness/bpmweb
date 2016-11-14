@@ -32,7 +32,7 @@
                     </ul>
                 </li>
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> Doni Romdoni <b class="caret"></b></a>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> {{ Session::get('nama') }} <b class="caret"></b></a>
                     <ul class="dropdown-menu">
                         <li>
                             <a href="#"><i class="fa fa-fw fa-user"></i> Profile</a>
@@ -86,9 +86,9 @@
                         <a href="javascript:;" data-toggle="collapse" data-target="#demo"><i class="fa fa-fw fa-arrows-v"></i> Menus <i class="fa fa-fw fa-caret-down"></i></a>
                         <ul id="demo" class="collapse">
                             <li>
-                              {{-- @foreach (Session::get('menus') as $menus)
-                                      {!! $menus !!}
-                                  @endforeach --}}
+                                @foreach (Session::get('menus') as $menus)
+                                    {!! $menus !!}
+                                @endforeach
                             </li>
                         </ul>
                     </li>
