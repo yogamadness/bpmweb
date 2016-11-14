@@ -230,8 +230,7 @@ function validateForm(i)
           if(json == 0) {
             console.log(0);
           } else {
-            console.log(json)
-            console.log(json[0].COMP_NAME);
+            console.log(json);
             $('#iNama').val(json[0].EMPLOYEE_NAME);
             $('#iTanggalMasukKerja').val(json[0].JOIN_DATE);
             $('#iTanggalLahir').val(json[0].DOB);
@@ -256,20 +255,22 @@ function validateForm(i)
             if (json[0].PSS > "") {
               $("#iMasaBerlaku").select2().val(json[0].EFFECTIVE_DATE).trigger("change");
             }
-            //$("#iPerusahaanOld").select2().val(json[0].COMP_NAME).trigger("change");
+          
             $("#iPerusahaanOld").val(json[0].COMP_NAME);
             $('#iBisnisAreaOld').val(json[0].EST_NAME);
             $('#iAfdelingOld').val(json[0].AFD_NAME);
             $('#iJabatanOld').val(json[0].JOB_CODE);
             $('#iGolonganOld').val(json[0].JOB_TYPE);
-            $('#iStatusKaryawanOld').val(json[0].STATUS);
             $('#iPerusahaanNew').select2().val(json[0].COMP_NAME).trigger("change");
             $('#iBisnisAreaNew').select2().val(json[0].EST_NAME).trigger("change");
             $('#iAfdelingNew').select2().val(json[0].AFD_NAME).trigger("change");
             $('#iJabatanNew').select2().val(json[0].JOB_CODE).trigger("change");
             $('#iGolonganNew').select2().val(json[0].JOB_TYPE).trigger("change");
-            $('#iStatusKaryawanNew').select2().val(json[0].STATUS).trigger("change");
             $('#iUmur').val(json[0].AGE);
+           
+            arr = jQuery.grep(optEmpWorkStatus, function( a ) { return a.code === json[0].STATUS; });
+            $('#iStatusKaryawanOld').val(arr[0]['text']);
+            $('#iStatusKaryawanNew').select2().val(arr[0]['text']).trigger("change");
           }
         }
       });
@@ -282,22 +283,30 @@ function validateForm(i)
         },
         dataType : 'json',
         success : function(json) {
-          if(json == 0) {
-            console.log(0);
-          } else {
-            console.log(json);
-            $('#iAtt3yAgo').val(json[0].KEHADIRAN);
-            $('#iAtt2yAgo').val(json[1].KEHADIRAN);
-            $('#iAtt1yAgo').val(json[2].KEHADIRAN);
-            $('#iProd3yAgo').val(json[0].PRODUCTIVITY);
-            $('#iProd3yAgo').val(json[2].PRODUCTIVITY);
-            $('#iProd3yAgo').val(json[3].PRODUCTIVITY);
+          if(json !== 0) {
+            //console.log(json);
+          	var json_sorted = sortJSON(json,'BULAN',true);
+            //console.log(json_sorted);
+          
+            $('#iAtt3yAgo').val(json_sorted[0].KEHADIRAN);
+            $('#iAtt2yAgo').val(json_sorted[1].KEHADIRAN);
+            $('#iAtt1yAgo').val(json_sorted[2].KEHADIRAN);
+            $('#iProd3yAgo').val(json_sorted[0].PRODUCTIVITY);
+            $('#iProd3yAgo').val(json_sorted[1].PRODUCTIVITY);
+            $('#iProd3yAgo').val(json_sorted[2].PRODUCTIVITY);
           }
         }
       });
     }
   }
 
+function sortJSON(data, key, asc) {
+    return data.sort(function(a, b) {
+        var x = a[key]; var y = b[key];
+        if (asc === true ) { return ((x < y) ? -1 : ((x > y) ? 1 : 0)); }
+        else { return ((x > y) ? -1 : ((x < y) ? 1 : 0)); }
+    });
+}
 
 $(document).ready(function(){
   // Constructing the suggestion engine

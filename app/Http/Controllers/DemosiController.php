@@ -366,6 +366,7 @@ class DemosiController extends Controller
         	//validation
         	if($input['iCatatan']) {
             	$input['proc_stat_code'] = 'PSL';
+            	//dd($input);
             	$proc_stat = $this->saveProcessStatusHistory($input);
             	//return success
             	if($proc_stat) {
@@ -384,7 +385,7 @@ class DemosiController extends Controller
         					->with('form_type', 'approve')
         					->with('no_doc', $dHeader->doc_code)
         					->with('nik', $dHeader->nik_sap)
-        					->with('name', $input['iNama'])
+        					//->with('name', $input['iNama'])
         					->with('notes', $dHeader->notes);
 
                 }

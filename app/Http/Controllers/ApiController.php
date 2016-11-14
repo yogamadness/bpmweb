@@ -124,7 +124,7 @@ class ApiController extends Controller
 			//foreach ($array->data as $value) {
 			foreach ($rows->get() as $value) {
         		//array_push($result, array('id' => $value->text, 'text' => $value->text));
-        		array_push($result, array('id' => $value->description, 'text' => $value->description));
+        		array_push($result, array('id' => $value->description, 'code' => $value->description_code, 'text' => $value->description));
 			}
 		//}
     	//return response()->json($result);
