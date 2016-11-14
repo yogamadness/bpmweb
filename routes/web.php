@@ -90,9 +90,6 @@ Route::get('/profile', function(){
 Route::get('/', function(){
 	return view('master/ost');
 });
-Route::get('/login', function(){
-	return view('master/login');
-});
 
 /*Using SB-ADMIN*/
 Route::get('fptk', 'FptkController@index2');

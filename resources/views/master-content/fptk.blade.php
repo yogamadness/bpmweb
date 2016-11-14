@@ -24,7 +24,7 @@
       </div>
       <!-- /.box-header -->
       <div class="box-body">
-        <form method="post" enctype="multipart/form-data" id="formFptk" class="form-horizontal" role="form">
+        <form enctype="multipart/form-data" id="formFptk" class="form-horizontal">
           <input type="hidden" name="tipePtk" id="tipePtk">
           @include('master-content.fptk_common')
           <div class="fptk">
@@ -163,6 +163,10 @@
           $('#tipePtk').val('regionalOffice');
       });      
     }
+  });
+
+  $("#plus").click(function(){
+    $("#lampiran").clone().appendTo("#file");
   });
       
 

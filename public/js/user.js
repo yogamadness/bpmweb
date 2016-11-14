@@ -20,7 +20,7 @@ function edit(id){
           url: url + '/' + id,
           success: function(data) {
             $('#user_id').val(data.user_id);
-            $('#username').val(data.username);
+            $('#username').val(data.username).fokus();
             $('#nik').val(data.nik);
             $('#nama').val(data.nama);
             $('#email').val(data.email);
@@ -41,7 +41,7 @@ function hapus(ID) {
         url: url + '/' + ID,
         success: function(data) {
           if (data.success ==  true ) {
-            $("#employees-table").DataTable().ajax.reload()
+            $("#user-table").DataTable().ajax.reload();
             hide();
           }else{
             alert("Gagal");

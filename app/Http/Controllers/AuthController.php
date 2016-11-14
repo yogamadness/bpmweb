@@ -20,7 +20,13 @@ class AuthController extends Controller
   	{
 		$au = Auth::authenticate($request->username,$request->password);
 		if ($au->valid == true) 
-		{
+		{	
+			$getuser = DB::table('TR_USER as u')
+				->where('u.username', $request->username)->count();
+				// dd($getuser);
+			// if (condition) {
+			// 	# code...
+			// }
 			$getModulCode = DB::table('TR_USER as u')
 					->select('m.module_code')
 					->join('TR_WORKFLOW_JOB as j', 'u.job_code' , 'j.job_code')
@@ -57,9 +63,9 @@ class AuthController extends Controller
 
 			foreach ($datamenu as $key => $menus) {
 				if ($menus->url == null) {
-					$datas[] = '<a href="'.$url.'">'.$menus->menu_name.'</a>';
+					$datas[] = '<a href="'.$url.'"><span class="glyphicon glyphicon-th" aria-hidden="true"></span>  '.$menus->menu_name.'</a>';
 				} else {
-					$datas[] = '<a href="'.$url.$menus->url.'">'.$menus->menu_name.'</a>';
+					$datas[] = '<a href="'.$url.$menus->url.'"><span class="glyphicon glyphicon-th" aria-hidden="true"></span>  '.$menus->menu_name.'</a>';
 				}
 			}
 

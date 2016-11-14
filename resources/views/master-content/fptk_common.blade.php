@@ -16,13 +16,13 @@
       </div>
     </div>
     <div class="form-group">
-      <label class="col-sm-6 control-label" for="">
+      <label class="col-sm-6 control-label" for="jbt">
         <span class="pull-left">
           Jabatan Yang Dibutuhkan
         </span>
       </label>
       <div class="col-sm-6">
-        <input type="text" placeholder="Jabatan" id="jabatan" class="form-control" name="" data-provide="typeahead" autocomplete="off">
+        <input type="text" placeholder="Jabatan" id="jbt" class="form-control" name="jbt" data-provide="typeahead" autocomplete="off">
       </div>
     </div>
     <div class="form-group">
@@ -253,7 +253,7 @@
       if (localStorage) {
         setStorage();
         if (localStorage.getItem('company') != null){
-          if (confirm('Halaman ini masih menyimpan data lama. Apakah anda ingin menggukanannya lagi?')) {
+          if (confirm('Halaman ini jbtmasih menyimpan data lama. Apakah anda ingin menggukanannya lagi?')) {
             getStorage();
           } else {
             localStorage.clear();

@@ -133,12 +133,10 @@
         </div>
       </div>
 @endsection
-@section('javascript-form')
+@push('js')
   <!-- datatables -->
   <script src="dist/plugins/datatables/jquery.dataTables.min.js"></script>
   <script src="dist/plugins/datatables/dataTables.bootstrap.min.js"></script>
-@endsection
-@push('js')
   <script type="text/javascript">
     $(function(){
       $("#user-table").DataTable({
@@ -160,11 +158,11 @@
       });
     });
 
-    $function(){
-      $('#form').parsley().on('field:validate', function({
+    // $(function(){
+    //   $('#form').parsley().on('field:validate', function({
         
-      }))
-    };
+    //   }));
+    // });
   </script>
   <script src="{{asset('js/user.js')}}"></script>
 @endpush
