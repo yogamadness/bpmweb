@@ -177,9 +177,35 @@ $(".emp-work-status").select2({ data: optEmpWorkStatus });
 
 //confirmaton
 $('#submitBtn').click(function() {
-     $('#cNik').text($('#iNikSap').val());
-     $('#cNama').text($('#iNama').val());
-     $('#cKeterangan').text($('#iKeterangan').val());
+	//console.log($('#iNikSap').val());
+     $('#cSubmitNikSap').text($('#iNikSap').val());
+     $('#cSubmitNama').text($('#iNama').val());
+     $('#cSubmitKeterangan').text($('#iKeterangan').val());
+});
+
+$('#askBtn').click(function() {
+	//console.log($('#iNikSap').val());
+     $('#cAskDocType').text($('#iDocType').val());
+     $('#cAskNikNasional').text($('#iNikNasional').val());
+     $('#cAskNikSap').text($('#iNikSap').val());
+     $('#cAskNama').text($('#iNama').val());
+     $('#cAskCatatan').text($('#iCatatan').val());
+});
+
+$('#agreeBtn').click(function() {
+	//console.log($('#iNikSap').val());
+     $('#cAgreeDocType').text($('#iDocType').val());
+     $('#cAgreeNikSap').text($('#iNikSap').val());
+     $('#cAgreeNama').text($('#iNama').val());
+     $('#cAgreeCatatan').text($('#iCatatan').val());
+});
+
+$('#rejectBtn').click(function() {
+	//console.log($('#iNikSap').val());
+     $('#cRejectDocType').text($('#iDocType').val());
+     $('#cRejectNikSap').text($('#iNikSap').val());
+     $('#cRejectNama').text($('#iNama').val());
+     $('#cRejectCatatan').text($('#iCatatan').val());
 });
 
 //submit

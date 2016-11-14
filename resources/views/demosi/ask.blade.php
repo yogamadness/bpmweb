@@ -9,58 +9,58 @@
       <div class="modal-body">
         <div class="form-horizontal">
           <div class="form-group">
-            <label class="col-sm-3 control-label" for="cDocTipe">
+            <label class="col-sm-3 control-label" for="cAskDocType">
               <span class="pull-left">
                 No Dokumen
               </span>
             </label>
             <label class="col-sm-1">:</label>
             <div class="col-sm-8">
-              <span id="cDocTipe"></span>
+              <span id="cAskDocType"></span>
             </div>
           </div>
           <div class="form-group">
-            <label class="col-sm-3 control-label" for="cNikNasi">
+            <label class="col-sm-3 control-label" for="cAskNikNasional">
               <span class="pull-left">
                 NIK Nasional
               </span>
             </label>
             <label class="col-sm-1">:</label>
             <div class="col-sm-8">
-              <span id="cNikNasi"></span>
+              <span id="cAskNikNasional"></span>
             </div>
           </div>
           <div class="form-group">
-            <label class="col-sm-3 control-label" for="cNikdiSap">
+            <label class="col-sm-3 control-label" for="cAskNikSap">
               <span class="pull-left">
                 NIK SAP
               </span>
             </label>
             <label class="col-sm-1">:</label>
             <div class="col-sm-8">
-              <span id="cNikdiSap"></span>
+              <span id="cAskNikSap"></span>
             </div>
           </div>
           <div class="form-group">
-            <label class="col-sm-3 control-label" for="cNamaSap">
+            <label class="col-sm-3 control-label" for="cAskNama">
               <span class="pull-left">
                 Nama Karyawan
               </span>
             </label>
             <label class="col-sm-1">:</label>
             <div class="col-sm-8">
-              <span id="cNamaSap"></span>
+              <span id="cAskNama"></span>
             </div>
           </div>
           <div class="form-group">
-            <label class="col-sm-3 control-label" for="cKeteranganD">
+            <label class="col-sm-3 control-label" for="cAskCatatan">
               <span class="pull-left">
                 Keterangan
               </span>
             </label>
             <label class="col-sm-1">:</label>
             <div class="col-sm-8">
-              <span id="cKeteranganD"></span>
+              <span id="cAskCatatan"></span>
             </div>
           </div>
           <div class="form-group">

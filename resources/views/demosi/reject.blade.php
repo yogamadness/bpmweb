@@ -11,16 +11,16 @@
         <div class="row">
           <div class="col-xs-12">
             <div class="form-group">
-            <label class="col-sm-3">No Dokumen </label> <p class="col-sm-9">: <span id="cDocType"></span></p>
+            <label class="col-sm-3">No Dokumen </label> <p class="col-sm-9">: <span id="cRejectDocType"></span></p>
             </div>
             <div class="form-group">
-            <label class="col-sm-3">NIK </label> <p class="col-sm-9">: <span id="cNik"></span></p>
+            <label class="col-sm-3">NIK </label> <p class="col-sm-9">: <span id="cRejectNikSap"></span></p>
             </div>
             <div class="form-group">
-              <label class="col-sm-3">Nama </label> <p class="col-sm-9">: <span id="cNama"></span></p>
+              <label class="col-sm-3">Nama </label> <p class="col-sm-9">: <span id="cRejectNama"></span></p>
             </div>
             <div class="form-group">
-              <label class="col-sm-3">Keterangan </label> <p class="col-sm-9">: <span id="cKeterangan"></span></p>
+              <label class="col-sm-3">Keterangan </label> <p class="col-sm-9">: <span id="cRejectCatatan"></span></p>
             </div>
             <div class="form-group">
               <label class="col-sm-3">Alasan Penolakan * </label> 

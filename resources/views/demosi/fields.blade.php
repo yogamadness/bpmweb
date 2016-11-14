@@ -452,11 +452,12 @@
 		<div class="col-xs-6 text-right">
 			<input type="hidden" name="_token" value="{{ csrf_token() }}">
 			<input type="hidden" name="h_id" value="{{ isset($input['h_id']) ? $input['h_id'] : ''  }}">
+			<input type="hidden" id="iDocType" name="iDocType" value="{{ isset($dHeader) ? $dHeader->doc_code : ''  }}">
 @if($form_type === 'approve')
 			<input type="hidden" name="form_type" value="approve">
-			<button type="button" class="btn btn-warning" data-toggle="modal" data-target="#modal-ask" id="submitBtn">Tanya</button>
-			<button type="button" class="btn btn-success" data-toggle="modal" data-target="#modal-confirmation" id="submitBtn">Setuju</button>
-			<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modal-rejection" id="submitBtn">Tolak</button>
+			<button type="button" class="btn btn-warning" data-toggle="modal" data-target="#modal-ask" id="askBtn">Tanya</button>
+			<button type="button" class="btn btn-success" data-toggle="modal" data-target="#modal-confirmation" id="agreeBtn">Setuju</button>
+			<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modal-rejection" id="rejectBtn">Tolak</button>
 @else
 			<button type="button" class="btn btn-success" data-toggle="modal" data-target="#modal-confirmation" id="submitBtn">Ajukan</button>
 			<a href="{!! route('demosi.index') !!}" class="btn btn-danger">Batal</a>
