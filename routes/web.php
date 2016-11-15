@@ -21,9 +21,7 @@ Route::get('/beranda', function(){
 	return view('layouts-master/master');
 });
 
-Route::get('/example', function(){
-	return view('master-content/blank');
-});
+Route::get('/example', 'ExampleController@makeTree');
 
 Route::get('/home', 'HomeController@index');
 
@@ -54,10 +52,10 @@ Route::delete('/employee/{ID}', 'EmployeeController@delete');
 Route::post('/fptk/save', 'FptkController@save');
 
 Route::get('/fptk_common', function(){
-	return view('master/fptk_common');
+	return view('master-content/fptk_common');
 });
 Route::get('/fptk_common_bawah', function(){
-	return view('master/fptk_common_bawah');
+	return view('master-content/fptk_common_bawah');
 });
 Route::post('/fptk', function(){
 	$tipe = $_POST['tipePtk'];
@@ -84,14 +82,14 @@ Route::post('/fptkmns', function(){
 });
 
 Route::get('/profile', function(){
-	return view('master/profile');
+	return view('master-content/profile');
 });
 Route::get('/', function(){
-	return view('master/ost');
+	return view('master-content/ost');
 });
 
 /*Using SB-ADMIN*/
-Route::get('fptk', 'FptkController@index2');
+Route::get('/fptk', 'FptkController@index');
 
 Route::get('/respons', 'BalikanStringHtmlController@index');
 

@@ -31,12 +31,6 @@
           <div class="fptk">
 
           </div>
-          <!-- @include('master.fptkensp') -->
-          <!-- @include('master.fptkensr') -->
-          <!-- @include('master.fptkensfm') -->
-          <!-- @include('master.fptkes') -->
-          <!-- @include('master.fptkmns') -->
-          <!-- @include('master.fptkms') -->
           @include('master-content.fptk_common_bawah')
         </form>
       </div>
@@ -91,7 +85,8 @@
       contentType: false,
       processData: false,
       success : function(data) {
-
+        // alert(data);
+        window.open(data);
       },
       error   : function() {
         console.log('gagal');

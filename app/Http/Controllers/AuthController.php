@@ -21,14 +21,15 @@ class AuthController extends Controller
 		$au = Auth::authenticate($request->username,$request->password);
 		if ($au->valid == true) 
 		{	
-			$getuser = DB::table('TR_USER as u')->where('u.username', $request->username)->count();
+			$getuser = DB::table('TR_USER')->where('username', $request->username)->count();
 			
 			if ($getuser >= 1) {
 				$getModulCode = DB::table('TR_USER as u')
-						->select('m.module_code')
-						->join('TR_WORKFLOW_JOB as j', 'u.job_code' , 'j.job_code')
-						->join('TR_WORKFLOW_DETAIL as d', 'j.WORKFLOW_DETAIL_CODE', 'd.WORKFLOW_DETAIL_CODE')
-						->join('TM_MODULE as m', 'd.WORKFLOW_DETAIL_CODE', 'm.WORKFLOW_DETAIL_CODE')
+						->select('dm.MODUL_CODE')
+						->join('TR_WORKFLOW_JOB j', 'u.JOB_CODE' , 'j.JOB_CODE')
+						->join('TR_WORKFLOW_DETAIL d', 'j.WORKFLOW_DETAIL_CODE', 'd.WORKFLOW_DETAIL_CODE')
+						->join('TR_WORKFLOW_DETAIL_MODUL dm', 'j.WORKFLOW_DETAIL_CODE', 'dm.WORKFLOW_DETAIL_CODE')
+						->join('TM_MODULE m', 'm.MODULE_CODE', 'dm.MODUL_CODE')
 						->where('u.username', $request->username)
 						->get();
 				$module_code = [];
@@ -39,7 +40,8 @@ class AuthController extends Controller
 				$data = DB::table('TR_USER as u')
 					->join('TR_WORKFLOW_JOB as j', 'u.job_code' , 'j.job_code')
 					->join('TR_WORKFLOW_DETAIL as d', 'j.WORKFLOW_DETAIL_CODE', 'd.WORKFLOW_DETAIL_CODE')
-					->join('TM_MODULE as m', 'd.WORKFLOW_DETAIL_CODE', 'm.WORKFLOW_DETAIL_CODE')
+					->join('TR_WORKFLOW_DETAIL_MODUL as n', 'j.WORKFLOW_DETAIL_CODE', 'n.WORKFLOW_DETAIL_CODE')
+					->join('TM_MODULE as m', 'm.MODUL_CODE', 'n.MODULE_CODE')
 					->where('u.username', $request->username)
 					->get();
 

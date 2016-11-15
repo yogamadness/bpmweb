@@ -1,18 +1,24 @@
-
 <?php
 
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Requests;
-include 'Soap/nusoap.php';
+include 'Soap\nusoap.php';
 use nusoap_client;
 
 class MySoap extends Controller
 {
 	public function index(){
 		
-		
+		$client = new nusoap_client('https://app-bpmdev:9443/teamworks/webservices/TAPURM2/WS.tws?WSDL', true);
+		$error  = $client->getError();
+		 
+		if ($error) {
+			echo "<h2>Constructor error</h2><pre>" . $error . "</pre>";
+		}
+		 
+		$result = $client->call("startPTK", array("idUser" => 1, "idPTK" =>1));
 		 
 		if ($client->fault) {
 			echo "<h2>Fault</h2><pre>";
