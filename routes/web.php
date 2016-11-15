@@ -70,6 +70,14 @@ Route::post('/fptk', function(){
 	return null;
 });
 
+
+//Recruitment karyawan baru  yoga : ion 
+Route::get('/recruitment', 'RecruitmentController@index');
+Route::get('/recruitment/create', 'RecruitmentController@create');
+
+
+
+
 Route::post('/fptkms', 'FptkController@fptkms');
 Route::post('/fptkensfm', 'FptkController@fptkensfm');
 Route::post('/fptkro', 'FptkController@fptkro');
