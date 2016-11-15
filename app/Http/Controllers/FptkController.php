@@ -17,8 +17,6 @@ use Session;
 // include 'Soap/nusoap.php';
 use nusoap_client;
 
-// use SoapClient;
-
 
 class FptkController extends Controller
 {
@@ -181,7 +179,7 @@ class FptkController extends Controller
             //             'mp_active' => $requests->mp_active
             //         )
             //     );
-            //     dd($dataDetail);
+            //     // dd($dataDetail);
             // }
             // elseif($requests->tipePtk == 'estateNonStaffRawat'){
             //     //insert Regional Office
@@ -199,7 +197,7 @@ class FptkController extends Controller
             //             'mp_active' => $requests->mp_active
             //         )
             //     );
-            //     dd($dataDetail);
+            //     // dd($dataDetail);
             // }
             // elseif($requests->tipePtk == 'estateNonStaffMandor'){
             //     //insert Regional Office
@@ -244,13 +242,9 @@ class FptkController extends Controller
             //             'reason_recommendation' => $requests->reason_recommendation
             //         )
             //     );
-            //     dd($dataDetail);
+            //     // dd($dataDetail);
             // }
 
-            // $client = new nusoap_client('https://10.20.1.243:9443/teamworks/webservices/TAPHC/WS_PTK.tws?WSDL', true);
-            // $error  = $client->getError();
-         
-            // $result = $client->call("createPTK", array("idUser" => Session::get('user_id'), "docCode" => $data->doc_code, "areaCode" => Session::get('area_code')));
 
             //insert file 
             $file = $requests->file('lampiran');
@@ -260,40 +254,45 @@ class FptkController extends Controller
             $download = base64_decode($base64);
             // dd($download);
             $data3 = File::create(
-                array('file_id' => '1',
+                array('file_id' => DB::raw("SEQ_TR_FILE.NEXTVAL"),
                     'blob_content' => $base64,
                     'doc_size' => $file->getSize(),
                     'file_name' => $file->getClientOriginalName(),
                     'mime_type' => $file->getMimeType(),
-                    'file_category' => $file=>getClientOriginalExtension()
+                    'file_category' => $file->getClientOriginalExtension(),
+                    'doc_code' => $seq->doc_code
                 )
             );
 
-            $decode = base64_decode($base64);
-            $filename = $file->getClientOriginalName();
-            if(file_exists($file))
-            {
-                header('Content-Description:File Transfer');
-                header('Content-Type:application/octet-stream');
-                header('Content-Dispostion:attachment;filename='.basename($filename).'');
-                header('Expires:0');
-                header('Cache-Control:must-revalidate');
-                header('Pragma:public');
-                header('Content-Length:'.filesize($file));
-                readfile($file);
-                exit;
-            }
+            //-------- Download ---------- 
+            // $decode = base64_decode($base64);
+            // $filename = $file->getClientOriginalName();
+            // file_put_contents($filename, $decode);
+            // if(file_exists($file))
+            // {
+            //     header('Content-Description:File Transfer');
+            //     header('Content-Type:application/octet-stream');
+            //     header('Content-Dispostion:inline;filename='.basename($filename).'');
+            //     header('Expires:0');
+            //     header('Cache-Control:must-revalidate');
+            //     header('Pragma:public');
+            //     header('Content-Length:'.filesize($file));
+            //     readfile($file);
+            //     exit;
+            // }
+
+            
 
         // $server_uri = "https://10.20.1.243:9443/teamworks/webservices/TAPHC/WS_PTK.tws?WSDL";
         // // Create the client instance
         // $client = new nusoap_client($server_uri);
-        
+
         // // Call the SOAP method
         // $result = $client->call(
         //     "createPTK", array("userId" => 42, "docCode" => "08010/HC/PTK-RO/08.16", "areaCode" =>2121)
         // );        
-        //print the result
-        // return $data3;
+
+        // return $result;
     }
 
     // function download()

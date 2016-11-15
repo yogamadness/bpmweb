@@ -6,45 +6,45 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\DataMasterController;
 use DB;
 use Response;
-
 use Session;
-// include 'Soap/nusoap.php';
-use nusoap_client;
-
-// use SoapClient;
-
 
 class ExampleController extends Controller
 {
     public function treem()
     {
-        $menu = array(
-                1 => array('text' => 'Item #1', 'parentID' => null),
-                2 => array('text' => 'Item #2', 'parentID' => 5),
-                3 => array('text' => 'Item #3', 'parentID' => 2),
-                4 => array('text' => 'Item #4', 'parentID' => 2),
-                5 => array('text' => 'Item #5', 'parentID' => null),
-                6 => array('text' => 'Item #6', 'parentID' => 5),
-                7 => array('text' => 'Item #7', 'parentID' => 3),
-                8 => array('text' => 'Item #8', 'parentID' => 5),
-                9 => array('text' => 'Item #9', 'parentID' => 1),
-                10 => array('text' => 'Item #10', 'parentID' => 7),
-        );
+        /*$menu = array(
+            1 => array('menu_name' => 'Item #1', 'parent_menu' => null),
+            2 => array('menu_name' => 'Item #2', 'parent_menu' => 5),
+            3 => array('menu_name' => 'Item #3', 'parent_menu' => 2),
+            4 => array('menu_name' => 'Item #4', 'parent_menu' => 2),
+            5 => array('menu_name' => 'Item #5', 'parent_menu' => null),
+            6 => array('menu_name' => 'Item #6', 'parent_menu' => 5),
+            7 => array('menu_name' => 'Item #7', 'parent_menu' => 3),
+            8 => array('menu_name' => 'Item #8', 'parent_menu' => 5),
+            9 => array('menu_name' => 'Item #9', 'parent_menu' => 1),
+           10 => array('menu_name' => 'Item #10', 'parent_menu' => 7),
+        );*/
+
+        $menu = [];
+        foreach (Session::get('menus') as $key => $value) {
+            $menu[] = $value;
+        }
+        // dd($menu);
 
         $addedAsChildren = array();
 
         foreach ($menu as $id => &$menuItem) { // note that we use a reference so we don't duplicate the array
-            if (!empty($menuItem['parentID'])) {
-                $addedAsChildren[] = $id; // it should be removed from root, but we'll do that later
-
-                if (!isset($menu[$menuItem['parentID']]['children'])) {
-                    $menu[$menuItem['parentID']]['children'] = array($id => &$menuItem); // & means we use the REFERENCE
+            if (!empty($menuItem['parent_menu'])) {
+                $addedAsChildren[] = $id;
+                
+                if (!isset($menu[$menuItem['parent_menu']]['children'])) {
+                    $menu[$menuItem['parent_menu']]['children'] = array($id => &$menuItem);
                 } else {
-                    $menu[$menuItem['parentID']]['children'][$id] = &$menuItem; // & means we use the REFERENCE
+                    $menu[$menuItem['parent_menu']]['children'][$id] = &$menuItem;
                 }
             }
 
-            unset($menuItem['parentID']); // we don't need parentID any more
+            unset($menuItem['parent_menu']); // we don't need this any more
         }
 
         unset($menuItem); // unset the reference
@@ -52,18 +52,20 @@ class ExampleController extends Controller
         foreach ($addedAsChildren as $itemID) {
             unset($menu[$itemID]); // remove it from root so it's only in the ['children'] subarray
         }
-
-        return response()->json($menu);
+        
+        // return $this->makeTree($menu);
+        $trees = $this->makeTree($menu);
+        return view('master-content/treem')->with('trees', $trees);
     }
 
     function makeTree($menu) {
         $tree = '<ul>';
         
         foreach ($menu as $id => $menuItem) {
-            $tree .= '<li>' . $menuItem['text'];
+            $tree .= '<li>' . $menuItem['menu_name'];
             
             if (!empty($menuItem['children'])) {
-                $tree .= makeTree($menuItem['children']);
+                $tree .= $this->makeTree($menuItem['children']);
             }
             
             $tree .= '</li>';

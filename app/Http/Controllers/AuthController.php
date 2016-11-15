@@ -24,58 +24,57 @@ class AuthController extends Controller
 			$getuser = DB::table('TR_USER')->where('username', $request->username)->count();
 			
 			if ($getuser >= 1) {
-				$getModulCode = DB::table('TR_USER as u')
-						->select('dm.MODUL_CODE')
+				$getROle = DB::table('TR_USER u')
+						->select('j.WORKFLOW_DETAIL_CODE')
 						->join('TR_WORKFLOW_JOB j', 'u.JOB_CODE' , 'j.JOB_CODE')
 						->join('TR_WORKFLOW_DETAIL d', 'j.WORKFLOW_DETAIL_CODE', 'd.WORKFLOW_DETAIL_CODE')
-						->join('TR_WORKFLOW_DETAIL_MODUL dm', 'j.WORKFLOW_DETAIL_CODE', 'dm.WORKFLOW_DETAIL_CODE')
-						->join('TM_MODULE m', 'm.MODULE_CODE', 'dm.MODUL_CODE')
 						->where('u.username', $request->username)
 						->get();
-				$module_code = [];
-				foreach ($getModulCode as $key => $code) {
-					$module_code[] = $code->module_code;
+
+				$roleCode = [];
+				foreach ($getROle as $key => $code) {
+					$roleCode[] = $code->workflow_detail_code;
 				}
 
-				$data = DB::table('TR_USER as u')
-					->join('TR_WORKFLOW_JOB as j', 'u.job_code' , 'j.job_code')
-					->join('TR_WORKFLOW_DETAIL as d', 'j.WORKFLOW_DETAIL_CODE', 'd.WORKFLOW_DETAIL_CODE')
-					->join('TR_WORKFLOW_DETAIL_MODUL as n', 'j.WORKFLOW_DETAIL_CODE', 'n.WORKFLOW_DETAIL_CODE')
-					->join('TM_MODULE as m', 'm.MODUL_CODE', 'n.MODULE_CODE')
+				$data = DB::table('TR_USER u')
+					->join('TR_WORKFLOW_JOB j', 'u.JOB_CODE' , 'j.JOB_CODE')
+					->join('TR_WORKFLOW_DETAIL d', 'j.WORKFLOW_DETAIL_CODE', 'd.WORKFLOW_DETAIL_CODE')
+					->join('TR_WORKFLOW_DETAIL_MODUL dm', 'dm.WORKFLOW_DETAIL_CODE', 'd.WORKFLOW_DETAIL_CODE')
 					->where('u.username', $request->username)
 					->get();
 
-				$datamenu = DB::table('tm_menu as n')
-					->join('TM_MODULE as m', 'n.module_code', 'm.module_code')
-					->whereIn('n.module_code', $module_code)
+				$datamenu = DB::table('TR_USER_ACCESSRIGHT a')
+					->join('TR_WORKFLOW_DETAIL d', 'a.USER_ROLE', 'd.WORKFLOW_DETAIL_CODE')
+					->join('TM_MENU m', 'a.MENU_CODE', 'm.MENU_CODE')
+					->whereIn('a.USER_ROLE', $roleCode)
 					->get();
-				
-				// $menu_detail = [];
+
+				$viewMenu = DB::table('V_AUTHORIZE_MENU')->get();
+
 				foreach ($datamenu as $key => $value) {
-					$menu_detail[] = $value->menu_code;
 					$menu_name[] = $value->menu_name;
 					$menu_url[] = $value->url;
+					$parent_menu = $value->parent_menu;
 				}
-
-
+				
 		    	$url = URL::to('/');
 
-				foreach ($datamenu as $key => $menus) {
-					if ($menus->url == null) {
-						$datas[] = '<a href="'.$url.'"><span class="glyphicon glyphicon-th" aria-hidden="true"></span>  '.$menus->menu_name.'</a>';
-					} else {
-						$datas[] = '<a href="'.$url.$menus->url.'"><span class="glyphicon glyphicon-th" aria-hidden="true"></span>  '.$menus->menu_name.'</a>';
-					}
-				}
+				// foreach ($datamenu as $key => $menus) {
+				// 	if ($menus->url == null) {
+				// 		$datas[] = '<a href="'.$url.'"><span class="glyphicon glyphicon-th" aria-hidden="true"></span>  '.$menus->menu_name.'</a>';
+				// 	} else {
+				// 		$datas[] = '<a href="'.$url.$menus->url.'"><span class="glyphicon glyphicon-th" aria-hidden="true"></span>  '.$menus->menu_name.'</a>';
+				// 	}
+				// }
 
 		     	foreach ($data as $key => $value) 
 		     	{
 			        if ($value->workflow_detail_code != 0) {
 			          $role_code['Role'][$value->workflow_detail_code][] = $value->workflow_detail_code ;
 			          $role_name['RoleName'][$value->workflow_detail_code][] = $value->description ;
-			            if ($value->module_code !=0 ) {
-			            $role_code['Role'][$value->workflow_detail_code]['Module'][] = $value->module_code ;
-			            $role_name['RoleName'][$value->workflow_detail_code][] = $value->module_name;
+			            if ($value->modul_code !=0 ) {
+			            $role_code['Role'][$value->workflow_detail_code]['Module'][] = $value->modul_code ;
+			            //$role_name['RoleName'][$value->workflow_detail_code][] = $value->module_name;
 			            }
 			        }
 			        // Save Session
@@ -93,14 +92,12 @@ class AuthController extends Controller
 
 		      Session::set('role_code', $role_code);
 		      Session::set('role_name', $role_name);
-		      Session::set('menu_detail', $menu_detail);
-		      Session::set('menu_name', $menu_name);
-		      Session::set('menu_url', $menu_url);
-		      Session::set('menus', $datas);
+		      // Session::set('menu_detail', $menu_detail);
+		      // Session::set('menu_name', $menu_name);
+		      // Session::set('menu_url', $menu_url);
+		      Session::set('parent_menu', $parent_menu);
+		      Session::set('menus', $viewMenu);
 		      $session = Session::all();
-
-
-		      // dd($datas);
 
 		      // Save and Update to TR_CURRENT_LOGIN
 		      $result = DB::table('TR_CURRENT_LOGIN')->where('USER_ID', '=', Session::get('user_id'))->get();
@@ -113,6 +110,7 @@ class AuthController extends Controller
 					->insert(['USER_ID' => Session::get('user_id'),'SESSION_ID' => Session::get('session_id')]);
 				}	
 					return Redirect('/');
+
 			}else{
 				$data = "Username  atau Password Salah";
 				return Redirect('/login')->with('pesan', 'Username atau Password Salah');

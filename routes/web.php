@@ -21,7 +21,7 @@ Route::get('/beranda', function(){
 	return view('layouts-master/master');
 });
 
-Route::get('/example', 'ExampleController@makeTree');
+Route::get('/example', 'ExampleController@treem');
 
 Route::get('/home', 'HomeController@index');
 
