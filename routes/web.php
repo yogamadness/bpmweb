@@ -75,6 +75,7 @@ Route::post('/fptk', function(){
 Route::get('/recruitment', 'RecruitmentController@index');
 Route::get('/recruitment/create', 'RecruitmentController@create');
 
+Route::get('/recruitment/edit', 'RecruitmentController@edit');
 
 
 

@@ -22,4 +22,8 @@ class RecruitmentController extends Controller
     	
     	return view('recruitment.create');
     }
+
+    public function edit(){
+        return view('recruitment.edit');
+    }
 }
