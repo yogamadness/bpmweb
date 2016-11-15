@@ -11,10 +11,7 @@
     </span>
   </label> 
   <div class="col-sm-3" id="file">
-    <input type="file" name="lampiran" id="lampiran">
-    <div >
-      
-    </div>
+    <input type="file" name="lampiran[]" id="lampiran">
   </div>
   <div class="col-sm-2">
   	<span class="btn btn-primary" id="plus"><i class="fa fa-plus"></i></span>

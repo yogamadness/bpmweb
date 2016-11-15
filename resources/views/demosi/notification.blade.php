@@ -14,7 +14,7 @@
             <label class="col-sm-3">No Dokumen </label> <p class="col-sm-9">: <span id="nNoDokumen">{{ Session::get('no_doc') }}</span></p>
             </div>
             <div class="form-group">
-            <label class="col-sm-3">NIK </label> <p class="col-sm-9">: <span id="nNik">{{ Session::get('nik') }}</span></p>
+            <label class="col-sm-3">NIK </label> <p class="col-sm-9">: <span id="cNikSap">{{ Session::get('nik') }}</span></p>
             </div>
             <div class="form-group">
               <label class="col-sm-3">Nama </label> <p class="col-sm-9">: <span id="nNama">{{ Session::get('name') }}</span></p>

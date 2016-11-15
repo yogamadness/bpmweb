@@ -13,26 +13,19 @@ use DB;
 use App\Http\Controllers\DataMasterController;
 use Response;
 
+use Session;
+// include 'Soap/nusoap.php';
+use nusoap_client;
+
 
 class FptkController extends Controller
 {
 
-    public function __construct()
-    {
-        $this->middleware('ceklogin');    
-    }
-
+    // public function __construct()
+    // {
+    //     $this->middleware('ceklogin');    
+    // }
     public function index()
-    {
-        $data['gender']= (new DataMasterController)->getGender();
-        $data['levelJabatan']= (new DataMasterController)->getLevelJabatan();
-        $data['statusKaryawan']= (new DataMasterController)->getStatusKaryawan();
-        $data['alasanPermintaan']= (new DataMasterController)->getAlasanPermintaan();
-        return view('master/fptk', $data);
-        // return view('master-content/fptk', $data);
-    }
-
-    public function index2()
     {
         $data['gender']= (new DataMasterController)->getGender();
         $data['levelJabatan']= (new DataMasterController)->getLevelJabatan();
@@ -63,13 +56,9 @@ class FptkController extends Controller
 
     public function save(Request $requests)
     {
-        // $file = $requests->file('lampiran');
-        // // $file->filename = $file->originalName;
-        // $contents = file_get_contents($_FILES[$file][$file->getClientOriginalName()]);
-        // dd($contents);
         // // DB::transaction(function()
         // // {
-            // //insert PTK
+            //insert PTK
             // $seq = DB::table('dual')->select((DB::raw("SUBSTR('00000',0, 5-LENGTH(SEQ_TR_PTK.NEXTVAL)) || SEQ_TR_PTK.NEXTVAL || '/HC/PTK-RO/08.16' as doc_code")))->get()->first();
             // $data = Ptk::create(
             //     array('doc_code' => $seq->doc_code,
@@ -190,7 +179,7 @@ class FptkController extends Controller
             //             'mp_active' => $requests->mp_active
             //         )
             //     );
-            //     dd($dataDetail);
+            //     // dd($dataDetail);
             // }
             // elseif($requests->tipePtk == 'estateNonStaffRawat'){
             //     //insert Regional Office
@@ -208,7 +197,7 @@ class FptkController extends Controller
             //             'mp_active' => $requests->mp_active
             //         )
             //     );
-            //     dd($dataDetail);
+            //     // dd($dataDetail);
             // }
             // elseif($requests->tipePtk == 'estateNonStaffMandor'){
             //     //insert Regional Office
@@ -253,20 +242,61 @@ class FptkController extends Controller
             //             'reason_recommendation' => $requests->reason_recommendation
             //         )
             //     );
-            //     dd($dataDetail);
+            //     // dd($dataDetail);
             // }
+
 
             //insert file 
             $file = $requests->file('lampiran');
+            $type = pathinfo($file, PATHINFO_EXTENSION);
+            $data = file_get_contents($file);
+            $base64 = base64_encode($data);
+            $download = base64_decode($base64);
+            // dd($download);
             $data3 = File::create(
-                array('file_id' => '1',
-                    'blob_content' => file_get_contents($file->getRealPath())
-                    // 'doc_size' => $file->getSize();,
-                    // 'file_name' => $file->getContentName
+                array('file_id' => DB::raw("SEQ_TR_FILE.NEXTVAL"),
+                    'blob_content' => $base64,
+                    'doc_size' => $file->getSize(),
+                    'file_name' => $file->getClientOriginalName(),
+                    'mime_type' => $file->getMimeType(),
+                    'file_category' => $file->getClientOriginalExtension(),
+                    'doc_code' => $seq->doc_code
                 )
             );
-        
 
-        return 'true';
+            //-------- Download ---------- 
+            // $decode = base64_decode($base64);
+            // $filename = $file->getClientOriginalName();
+            // file_put_contents($filename, $decode);
+            // if(file_exists($file))
+            // {
+            //     header('Content-Description:File Transfer');
+            //     header('Content-Type:application/octet-stream');
+            //     header('Content-Dispostion:inline;filename='.basename($filename).'');
+            //     header('Expires:0');
+            //     header('Cache-Control:must-revalidate');
+            //     header('Pragma:public');
+            //     header('Content-Length:'.filesize($file));
+            //     readfile($file);
+            //     exit;
+            // }
+
+            
+
+        // $server_uri = "https://10.20.1.243:9443/teamworks/webservices/TAPHC/WS_PTK.tws?WSDL";
+        // // Create the client instance
+        // $client = new nusoap_client($server_uri);
+
+        // // Call the SOAP method
+        // $result = $client->call(
+        //     "createPTK", array("userId" => 42, "docCode" => "08010/HC/PTK-RO/08.16", "areaCode" =>2121)
+        // );        
+
+        // return $result;
     }
+
+    // function download()
+    // {
+
+    // }
 }

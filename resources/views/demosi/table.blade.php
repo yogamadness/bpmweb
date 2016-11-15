@@ -1,6 +1,6 @@
 <table id="demosi-table" class="table table-striped" style="width:100%">
     <thead>
-        <th>R</th>
+        <th>T</th>
         <th><input name="select_all" value="1" id="a-select-all" type="checkbox"> A</th>
         <th>No Dokumen</th>
         <th>Lokasi</th>
@@ -30,12 +30,15 @@
 
     @foreach($data as $row)
               <tr>
-                <td><a class="btn btn-danger" style="padding:2px;"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a></td>
+                <td><a class="btn btn-danger" style="padding:2px;" id="iTolakIndek"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a></td>
                 <td>1</td>
-                <td><a href="{{ route('demosi.edit', $row->h_id ) }}">{{ $row->doc_code }}</a> <a href="{!! url('demosi/approve', $row->h_id) !!}"><i class="fa fa-check-square-o" aria-hidden="true"></i></a></td>
-                <td>--</td>
+                <td>
+                  <a href="{{ route('demosi.edit', $row->h_id ) }}">{{ $row->doc_code }}</a>
+                  <a href="{!! url('demosi/approve', $row->h_id) !!}"><i class="fa fa-check-square-o" aria-hidden="true"></i></a>
+                </td>
+                <td>{{ $row->comp_code }}</td>
                 <td>{{ $row->notes }}</td>
-                <td>{{ $row->created_by }}</td>
+                <td>{{ $row->created_by_name->nama }}</td>
                 <td>{{ date('d-m-Y H:i:s', strtotime($row->created_at)) }}</td>
                 <td>{{ date('d-m-Y H:i:s', strtotime($row->update_at)) }}</td>
               </tr>
@@ -43,7 +46,7 @@
           </tbody>
           <tfoot>
           <tr>
-            <th>R</th>
+            <th>T</th>
             <th><input name="select_all" value="1" id="a-select-all" type="checkbox"> A</th>
             <th>No Dokumen</th>
             <th>Lokasi</th>

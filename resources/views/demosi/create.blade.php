@@ -7,9 +7,8 @@
 @section('content')
 <div class="row">
   <div class="col-sm-12">
-    <h1>Formulir Perubahan Status Karyawan
+    <h1>Formulir Perubahan Status Karyawan - {{ Session::get('area_code') }}
     </h1>
-
   </div>
 </div>
 <div class="row">

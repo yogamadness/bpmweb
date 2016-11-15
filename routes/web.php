@@ -1,4 +1,3 @@
-
 <?php
 
 /*
@@ -22,9 +21,7 @@ Route::get('/beranda', function(){
 	return view('layouts-master/master');
 });
 
-Route::get('/example', function(){
-	return view('master-content/blank');
-});
+Route::get('/example', 'ExampleController@treem');
 
 Route::get('/home', 'HomeController@index');
 
@@ -55,10 +52,10 @@ Route::delete('/employee/{ID}', 'EmployeeController@delete');
 Route::post('/fptk/save', 'FptkController@save');
 
 Route::get('/fptk_common', function(){
-	return view('master/fptk_common');
+	return view('master-content/fptk_common');
 });
 Route::get('/fptk_common_bawah', function(){
-	return view('master/fptk_common_bawah');
+	return view('master-content/fptk_common_bawah');
 });
 Route::post('/fptk', function(){
 	$tipe = $_POST['tipePtk'];
@@ -85,36 +82,40 @@ Route::post('/fptkmns', function(){
 });
 
 Route::get('/profile', function(){
-	return view('master/profile');
+	return view('master-content/profile');
 });
 Route::get('/', function(){
-	return view('master/ost');
+	return view('master-content/ost');
 });
 
 /*Using SB-ADMIN*/
-Route::get('fptk', 'FptkController@index2');
+Route::get('/fptk', 'FptkController@index');
 
 Route::get('/respons', 'BalikanStringHtmlController@index');
 
-/*
-* PDM and PSS
-*/
+/* -------------- PDM and PSS --------------*/
 /* -------------- API ROUTES -------------- */
 //getEmpWorkStatus
 Route::get('/api/urlGetEmployee', 'ApiController@UrlGetEmployee');
 Route::get('/api/urlEmpWorkStatus', 'ApiController@UrlEmpWorkStatus');
-Route::get('/api/getEmpWorkStatus', 'ApiController@GetEmpWorkStatus');
-Route::get('/api/GetEmpByNIK', 'ApiController@GetEmpByNIK');
-Route::get('/api/GetEmpAutoComplete', 'ApiController@GetEmpAutoComplete');
-Route::get('/api/GetEmpAutoCompletePemanen', 'ApiController@GetEmpAutoCompletePemanen');
-Route::get('/api/GetEmpAutoCompleteNonPemanen', 'ApiController@GetEmpAutoCompleteNonPemanen');
-Route::get('/api/GetEmpProductivity', 'ApiController@GetEmpProductivity');
+Route::get('/api/getOptEmpWorkStatus', 'ApiController@GetOptEmpWorkStatus');
 Route::get('/api/getOptCompany', 'ApiController@GetOptCompany');
+Route::get('/api/getEmpByNIK', 'ApiController@GetEmpByNIK');
+Route::get('/api/getEmpAutoComplete', 'ApiController@GetEmpAutoComplete');
+Route::get('/api/getEmpAutoCompletePemanen', 'ApiController@GetEmpAutoCompletePemanen');
+Route::get('/api/getEmpAutoCompleteNonPemanen', 'ApiController@GetEmpAutoCompleteNonPemanen');
+Route::get('/api/getEmpProductivity', 'ApiController@GetEmpProductivity');
 Route::get('/api/getOptBusinessArea', 'ApiController@GetOptBusinessArea');
 Route::get('/api/getOptAfdeling', 'ApiController@GetOptAfdeling');
 Route::get('/api/getOptJobCode', 'ApiController@GetOptJobCode');
 Route::get('/api/getOptJobType', 'ApiController@GetOptJobType');
 Route::get('/api/getEmpSearch', 'ApiController@GetEmpSearch');
+Route::get('/api/postWsdlPdmCreate', 'ApiController@PostWsdlPdmCreate');
+Route::get('/api/postWsdlPdmApprove', 'ApiController@PostWsdlPdmApprove');
+Route::get('/api/getOptLevelJabatan' , 'DataMasterController@getLevelJabatan');
+Route::get('/api/getOptJabatan/{key}' , 'DataMasterController@getJabatan');
+Route::get('/api/getCompany' , 'DataMasterController@getCompany');
+
 /* -------------- END - API ROUTES -------------- */
 
 /* -------------- PAGE ROUTES -------------- */

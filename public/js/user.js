@@ -20,7 +20,7 @@ function edit(id){
           url: url + '/' + id,
           success: function(data) {
             $('#user_id').val(data.user_id);
-            $('#username').val(data.username).fokus();
+            $('#username').val(data.username).focus();
             $('#nik').val(data.nik);
             $('#nama').val(data.nama);
             $('#email').val(data.email);
@@ -42,6 +42,7 @@ function hapus(ID) {
         success: function(data) {
           if (data.success ==  true ) {
             $("#user-table").DataTable().ajax.reload();
+            alert("Sukses");
             hide();
           }else{
             alert("Gagal");
@@ -64,9 +65,10 @@ $("#simpan").click(function() {
           if (data.success ==  true ) {
             $("#user-table").DataTable().ajax.reload();
               hide();
-          }else {
-              alert("Gagal");
+          }else if (data.success == false) {
+              alert(data.User);
           }
+
         },
         error: function(data) {
             alert('Cek Your Connection Data', data);

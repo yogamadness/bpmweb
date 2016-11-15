@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 //common
+use Session;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
@@ -21,13 +22,12 @@ class DemosiController extends Controller
 {
     public function __construct()
     {
-        //$this->middleware('auth');
         //$this->middleware('ceklogin');
     }
 
     public function index($notifData = null)
     {
-    	$data = DemosiHeader::all();
+    	$data = DemosiHeader::with('created_by_name')->get();
         return view('demosi.index', ['data' => $data, 'notification' => $notifData] );
     }
 
@@ -75,17 +75,17 @@ class DemosiController extends Controller
         			];
 
         return view('demosi.create',[
-            'getEmpWorkStatus' => ApiController::GetEmpWorkStatus(),
             'getOptEmpWorkStatus' => ApiController::GetOptEmpWorkStatus(),
-            'getOptCompany' => ApiController::GetOptCompany(),
-            'getOptBusinessArea' => ApiController::GetOptBusinessArea(),
+            //'getOptCompany' => ApiController::GetOptCompany(),
+            //'getOptBusinessArea' => ApiController::GetOptBusinessArea(),
             'getOptAfdeling' => ApiController::GetOptAfdeling(),
             'getOptJobCode' => ApiController::GetOptJobCode(),
             'getOptJobType' => ApiController::GetOptJobType(),
+            'getEmpProductivity' => ApiController::GetEmpProductivity(),
             'input' => $input,
             'field_rules' => $field_rules,
             'form_type' => $form_type,
-        	'urlGetEmpAutoComplete' => 'http://tap-flowdev.tap-agri.com/api/GetEmpAutoComplete',
+        	'urlGetEmpAutoComplete' => 'http://tap-flowdev.tap-agri.com/api/getEmpAutoComplete',
             'job_code' => '',
         ]);
     }
@@ -134,17 +134,17 @@ class DemosiController extends Controller
         			];
 
         return view('demosi.create',[
-            'getEmpWorkStatus' => ApiController::GetEmpWorkStatus(),
             'getOptEmpWorkStatus' => ApiController::GetOptEmpWorkStatus(),
-            'getOptCompany' => ApiController::GetOptEmpWorkStatus(), //GetOptCompany
-            'getOptBusinessArea' => ApiController::GetOptEmpWorkStatus(), //GetOptBusinessArea
-            'getOptAfdeling' => ApiController::GetOptEmpWorkStatus(), //GetOptAfdeling
-            'getOptJobCode' => ApiController::GetOptEmpWorkStatus(), //GetOptJobCode
-            'getOptJobType' => ApiController::GetOptEmpWorkStatus(), //GetOptJobType
+            //'getOptCompany' => ApiController::GetOptCompany(), //GetOptCompany
+            //'getOptBusinessArea' => ApiController::GetOptBusinessArea(), //GetOptBusinessArea
+            'getOptAfdeling' => ApiController::GetOptAfdeling(), //GetOptAfdeling
+            'getOptJobCode' => ApiController::GetOptJobCode(), //GetOptJobCode
+            'getOptJobType' => ApiController::GetOptJobType(), //GetOptJobType
+            'getEmpProductivity' => ApiController::GetEmpProductivity(),
             'input' => $input,
             'field_rules' => $field_rules,
             'form_type' => $form_type,
-        	'urlGetEmpAutoComplete' => 'http://tap-flowdev.tap-agri.com/api/GetEmpAutoCompletePemanen',
+        	'urlGetEmpAutoComplete' => 'http://tap-flowdev.tap-agri.com/api/getEmpAutoCompletePemanen',
             'job_code' => 'pemanen',
         ]);
     }
@@ -193,17 +193,17 @@ class DemosiController extends Controller
         			];
 
         return view('demosi.create',[
-            'getEmpWorkStatus' => ApiController::GetEmpWorkStatus(),
             'getOptEmpWorkStatus' => ApiController::GetOptEmpWorkStatus(),
-            'getOptCompany' => ApiController::GetOptCompany(),
-            'getOptBusinessArea' => ApiController::GetOptBusinessArea(),
+            //'getOptCompany' => ApiController::GetOptCompany(),
+            //'getOptBusinessArea' => ApiController::GetOptBusinessArea(),
             'getOptAfdeling' => ApiController::GetOptAfdeling(),
             'getOptJobCode' => ApiController::GetOptJobCode(),
             'getOptJobType' => ApiController::GetOptJobType(),
+            'getEmpProductivity' => ApiController::GetEmpProductivity(),
             'input' => $input,
             'field_rules' => $field_rules,
             'form_type' => $form_type,
-        	'urlGetEmpAutoComplete' => 'http://tap-flowdev.tap-agri.com/api/GetEmpAutoCompleteNonPemanen',
+        	'urlGetEmpAutoComplete' => 'http://tap-flowdev.tap-agri.com/api/getEmpAutoCompleteNonPemanen',
             'job_code' => 'non_pemanen',
         ]);
     }
@@ -275,34 +275,36 @@ class DemosiController extends Controller
 
     	$data = DemosiDetail::where('h_id',$id)->get();
     	foreach($data as $row) {
-        	if($row->param_id == 1) $dDetail['iIpe3yAgo'] = $row->new_value; //Penilaian Karya / IPE 3 Tahun yg lalu
-        	if($row->param_id == 2) $dDetail['iIpe2yAgo'] = $row->new_value; //Penilaian Karya / IPE 2 Tahun yg lalu
-        	if($row->param_id == 3) $dDetail['iIpe1yAgo'] = $row->new_value; //Penilaian Karya / IPE 1 Tahun yg lalu
-        	if($row->param_id == 4) $dDetail['iSuratTeguran'] = $row->new_value; //ST
-        	if($row->param_id == 5) $dDetail['iSuratTeguran'] = $row->new_value; //SP1
-        	if($row->param_id == 6) $dDetail['iSuratTeguran'] = $row->new_value; //SP2
-        	if($row->param_id == 7) $dDetail['iSuratTeguran'] = $row->new_value; //SP3
-        	if($row->param_id == 8) $dDetail['iSuratTeguran'] = $row->new_value; //Tidak Ada
-        	if($row->param_id == 9) $dDetail['iPerusahaanNew'] = $row->new_value; //Perusahaan
-        	if($row->param_id == 10) $dDetail['iBisnisAreaNew'] = $row->new_value; //Business Area / Estate / Divisi
-        	if($row->param_id == 11) $dDetail['iAfdelingNew'] = $row->new_value; //Afdeling / Departemen
-        	if($row->param_id == 12) $dDetail['iJabatanNew'] = $row->new_value; //Jabatan
-        	if($row->param_id == 13) $dDetail['iGolonganNew'] = $row->new_value; //Golongan
-        	if($row->param_id == 14) $dDetail['iStatusKaryawanNew'] = $row->new_value; //Status Karyawan
-        	if($row->param_id == 15) $dDetail['iGajiPokokNew'] = $row->new_value; //Gaji Pokok
-        	if($row->param_id == 16) $dDetail['iCatuBerasNew'] = $row->new_value; //Catu Beras
+        if($row->param_id == 1) $dDetail['iIpe3yAgo'] = $row->new_value; //Penilaian Karya / IPE 3 Tahun yg lalu
+        if($row->param_id == 2) $dDetail['iIpe2yAgo'] = $row->new_value; //Penilaian Karya / IPE 2 Tahun yg lalu
+        	if($row->param_id == 3) $dDetail['iIpe3yAgo'] = $row->new_value; //Penilaian Karya / IPE 3 Tahun yg lalu
+        	if($row->param_id == 4) $dDetail['iIpe2yAgo'] = $row->new_value; //Penilaian Karya / IPE 2 Tahun yg lalu
+        	if($row->param_id == 5) $dDetail['iIpe1yAgo'] = $row->new_value; //Penilaian Karya / IPE 1 Tahun yg lalu
+        	if($row->param_id == 6) $dDetail['iSuratTeguran'] = $row->new_value; //ST
+        	if($row->param_id == 7) $dDetail['iSuratTeguran'] = $row->new_value; //SP1
+        	if($row->param_id == 8) $dDetail['iSuratTeguran'] = $row->new_value; //SP2
+        	if($row->param_id == 9) $dDetail['iSuratTeguran'] = $row->new_value; //SP3
+        	if($row->param_id == 10) $dDetail['iSuratTeguran'] = $row->new_value; //Tidak Ada
+        	if($row->param_id == 11) $dDetail['iPerusahaanNew'] = $row->new_value; //Perusahaan
+        	if($row->param_id == 12) $dDetail['iBisnisAreaNew'] = $row->new_value; //Business Area / Estate / Divisi
+        	if($row->param_id == 13) $dDetail['iAfdelingNew'] = $row->new_value; //Afdeling / Departemen
+        	if($row->param_id == 14) $dDetail['iJabatanNew'] = $row->new_value; //Jabatan
+        	if($row->param_id == 15) $dDetail['iGolonganNew'] = $row->new_value; //Golongan
+        	if($row->param_id == 16) $dDetail['iStatusKaryawanNew'] = $row->new_value; //Status Karyawan
+        	//if($row->param_id == 17) $dDetail['iGajiPokokNew'] = $row->new_value; //Gaji Pokok
+        	//if($row->param_id == 18) $dDetail['iCatuBerasNew'] = $row->new_value; //Catu Beras
         	if($row->param_id == 17) $dDetail['iKeterangan'] = $row->new_value; //Keterangan
         }
 
         return view('demosi.approve',[
-            'getEmpWorkStatus' => ApiController::GetEmpWorkStatus(),
             'getOptEmpWorkStatus' => ApiController::GetOptEmpWorkStatus(),
-            'getOptCompany' => ApiController::GetOptCompany(),
-            'getOptBusinessArea' => ApiController::GetOptBusinessArea(),
+            //'getOptCompany' => ApiController::GetOptCompany(),
+            //'getOptBusinessArea' => ApiController::GetOptBusinessArea(),
             'getOptAfdeling' => ApiController::GetOptAfdeling(),
             'getOptJobCode' => ApiController::GetOptJobCode(),
             'getOptJobType' => ApiController::GetOptJobType(),
-        	'urlGetEmpAutoComplete' => 'http://tap-flowdev.tap-agri.com/api/GetEmpAutoCompletePemanen',
+            'getEmpProductivity' => ApiController::GetEmpProductivity(),
+        	'urlGetEmpAutoComplete' => 'http://tap-flowdev.tap-agri.com/api/getEmpAutoCompletePemanen',
             'job_code' => 'pemanen',
             'input' => $input,
             'dHeader' => $dHeader,
@@ -324,6 +326,12 @@ class DemosiController extends Controller
                 	$input['h_id'] = $demosiHeader->h_id;
                 	$input['version_code'] = '';
                 	$this->saveAllDemosiDetail('insert', $input);
+
+                	//push to wsdl
+                	$wsdl = new ApiController;
+                	$wsdl->doc_code = $demosiHeader->doc_code;
+                	$msg = $wsdl->PostWsdlPdmCreate();
+                	//dd($msg);
             	}
 
             	//return success
@@ -357,19 +365,30 @@ class DemosiController extends Controller
     	if($input) {
         	//validation
         	if($input['iCatatan']) {
-            	$input['proc_stat_code'] = 'PSL';
+            	$input['proc_stat_code'] = 'PSL'; //process_stat_code : SDP	: Sedang di proses,PSL: persetujuan selesai,TLK	: ditolak,BTL	: Dibatalkan
+            	//dd($input);
             	$proc_stat = $this->saveProcessStatusHistory($input);
             	//return success
-            	$dHeader = DemosiHeader::where('h_id',$input['h_id'])->first();
+            	if($proc_stat) {
+            		$dHeader = DemosiHeader::where('h_id',$input['h_id'])->first();
 
-    			return redirect()->route('demosi.index')
+            		//push to wsdl
+            		$wsdl = new ApiController;
+            		$wsdl->bpm_code = $dHeader->bpm_code;
+            		$wsdl->notes = $dHeader->notes;
+            		$wsdl->status = '1';
+            		$msg = $wsdl->PostWsdlPdmApprove();
+
+    				return redirect()->route('demosi.index')
         					->with('notification', 1)
         					->with('status', 1)
         					->with('form_type', 'approve')
         					->with('no_doc', $dHeader->doc_code)
         					->with('nik', $dHeader->nik_sap)
-        					->with('name', $input['iNama'])
+        					//->with('name', $input['iNama'])
         					->with('notes', $dHeader->notes);
+
+                }
             } else {
             	//return failed
     			return redirect()->route('demosi.create', $input);
@@ -462,14 +481,14 @@ class DemosiController extends Controller
         }
 
         return view('demosi.edit',[
-            'getEmpWorkStatus' => ApiController::GetEmpWorkStatus(),
             'getOptEmpWorkStatus' => ApiController::GetOptEmpWorkStatus(),
             'getOptCompany' => ApiController::GetOptCompany(),
             'getOptBusinessArea' => ApiController::GetOptBusinessArea(),
             'getOptAfdeling' => ApiController::GetOptAfdeling(),
             'getOptJobCode' => ApiController::GetOptJobCode(),
             'getOptJobType' => ApiController::GetOptJobType(),
-        	'urlGetEmpAutoComplete' => 'http://tap-flowdev.tap-agri.com/api/GetEmpAutoCompletePemanen',
+            'getEmpProductivity' => ApiController::GetEmpProductivity(),
+        	'urlGetEmpAutoComplete' => 'http://tap-flowdev.tap-agri.com/api/getEmpAutoCompletePemanen',
             'job_code' => 'pemanen',
             'dHeader' => $dHeader,
             'dDetail' => $dDetail,
@@ -524,19 +543,19 @@ class DemosiController extends Controller
         	$data = DemosiHeader::where('h_id',$input['h_id'])->first();
         	$history = $this->saveDemosiHeaderHistory($data);
         }
-    	$data->doc_code = ( $type == 'update' ? $input['iNikSap'] : date('y').'.'.date('m').'/HC/PDM-NS/'.str_pad($this->nextnumber(),5,"0",STR_PAD_LEFT) );
-    	$data->type_doc = '1';//non staff pemanen ato non staff non pemanen
+    	$data->doc_code = ( $type == 'update' ? $input['iDocCode'] : date('y').'.'.date('m').'/HC/PDM-NS/'.str_pad($this->nextnumber(),5,"0",STR_PAD_LEFT) );
+    	$data->type_doc = '1';//ambil dari lov perubahan status
     	$data->effective_date = date('Y/m/d', strtotime($input['iTanggalEfektifBerlaku']));
     	$data->nik_national = $input['iNikNasional'];
     	$data->nik_sap = $input['iNikSap'];
     	$data->notes = $input['iKeterangan']; // notes disimpan di TR_HC_PDM_PROC_STAT_HIST di kolom  APPROV_REV_NOTES
-    	$data->comp_code = 1;//ambil dari COMP_CODE
+    	$data->comp_code = 1; //ambil dari company code si karyawan
     	$data->bpm_code = 1;
-    	if($type == 'insert') $data->created_by = 1;
+    	if($type == 'insert') $data->created_by = Session::get('user_id');
     	if($type == 'insert') $data->created_at = date('Y/m/d H:i:s');
-    	$data->update_by = 1;
+    	$data->update_by = Session::get('user_id');
     	$data->update_at = date('Y/m/d H:i:s');
-    	$data->sync_by = 1;
+    	$data->sync_by = Session::get('user_id');
     	$data->sync_at = date('Y/m/d H:i:s');
     	$data->cr_remote_addr = ' ';
     	$data->cr_client_browser = ' ';
@@ -591,9 +610,9 @@ class DemosiController extends Controller
 
     	$data->current_value = $type == 'insert' ? ' ' : ($data->new_value ? $data->new_value : ' ');
     	$data->new_value = $input['new_value'] ? $input['new_value'] : ' ';
-    	if($type == 'insert') $data->created_by = '1';
+    	if($type == 'insert') $data->created_by = Session::get('user_id');
     	if($type == 'insert') $data->created_at = date('Y/m/d H:i:s');
-    	$data->update_by = '1';
+    	$data->update_by = Session::get('user_id');
     	$data->update_at = date('Y/m/d H:i:s');
     	if($type == 'insert') $data->param_id = $input['param_id'];
     	if($type == 'insert') $data->h_id = $input['h_id'];
@@ -621,60 +640,72 @@ class DemosiController extends Controller
 
 	function saveAllDemosiDetail($type, $input)
     {
-    	//Penilaian Karya / IPE 3 Tahun yg lalu
-    	$i = array('h_id'=>$input['h_id'], 'version_code'=>$input['version_code'], 'param_id'=>1, 'new_value'=>(isset($input['iIpe3yAgo']) ? $input['iIpe3yAgo'] : ''));
+      //Mulai Periode pengangkatan karyawan
+    	$i = array('h_id'=>$input['h_id'], 'version_code'=>$input['version_code'], 'param_id'=>1, 'new_value'=>(isset($input['sqldate_from']) ? $input['sqldate_from'] : ''));
+    	$this->saveDemosiDetail($type,$i);
+
+      //Berakhir Periode pengangkatan karyawan
+    	$i = array('h_id'=>$input['h_id'], 'version_code'=>$input['version_code'], 'param_id'=>2, 'new_value'=>(isset($input['sqldate_to']) ? $input['sqldate_to'] : ''));
+    	$this->saveDemosiDetail($type,$i);
+
+      //Penilaian Karya / IPE 3 Tahun yg lalu
+    	$i = array('h_id'=>$input['h_id'], 'version_code'=>$input['version_code'], 'param_id'=>3, 'new_value'=>(isset($input['iIpe3yAgo']) ? $input['iIpe3yAgo'] : ''));
     	$this->saveDemosiDetail($type,$i);
 
     	//Penilaian Karya / IPE 2 Tahun yg lalu
-    	$i = array('h_id'=>$input['h_id'], 'version_code'=>$input['version_code'], 'param_id'=>2, 'new_value'=>(isset($input['iIpe2yAgo']) ? $input['iIpe2yAgo'] : ''));
+    	$i = array('h_id'=>$input['h_id'], 'version_code'=>$input['version_code'], 'param_id'=>4, 'new_value'=>(isset($input['iIpe2yAgo']) ? $input['iIpe2yAgo'] : ''));
     	$this->saveDemosiDetail($type,$i);
 
     	//Penilaian Karya / IPE 1 Tahun yg lalu
-    	$i = array('h_id'=>$input['h_id'], 'version_code'=>$input['version_code'], 'param_id'=>3, 'new_value'=>(isset($input['iIpe1yAgo']) ? $input['iIpe1yAgo'] : ''));
+    	$i = array('h_id'=>$input['h_id'], 'version_code'=>$input['version_code'], 'param_id'=>5, 'new_value'=>(isset($input['iIpe1yAgo']) ? $input['iIpe1yAgo'] : ''));
     	$this->saveDemosiDetail($type,$i);
 
     	//ST
-    	$i = array('h_id'=>$input['h_id'], 'version_code'=>$input['version_code'], 'param_id'=>4, 'new_value'=>(isset($input['iSuratTeguran']) ? $input['iSuratTeguran'] : ''));
-    	$this->saveDemosiDetail($type,$i);
-
-    	//SP1
-    	$i = array('h_id'=>$input['h_id'], 'version_code'=>$input['version_code'], 'param_id'=>5, 'new_value'=>(isset($input['iSuratTeguran']) ? $input['iSuratTeguran'] : ''));
-    	$this->saveDemosiDetail($type,$i);
-
-    	//SP2
     	$i = array('h_id'=>$input['h_id'], 'version_code'=>$input['version_code'], 'param_id'=>6, 'new_value'=>(isset($input['iSuratTeguran']) ? $input['iSuratTeguran'] : ''));
     	$this->saveDemosiDetail($type,$i);
 
-    	//SP3
+    	//SP1
     	$i = array('h_id'=>$input['h_id'], 'version_code'=>$input['version_code'], 'param_id'=>7, 'new_value'=>(isset($input['iSuratTeguran']) ? $input['iSuratTeguran'] : ''));
     	$this->saveDemosiDetail($type,$i);
 
-    	//Tidak Ada
+    	//SP2
     	$i = array('h_id'=>$input['h_id'], 'version_code'=>$input['version_code'], 'param_id'=>8, 'new_value'=>(isset($input['iSuratTeguran']) ? $input['iSuratTeguran'] : ''));
     	$this->saveDemosiDetail($type,$i);
 
+    	//SP3
+    	$i = array('h_id'=>$input['h_id'], 'version_code'=>$input['version_code'], 'param_id'=>9, 'new_value'=>(isset($input['iSuratTeguran']) ? $input['iSuratTeguran'] : ''));
+    	$this->saveDemosiDetail($type,$i);
+
+    	//Tidak Ada
+    	$i = array('h_id'=>$input['h_id'], 'version_code'=>$input['version_code'], 'param_id'=>10, 'new_value'=>(isset($input['iSuratTeguran']) ? $input['iSuratTeguran'] : ''));
+    	$this->saveDemosiDetail($type,$i);
+
+      //Masa berlaku surat
+    	$i = array('h_id'=>$input['h_id'], 'version_code'=>$input['version_code'], 'param_id'=>11, 'new_value'=>(isset($input['iMasaBerlaku']) ? $input['iMasaBerlaku'] : ''));
+    	$this->saveDemosiDetail($type,$i);
+
     	//Perusahaan
-    	$i = array('h_id'=>$input['h_id'], 'version_code'=>$input['version_code'], 'param_id'=>9, 'new_value'=>(isset($input['iPerusahaanNew']) ? $input['iPerusahaanNew'] : ''));
+    	$i = array('h_id'=>$input['h_id'], 'version_code'=>$input['version_code'], 'param_id'=>12, 'new_value'=>(isset($input['iPerusahaanNew']) ? $input['iPerusahaanNew'] : ''));
     	$this->saveDemosiDetail($type,$i);
 
     	//Business Area / Estate / Divisi
-    	$i = array('h_id'=>$input['h_id'], 'version_code'=>$input['version_code'], 'param_id'=>10, 'new_value'=>(isset($input['iBisnisAreaNew']) ? $input['iBisnisAreaNew'] : ''));
+    	$i = array('h_id'=>$input['h_id'], 'version_code'=>$input['version_code'], 'param_id'=>13, 'new_value'=>(isset($input['iBisnisAreaNew']) ? $input['iBisnisAreaNew'] : ''));
     	$this->saveDemosiDetail($type,$i);
 
     	//Afdeling / Departemen
-    	$i = array('h_id'=>$input['h_id'], 'version_code'=>$input['version_code'], 'param_id'=>11, 'new_value'=>(isset($input['iAfdelingNew']) ? $input['iAfdelingNew'] : ''));
+    	$i = array('h_id'=>$input['h_id'], 'version_code'=>$input['version_code'], 'param_id'=>14, 'new_value'=>(isset($input['iAfdelingNew']) ? $input['iAfdelingNew'] : ''));
     	$this->saveDemosiDetail($type,$i);
 
     	//Jabatan
-    	$i = array('h_id'=>$input['h_id'], 'version_code'=>$input['version_code'], 'param_id'=>12, 'new_value'=>(isset($input['iJabatanNew']) ? $input['iJabatanNew'] : ''));
+    	$i = array('h_id'=>$input['h_id'], 'version_code'=>$input['version_code'], 'param_id'=>15, 'new_value'=>(isset($input['iJabatanNew']) ? $input['iJabatanNew'] : ''));
     	$this->saveDemosiDetail($type,$i);
 
     	//Golongan
-    	$i = array('h_id'=>$input['h_id'], 'version_code'=>$input['version_code'], 'param_id'=>13, 'new_value'=>(isset($input['iGolonganNew']) ? $input['iGolonganNew'] : ''));
+    	$i = array('h_id'=>$input['h_id'], 'version_code'=>$input['version_code'], 'param_id'=>16, 'new_value'=>(isset($input['iGolonganNew']) ? $input['iGolonganNew'] : ''));
     	$this->saveDemosiDetail($type,$i);
 
     	//Status Karyawan
-    	$i = array('h_id'=>$input['h_id'], 'version_code'=>$input['version_code'], 'param_id'=>14, 'new_value'=>(isset($input['iStatusKaryawanNew']) ? $input['iStatusKaryawanNew'] : ''));
+    	$i = array('h_id'=>$input['h_id'], 'version_code'=>$input['version_code'], 'param_id'=>17, 'new_value'=>(isset($input['iStatusKaryawanNew']) ? $input['iStatusKaryawanNew'] : ''));
     	$this->saveDemosiDetail($type,$i);
 
     	//Gaji Pokok
@@ -814,9 +845,9 @@ class DemosiController extends Controller
     	$data->process_status_code = $input['proc_stat_code'];
     	$data->approv_rev_notes = $input['iCatatan'];
     	$data->doc_h_id = $input['h_id'];
-    	$data->created_by = 1;
+    	$data->created_by = Session::get('user_id');
     	$data->created_at = date('Y/m/d H:i:s');
-    	$data->update_by = 1;
+    	$data->update_by = Session::get('user_id');
     	$data->update_at = date('Y/m/d H:i:s');
     	$data->cr_remote_addr = ' ';
     	$data->cr_client_browser = ' ';
@@ -844,7 +875,7 @@ class DemosiController extends Controller
 	function validation($input)
     {
     	if($input['iNikSap'] == '') return false;
-      if(!preg_match("/(\d{2})\/(\d{4})\/(\d{4})\/(\d{2})/", $input['iNikSap'])) return ;
+      if(!preg_match("/(\d{2})\/(\d{4})\/(\d{4})\/(\d{2})/", $input['iNikSap'])) return false;
         return true;
     }
 }

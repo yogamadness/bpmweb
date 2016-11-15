@@ -22,10 +22,11 @@
   <body class="hold-transition login-page">
     <div class="login-box">
       <div class="login-logo">
-        <a href="#"><b>BPM</b> Authentication</a>
+        <a href="#"><b>BPM</b> Login</a>
       </div><!-- /.login-logo -->
       <div class="login-box-body">
-        <p class="login-box-msg">Sign in to start your session</p>
+      <p class="login-box-msg">Silahkan Masuk</p>
+        {!! Session::get('pesan') !!}
         <form method="post" action="getlogin" id="form" data-parsley-validate="">
             {{ csrf_field() }}
             <div class="form-group has-feedback">
@@ -37,7 +38,7 @@
                 <span class="glyphicon glyphicon-lock form-control-feedback"></span>
             </div>
             <div class="form-group">
-                <input class="btn btn-primary btn-block btn-flat" value="Login" type="submit">
+                <input class="btn btn-primary btn-block btn-flat" value="Masuk" type="submit">
             </div>
         </form>
       </div><!-- /.login-box-body -->

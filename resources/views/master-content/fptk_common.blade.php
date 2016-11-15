@@ -7,11 +7,7 @@
         </span>
       </label>
       <div class="col-sm-6">
-        <select class="form-control" id="level_jbt" name="level_jbt">
-          <option value=" ">--Pilih--</option>
-          @foreach($levelJabatan as $levJab)
-            <option value="{{ $levJab->description_code }}">{{ $levJab->description }}</option>
-          @endforeach
+        <select class="form-control" id="level_jbt" name="level_jbt" data-parsley-group="first" required="">
         </select>
       </div>
     </div>
@@ -22,7 +18,8 @@
         </span>
       </label>
       <div class="col-sm-6">
-        <input type="text" placeholder="Jabatan" id="jbt" class="form-control" name="jbt" data-provide="typeahead" autocomplete="off">
+        <!-- <input type="text" placeholder="Jabatan" id="jbt" class="form-control" name="jbt" data-provide="typeahead" autocomplete="off" data-parsley-group="first" required=""> -->
+        <select class="form-control" id="jbt" name="jbt" data-parsley-group="first" required=""></select>
       </div>
     </div>
     <div class="form-group">
@@ -32,7 +29,7 @@
         </span>
       </label>
       <div class="col-sm-6">
-        <input type="text" placeholder="Perusahaan" id="company" class="form-control" name="company">
+        <input type="text" placeholder="Perusahaan" id="company" class="form-control" name="company" data-parsley-group="first" required="">
       </div>
     </div>
     <div class="form-group">
@@ -42,7 +39,7 @@
         </span>
       </label>
       <div class="col-sm-6">
-        <input type="text" placeholder="Bisnis Area" id="ba_code" class="form-control" name="ba_code">
+        <input type="text" placeholder="Bisnis Area" id="ba_code" class="form-control" name="ba_code" data-parsley-group="first" required="">
       </div>
     </div>
     <div class="form-group">
@@ -52,7 +49,7 @@
         </span>
       </label>
       <div class="col-sm-6">
-        <input type="text" placeholder="Departemen" id="department" class="form-control" name="department">
+        <input type="text" placeholder="Departemen" id="department" class="form-control" name="department" data-parsley-group="first" required="">
       </div>
     </div>
     <div class="form-group">
@@ -62,7 +59,7 @@
         </span>
       </label>
       <div class="col-sm-4 col-xs-8">
-        <input type="text" placeholder="Jumlah Kebutuhan" id="number_of_needs" class="form-control" name="number_of_needs">
+        <input type="text" placeholder="Jumlah Kebutuhan" id="number_of_needs" class="form-control" name="number_of_needs" data-parsley-group="first" min="1" max="10" step="100" data-parsley-validation-threshold="0" data-parsley-trigger="keyup" data-parsley-type="digits" required="">
       </div>
       <label class="col-sm-2 col-xs-4 control-label">
         <span class="pull-left">
@@ -79,7 +76,7 @@
         </span>
       </label>
       <div class="col-sm-8">
-        <input type="text" placeholder="DD-MMM-YYYY" id="request_date" class="form-control" name="request_date" readonly>
+        <input type="text" placeholder="DD-MMM-YYYY" id="request_date" class="form-control" name="request_date" readonly data-parsley-group="first" required="">
       </div>
     </div>
     <div class="form-group">
@@ -90,7 +87,7 @@
       </label>
       <div class="col-sm-8">
         <div class="input-group date" id="datetimepicker1">
-          <input type="text" class="form-control" id="needs_date" name="needs_date"> 
+          <input type="text" class="form-control" id="needs_date" name="needs_date" data-parsley-group="first" required=""> 
           <span class="input-group-addon">
             <span class="glyphicon glyphicon-calendar"></span>
           </span>
@@ -104,19 +101,20 @@
         </span>
       </label>
       <div class="col-sm-8">
-        <input type="text" placeholder="Atasan Langsung" id="head" class="form-control" name="head">
+        <input type="text" placeholder="Atasan Langsung" id="head" class="form-control" name="head" data-parsley-group="first" required="">
       </div>
     </div>
     <div class="form-group">
-      <label class="col-sm-4 control-label" for="emp_status">
+      <label class="col-sm-4 control-label" for="emp_status" required="">
         <span class="pull-left">
           Status Karyawan
         </span>
       </label>
       <div class="col-sm-8">
-        <select class="form-control" name="emp_status" id="emp_status">
-          <option value=" ">--Pilih--</option>
-            
+        <select class="form-control" name="emp_status" id="emp_status" data-parsley-group="first" required="">
+          <option></option>
+          <option>Example1</option>
+          <option>Example2</option>
         </select>
       </div>
     </div>
@@ -128,7 +126,7 @@
       </label>
       <div class="col-sm-4 col-xs-6">
         <div class="input-group date" id="start_contract">
-          <input type="text" class="form-control" id="start_contract" placeholder="Mulai" name="start_contract"> 
+          <input type="text" class="form-control" id="start_contract" placeholder="Mulai" name="start_contract" data-parsley-group="first" required=""> 
           <span class="input-group-addon">
             <span class="glyphicon glyphicon-calendar"></span>
           </span>
@@ -136,7 +134,7 @@
       </div>
       <div class="col-sm-4 col-xs-6">
         <div class="input-group date" id="end_contract">
-          <input type="text" class="form-control" id="end_contract" placeholder="Berakhir" name="end_contract"> 
+          <input type="text" class="form-control" id="end_contract" placeholder="Berakhir" name="end_contract" data-parsley-group="first" required=""> 
           <span class="input-group-addon">
             <span class="glyphicon glyphicon-calendar"></span>
           </span>
@@ -159,7 +157,7 @@
         </span>
       </label>
       <div class="col-sm-6">
-        <select class="form-control" id="gender" name="gender">
+        <select class="form-control" id="gender" name="gender" data-parsley-group="first" required="">
           <option>--Pilih--</option>
           @foreach($gender as $genders)
             <option>{{ $genders->description }}</option>
@@ -174,7 +172,7 @@
         </span>
       </label>
       <div class="col-sm-6">
-        <select class="form-control" id="last_education" name="last_education">
+        <select class="form-control" id="last_education" name="last_education" data-parsley-group="first" required="">
           <option>--Pilih--</option>
           <option>SMA/SMK</option>
           <option>Perguruan Tinggi</option>
@@ -188,7 +186,7 @@
         </span>
       </label>
       <div class="col-sm-6">
-        <input type="text" placeholder="Fakultas/Jurusan" id="facult" class="form-control" name="facult">
+        <input type="text" placeholder="Fakultas/Jurusan" id="facult" class="form-control" name="facult" data-parsley-group="first" required="">
       </div>
     </div>
   </div>
@@ -200,10 +198,10 @@
         </span>
       </label>
       <div class="col-sm-4 col-xs-6">
-        <input type="text" placeholder="Batas Min" id="min_age" class="form-control" name="min_age"> 
+        <input type="text" placeholder="Batas Min" id="min_age" class="form-control" name="min_age" data-parsley-group="first" required="" min="17" data-parsley-validation-threshold="0" data-parsley-trigger="keyup" data-parsley-type="digits"> 
       </div>
       <div class="col-sm-4 col-xs-6">
-        <input type="text" placeholder="Batas Max" id="max_age" class="form-control" name="max_age">
+        <input type="text" placeholder="Batas Max" id="max_age" class="form-control" name="max_age" data-parsley-group="first" required="" min="17" data-parsley-validation-threshold="0" data-parsley-trigger="keyup" data-parsley-type="digits">
       </div>
     </div>
     <div class="form-group">
@@ -213,7 +211,7 @@
         </span>
       </label>
       <div class="col-sm-4">
-        <input type="text" placeholder="Pengalaman" id="experience" class="form-control" class="experience">
+        <input type="text" placeholder="Pengalaman" id="experience" class="form-control" class="experience" data-parsley-group="first" required="">
       </div>
       <label class="col-sm-2 control-label">
         <span class="pull-left">
@@ -230,7 +228,7 @@
         </span>
       </label>
       <div class="col-sm-6">
-        <textarea class="form-control" id="skill" name="skill"></textarea>
+        <textarea class="form-control" id="skill" name="skill" data-parsley-group="first" required=""></textarea>
       </div>
     </div>
     <div class="form-group">
@@ -240,7 +238,7 @@
         </span>
       </label>
       <div class="col-sm-6">
-        <textarea class="form-control" id="spec_requirment" name="spec_requirment"></textarea>
+        <textarea class="form-control" id="spec_requirment" name="spec_requirment" data-parsley-group="first" required=""></textarea>
       </div>
     </div>
   </div>
@@ -290,10 +288,10 @@
       });
 
       //Autocomplate
-      $('#jabatan').typeahead({source:[{id: "Penghasil", name: "Penghasil"}, 
-                  {id: "Pemanen", name: "Pemanen"},
-                  {id: "Mandor", name: "Mandor"}], 
-                  autoSelect: true});
+      // $('#jbt').typeahead({source:[{id: "Penghasil", name: "Penghasil"}, 
+      //             {id: "Pemanen", name: "Pemanen"},
+      //             {id: "Mandor", name: "Mandor"}], 
+      //             autoSelect: true});
 
       $('#company').typeahead({source:[{id: "GAWI", name: "GAWI"}, 
                   {id: "ESTATE", name: "ESTATE"}], 
@@ -310,7 +308,57 @@
       $('#head').typeahead({source:[{id: "SM", name: "SM"}, 
                   {id: "EM", name: "EM"}], 
                   autoSelect: true});
+
+      $.get('api/getOptLevelJabatan')
+          .done(function(data){
+            $("#level_jbt").select2({
+              placeholder : "Level Jabatan",
+              allowClear:true,
+              data : data
+            });
+            $("#level_jbt").val("").change();
+        });
+
+      // $.get('js/data.json')
+      //     .done(function(data){
+      //       $("#jbt").select2({
+      //         placeholder : "Jabatan",
+      //         allowClear:true,
+      //         data : data
+      //       });
+      //       $("#level_jbt").val("").change();
+      //   })
+
+      $("#jbt").select2({
+        placeholder : "Pilih Jabatan",
+        allowClear  : true,
+        ajax : {
+          url : function(params){
+            return 'api/getOptJabatan/'+params.term;
+          },
+          method : 'GET',
+          dataType : 'JSON',
+          delay : 250,
+          processResults : function(data, params) {
+            params.page = params.page || 1;
+            return {
+              results : $.map(data, function(obj) {
+                return {
+                  id : obj.JOB_CODE,
+                  text : obj.JOB_CODE+' - '+obj.JOB_TYPE
+                }
+              }),
+              pagination : {
+                more : (params.page * 2) < data.total_count
+              }
+            };
+          },
+          cache : true
+        },minimumInputLength:1
+      });
+
     });
+
 
       function setStorage(){
         $('#company').keyup(function(){
@@ -429,5 +477,13 @@
           // $('#end_contract').prop('disabled', false);
         }
       }
+
+      /*$(function () {
+        $('#formFptk').parsley().on('field:validated', function() {
+          var ok = $('.parsley-error').length === 0;
+          $('.bs-callout-info').toggleClass('hidden', !ok);
+          $('.bs-callout-warning').toggleClass('hidden', ok);
+        })
+      });*/
 </script>
 @endpush()

@@ -1,54 +1,66 @@
 	<!-- Create Demosi Fields -->
 <div class="box-body">
-
 	<!-- panel header -->
 	<div class="panel panel-default">
 		<div class="panel-body">
-			<div class="form-group">
-				<div class="col-md-6 md10">
-					<label for="iNikNasional">NIK Nasional</label>
-					<input type="text" class="form-control" placeholder="" id="iNikNasional" name="iNikNasional" value="{{ isset($dHeader) ? $dHeader->nik_national : ''  }}" {{ $field_rules['iNikNasional'] }}>
-				</div>
-				<div class="col-md-6">
-					<label id="iTanggalMasuk">Tanggal Masuk Kerja:</label>
-					<div class="input-group date">
-						<div class="input-group-addon">
-							<i class="fa fa-calendar"></i>
-						</div>
-						<input type="text" class="form-control pull-right datepicker" id="iTanggalMasukKerja" name="iTanggalMasukKerja"  value="{{ isset($dHeader) ? (date('d-M-Y', strtotime($dHeader->join_date))) : ''  }}" {{ $field_rules['iTanggalMasukKerja'] }}>
-					</div>
-				</div>
+			<div class="row">
+			  <div class="col-md-6 md10">
+			    <div class="form-group">
+			    <label for="iNikNasional">NIK Nasional</label>
+			    <input type="text" class="form-control" placeholder="" id="iNikNasional" name="iNikNasional" value="{{ isset($dHeader) ? $dHeader->nik_national : ''  }}" {{ $field_rules['iNikNasional'] }}>
+			    </div>
+			  </div>
+			  <div class="col-md-6">
+			    <div class="form-group">
+			    <label id="iTanggalMasuk">Tanggal Masuk Kerja:</label>
+			    <div class="input-group date">
+			      <div class="input-group-addon">
+			        <i class="fa fa-calendar"></i>
+			      </div>
+			      <input type="text" class="form-control pull-right datepicker" id="iTanggalMasukKerja" name="iTanggalMasukKerja"  value="{{ isset($dHeader) ? (date('d-M-Y', strtotime($dHeader->join_date))) : ''  }}" {{ $field_rules['iTanggalMasukKerja'] }}>
+			    </div>
+			    </div>
+			  </div>
 			</div>
-			<div class="form-group">
-				<div class="col-md-6 md10" id="bloodhound">
+			<div class="row">
+				<div class="col-md-6 md10">
+					<div class="form-group" id="bloodhound">
 					<label for="iNikSap">NIK SAP</label>
 					<input type="text" class="form-control tags {{ isset($val_error) ? $val_error['iNikSap'] : '' }}" placeholder="" id="iNikSap" name="iNikSap" value="{{ isset($dHeader) ? $dHeader->nik_sap : ''  }}"  {{ $field_rules['iNikSap'] }}>
+					</div>
 				</div>
 				<div class="col-md-6">
+					<div class="form-group">
 					<label for="iTanggalEfektif">Tanggal Efektif Berlaku:</label>
 					<!--Otomatis awal bulan jika karyawan non staff)-->
 					<div class="input-group date">
 						<div class="input-group-addon">
 							<i class="fa fa-calendar"></i>
 						</div>
-						<input type="text" class="form-control pull-right datepicker" id="iTanggalEfektifBerlaku" name="iTanggalEfektifBerlaku"  value="{{ isset($dHeader) ? (date('d-M-Y', strtotime($dHeader->effective_date))) : ''  }}" {{ $field_rules['iTanggalEfektifBerlaku'] }}>
+						<input type="text" class="form-control pull-right tglberlaku" id="iTanggalEfektifBerlaku" name="iTanggalEfektifBerlaku"  value="{{ isset($dHeader) ? (date('d-M-Y', strtotime($dHeader->effective_date))) : ''  }}" {{ $field_rules['iTanggalEfektifBerlaku'] }}>
+					</div>
 					</div>
 				</div>
 			</div>
-			<div class="form-group">
+			<div class="row">
 				<div class="col-md-6 md10">
+					<div class="form-group">
 					<label for="iNama">Nama</label>
 					<input type="text" class="form-control" placeholder="" id="iNama" name="iNama"  value="{{ isset($dHeader) ? $dHeader->employee_name : ''  }}" {{ $field_rules['iNama'] }}>
+					</div>
 				</div>
 				<div class="col-md-6">
+					<div class="form-group">
 					<label for="iNomorPtk">Nomor PTK</label>
 					<!-- nomor PTK ambil dari table PTK -->
-					<select class="form-control select2" style="width: 100%;" id="iNomorPtk" name="iNomorPtk" {{ $field_rules['iNomorPtk'] }}>
-						<option>PTK/0920903123490347</option>
-						<option>PTK/0920903123490348</option>
-						<option>PTK/0920903123490349</option>
-						<option>PTK/0920903123490350</option>
+					<select class="form-control select2" placeholder="pilih PTK" style="width: 100%;" id="iNomorPtk" name="iNomorPtk" {{ $field_rules['iNomorPtk'] }}>
+						<option value="0">Tidak Ada PTK</option>
+						<option value="1">PTK/0920903123490347</option>
+						<option value="2">PTK/0920903123490348</option>
+						<option value="3">PTK/0920903123490349</option>
+						<option value="4">PTK/0920903123490350</option>
 					</select>
+					</div>
 				</div>
 			</div>
 		</div>
@@ -84,6 +96,8 @@
 							</span>
 							<i class="fa fa-caret-down"></i>
 						</button>
+						<input id="sqldate_from" type="hidden" name="sqldate_from" />
+						<input id="sqldate_to" type="hidden" name="sqldate_to" />
 					</div>
 					{{--
 					<div class="input-group">
@@ -91,6 +105,7 @@
 							<i class="fa fa-calendar"></i>
 						</div>
 						<input type="text" class="form-control pull-right reservation" id="iPeriodePengangkatanKaryawanKontrak" name="iPeriodePengangkatanKaryawanKontrak" value="{{ isset($dHeader) ? $dHeader->effective_date : ''  }}" {{ $field_rules['iPeriodePengangkatanKaryawanKontrak'] }}>
+
 					</div>
 					--}}
 				</div>
@@ -102,7 +117,7 @@
 	<div class="panel panel-default">
 		<div class="panel-body">
 			<div class="form-group">
-				<div class="col-xs-12" id="no-more-tables">
+				<div class="col-xs-12 table-responsive">
 					<table id="demosi-table" class="table table-bordered cf">
 						<thead class="cf">
 							<tr>
@@ -233,8 +248,8 @@
 	<div class="panel-heading">Perubahan Status</div>
 	<div class="panel-body">
 		<div class="form-group">
-			<div class="col-xs-12">
-				<table id="demosi-table" class="table table-bordered responsive">
+			<div class="col-xs-12 table-responsive">
+				<table id="demosi-table" class="table table-bordered">
 					<thead>
 						<tr>
 							<th style="width:5%;">No</th>
@@ -248,10 +263,7 @@
 							<td>1</td>
 							<td>Perusahaan</td>
 							<td>
-								<select class="form-control select2 company" id="iPerusahaanOld" name="iPerusahaanOld" {{ $field_rules['iPerusahaanOld'] }}>
-									{{ isset($dDetail['iPerusahaanOld']) ? '<option>'.$dDetail['iPerusahaanOld'].'</option>' : ''  }}
-									{{ isset($dDetail['iPerusahaanNew']) ? '<option>'.$dDetail['iPerusahaanNew'].'</option>' : ''  }}
-								</select>
+                            	<input type="text" class="form-control" id="iPerusahaanOld" name="iPerusahaanOld" readonly value="{{ isset($dDetail['iPerusahaanOld']) ? $dDetail['iPerusahaanOld'] : '' }}">
 							</td>
 							<td>
 								<select class="form-control select2 company" id="iPerusahaanNew" name="iPerusahaanNew" {{ $field_rules['iPerusahaanNew'] }}>
@@ -264,10 +276,7 @@
 							<td>2</td>
 							<td>Bisnis Area/Divisi</td>
 							<td>
-								<select class="form-control select2 business-area" id="iBisnisAreaOld" name="iBisnisAreaOld" {{ $field_rules['iBisnisAreaOld'] }}>
-									{{ isset($dDetail['iBisnisAreaOld']) ? '<option>'.$dDetail['iBisnisAreaOld'].'</option>' : ''  }}
-									{{ isset($dDetail['iBisnisAreaNew']) ? '<option>'.$dDetail['iBisnisAreaNew'].'</option>' : ''  }}
-								</select>
+                            	<input type="text" class="form-control" id="iBisnisAreaOld" name="iBisnisAreaOld" readonly value="{{ isset($dDetail['iBisnisAreaOld']) ? $dDetail['iBisnisAreaOld'] : '' }}">
 							</td>
 							<td>
 								<select class="form-control select2 business-area" id="iBisnisAreaNew" name="iBisnisAreaNew" {{ $field_rules['iBisnisAreaNew'] }}>
@@ -280,10 +289,7 @@
 							<td>3</td>
 							<td>Afdeling/Departemen</td>
 							<td>
-								<select class="form-control select2 afdeling" id="iAfdelingOld" name="iAfdelingOld" {{ $field_rules['iAfdelingOld'] }}>
-									{{ isset($dDetail['iAfdelingOld']) ? '<option>'.$dDetail['iAfdelingOld'].'</option>' : ''  }}
-									{{ isset($dDetail['iAfdelingNew']) ? '<option>'.$dDetail['iAfdelingNew'].'</option>' : ''  }}
-								</select>
+                            	<input type="text" class="form-control" id="iAfdelingOld" name="iAfdelingOld" readonly value="{{ isset($dDetail['iAfdelingOld']) ? $dDetail['iAfdelingOld'] : '' }}">
 							</td>
 							<td>
 								<select class="form-control select2 afdeling" id="iAfdelingNew" name="iAfdelingNew" {{ $field_rules['iAfdelingNew'] }}>
@@ -296,10 +302,7 @@
 							<td>4</td>
 							<td>Jabatan</td>
 							<td>
-								<select class="form-control select2 job-code" id="iJabatanOld" name="iJabatanOld" {{ $field_rules['iJabatanOld'] }}>
-									{{ isset($dDetail['iJabatanOld']) ? '<option>'.$dDetail['iJabatanOld'].'</option>' : ''  }}
-									{{ isset($dDetail['iJabatanNew']) ? '<option>'.$dDetail['iJabatanNew'].'</option>' : ''  }}
-								</select>
+                            	<input type="text" class="form-control" id="iJabatanOld" name="iJabatanOld" readonly value="{{ isset($dDetail['iJabatanOld']) ? $dDetail['iJabatanOld'] : '' }}">
 							</td>
 							<td>
 								<select class="form-control select2 job-code"  id="iJabatanNew" name="iJabatanNew" {{ $field_rules['iJabatanNew'] }}>
@@ -312,15 +315,21 @@
 							<td>5</td>
 							<td>Golongan</td>
 							<td>
-								<select class="form-control select2 job-type" id="iGolonganOld" name="iGolonganOld" {{ $field_rules['iGolonganOld'] }}>
-									{{ isset($dDetail['iGolonganOld']) ? '<option>'.$dDetail['iGolonganOld'].'</option>' : ''  }}
-									{{ isset($dDetail['iGolonganNew']) ? '<option>'.$dDetail['iGolonganNew'].'</option>' : ''  }}
-								</select>
+                            	<input type="text" class="form-control" id="iGolonganOld" name="iGolonganOld" readonly value="{{ isset($dDetail['iGolonganOld']) ? $dDetail['iGolonganOld'] : '' }}">
 							</td>
 							<td>
 								<select class="form-control select2 job-type" id="iGolonganNew" name="iGolonganNew" {{ $field_rules['iGolonganNew'] }}>
-									{{ isset($dDetail['iGolonganOld']) ? '<option>'.$dDetail['iGolonganOld'].'</option>' : ''  }}
-									{{ isset($dDetail['iGolonganNew']) ? '<option>'.$dDetail['iGolonganNew'].'</option>' : ''  }}
+									{{-- isset($dDetail['iGolonganOld']) ? '<option>'.$dDetail['iGolonganOld'].'</option>' : ''  --}}
+									{{-- isset($dDetail['iGolonganNew']) ? '<option>'.$dDetail['iGolonganNew'].'</option>' : ''  --}}
+
+									<option value="0">1A</option>
+									<option value="1">1B</option>
+									<option value="2">2A</option>
+									<option value="3">2B</option>
+									<option value="4">3A</option>
+									<option value="5">3B</option>
+									<option value="6">4A</option>
+									<option value="7">4B</option>
 								</select>
 							</td>
 						</tr>
@@ -328,10 +337,7 @@
 							<td>6</td>
 							<td>Status Karyawan</td>
 							<td>
-								<select class="form-control select2 emp-work-status" id="iStatusKaryawanOld" name="iStatusKaryawanOld" {{ $field_rules['iStatusKaryawanOld'] }}>
-									{{ isset($dDetail['iStatusKaryawanOld']) ? '<option>'.$dDetail['iStatusKaryawanOld'].'</option>' : ''  }}
-									{{ isset($dDetail['iStatusKaryawanNew']) ? '<option>'.$dDetail['iStatusKaryawanNew'].'</option>' : ''  }}
-								</select>
+                            	<input type="text" class="form-control" id="iStatusKaryawanOld" name="iStatusKaryawanOld"readonly value="{{ isset($dDetail['iStatusKaryawanOld']) ? $dDetail['iStatusKaryawanOld'] : '' }}">
 							</td>
 							<td>
 								<select class="form-control select2 emp-work-status" id="iStatusKaryawanNew" name="iStatusKaryawanNew" {{ $field_rules['iStatusKaryawanNew'] }}>
@@ -446,11 +452,12 @@
 		<div class="col-xs-6 text-right">
 			<input type="hidden" name="_token" value="{{ csrf_token() }}">
 			<input type="hidden" name="h_id" value="{{ isset($input['h_id']) ? $input['h_id'] : ''  }}">
+			<input type="hidden" id="iDocType" name="iDocType" value="{{ isset($dHeader) ? $dHeader->doc_code : ''  }}">
 @if($form_type === 'approve')
 			<input type="hidden" name="form_type" value="approve">
-			<button type="button" class="btn btn-success" data-toggle="modal" data-target="#modal-ask" id="submitBtn">Tanya</button>
-			<button type="button" class="btn btn-success" data-toggle="modal" data-target="#modal-confirmation" id="submitBtn">Setuju</button>
-			<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modal-rejection" id="submitBtn">Tolak</button>
+			<button type="button" class="btn btn-warning" data-toggle="modal" data-target="#modal-ask" id="askBtn">Tanya</button>
+			<button type="button" class="btn btn-success" data-toggle="modal" data-target="#modal-confirmation" id="agreeBtn">Setuju</button>
+			<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modal-rejection" id="rejectBtn">Tolak</button>
 @else
 			<button type="button" class="btn btn-success" data-toggle="modal" data-target="#modal-confirmation" id="submitBtn">Ajukan</button>
 			<a href="{!! route('demosi.index') !!}" class="btn btn-danger">Batal</a>
