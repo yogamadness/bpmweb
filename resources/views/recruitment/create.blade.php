@@ -1,106 +1,190 @@
 @extends('layouts-master.master')
 
-@section('page-css')
-    <link href="{{ asset('/plugins/datatables/dataTables.bootstrap.css') }}" rel="stylesheet" type="text/css" />
-  <link href="{{ asset('plugins/datatables/extensions/Responsive/css/dataTables.responsive.css') }}" rel="stylesheet" type="text/css" />
-    <link href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" rel="stylesheet" type="text/css" />
-@endsection
+@section('tittle', 'Input Karyawan Baru')
+
+@section('cascanding')
+<link rel="stylesheet" href="dist/plugins/datetimepicker/css/bootstrap-datetimepicker.min.css">
+<link rel="stylesheet" type="text/css" href="dist/Parsley.js-2.6.0/src/parsley.css">
+@endsection()
 
 @section('content')
 <div class="row">
   <div class="col-sm-12">
-    <h1>Formulir Penginputan Data Personalia
+    <h1>FORMULIR PENGINPUTAN TENAGA KERJA {{ Session::get('area_code') }}
     </h1>
-
+    
   </div>
 </div>
 <div class="row">
-    <div class="col-xs-12">
-        <div class="box">
-            <div class="box-header">
-                <h3 class="box-title">HC - Outstanding Tasks</h3>
-                <div class="box-tools pull-right">
-                  <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
-                </div>
-            </div>
+  <div class="col-md-12">
+    <!-- general form elements -->
+    <div class="box box-success"  id="formtambah">
+      <!-- Permintaan Tenaga Kerja -->
+      <div class="box-header with-border">
+        <h3 class="box-title"><b>Permintaan Tenaga Kerja</b></h3>
+      </div>
+      <!-- /.box-header -->
+      <div class="box-body">
+        <form enctype="multipart/form-data" id="formFptk" class="form-horizontal" name="formFptk">
+          <input type="hidden" name="tipePtk" id="tipePtk">
+         
+          <div class="fptk">
 
-            <div class="box-body">
-            <a class="btn btn-primary pull-right" style="margin-top: -10px;margin-bottom: 5px" href="{!! route('sanksi.create') !!}">Add New</a>
-                    @include('sanksi.table')
-            </div>
-        </div>
+          </div>
+         
+        </form>
+      </div>
+      <!-- /.box-body -->
+      <div class="box-footer">
+      <button class="btn btn-default" type="submit">Batal</button>
+      <button class="btn btn-success pull-right" type="button" id="ajukan">Ajukan</button>
+      </div><!-- /.box-footer -->
     </div>
+  </div>
 </div>
 @endsection
-@section('javascript-form')
-<script src="{{ asset('/plugins/datatables/jquery.dataTables.min.js') }}" type="text/javascript"></script>
-<script src="{{ asset('/plugins/datatables/dataTables.bootstrap.min.js') }}" type="text/javascript"></script>
-<script src="{{ asset('/plugins/datatables/extensions/Responsive/js/dataTables.responsive.min.js') }}" type="text/javascript"></script>
-<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js" type="text/javascript"></script>
-<script src="{{ asset('/plugins/slimScroll/jquery.slimscroll.min.js') }}" type="text/javascript"></script>
-<script src="{{ asset('/plugins/fastclick/fastclick.js') }}" type="text/javascript"></script>    
+
+@push('js')
+<!-- bootstrap datepicker -->
+<script src="dist/plugins/datetimepicker/js/moment.min.js"></script>
+<script src="dist/plugins/datetimepicker/js/bootstrap-datetimepicker.min.js"></script>
+<script src="dist/plugins/Typeahead-master/bootstrap3-typeahead.js"></script>
+<script src="dist/plugins/select2/select2.full.js"></script>
+<script type="text/javascript" src="dist/plugins/parsley/js/parsley-2.1.2.min.js"></script>
+<script src="dist/plugins/parsley/js/id.js"></script>
 
 <script type="text/javascript">
-  $(document).ready(function (){
-       var table = $('table.table').DataTable({
-          'columnDefs': [{
-             'targets': [0, 1],
-             'searchable': false,
-             'orderable': false,
-             'className': 'dt-body-center',
-             'render': function (data, type, full, meta){
-                 return '<input type="checkbox" name="id[]" value="' + $('<div/>').text(data).html() + '">';
-             }
-          }],
-          'responsive':[true],
-          'order': [[2, 'asc']]
-       });
+  $('#ajukan').click(function(){
+    // $('#formFptk').parsley().validate("first");
+    // if ($('#formFptk').parsley().isValid("first")) {
+    //   $('#formFptk').parsley().destroy();
+    //   console.log('valid');
+    // } else {
+    //   console.log('not valid');
+    // }
+
+    $.ajaxSetup({
+      headers: {
+          'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+      }
+    });
+    var formdata = new FormData();
+
+    var ins = $("#lampiran");
+    // var count = ins.files.length;
+debugger;
+    console.log(ins.length);
+    for(var x=0;x<ins;x++){
+      // formdata.append);
+      console.log(document.getElementByName("lampiran").files[x]+'-'+x);
+    }
+
+    // console.log(formdata);
+
+    // var data = $("#formFptk").serializeArray();
+    // $.each(data,function(key,input){
+    //       formdata.append(input.name,input.value);
+    // });
+
+    // $.ajax({
+    //   url   : 'fptk/save',
+    //   method  : 'post',
+    //   data  : formdata,
+    //   contentType: false,
+    //   processData: false,
+    //   success : function(data) {
+
+    //   },
+    //   error   : function() {
+    //     console.log('gagal');
+    //   }
+    // });
     
-       // Handle click on "Select all" control
-       $('#r-select-all, #a-select-all').on('click', function(){
-          // Get all rows with search applied
-          var rows = table.rows({ 'search': 'applied' }).nodes();
-          // Check/uncheck checkboxes for all rows in the table
-          $('input[type="checkbox"]', rows).prop('checked', this.checked);
-       });
-       
-       
-       // Handle click on checkbox to set state of "Select all" control
-       $('#example1 tbody').on('change', 'input[type="checkbox"]', function(){
-          // If checkbox is not checked
-          if(!this.checked){
-             var el = $('#r-select-all, #a-select-all').get(0);
-             // If "Select all" control is checked and has 'indeterminate' property
-             if(el && el.checked && ('indeterminate' in el)){
-                // Set visual state of "Select all" control 
-                // as 'indeterminate'
-                el.indeterminate = true;
-             }
-          }
-       });
     
-       // Handle form submission event
-       $('#frm-example').on('submit', function(e){
-          var form = this;
-    
-          // Iterate over all checkboxes in the table
-          table.$('input[type="checkbox"]').each(function(){
-             // If checkbox doesn't exist in DOM
-             if(!$.contains(document, this)){
-                // If checkbox is checked
-                if(this.checked){
-                   // Create a hidden element 
-                   $(form).append(
-                      $('<input>')
-                         .attr('type', 'hidden')
-                         .attr('name', this.name)
-                         .val(this.value)
-                   );
-                }
-             } 
-          });
-       });
-    
-    }); 
+  }); 
+
+  //include form
+  $('#jbt').change(function(){
+    // $('#fptk').html().remove();
+    var level = $('#level_jbt').val();
+    var value = this.value;
+    var low = value.toLowerCase();
+    var cek = low.match(/mandor/);
+      $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+      });
+
+      if(low == 'pemanen' && level == 'ENS'){
+        $.post('fptk', { tipePtk: 'estateNonStaffPemanen' })
+          .done(function(data){
+            $('.fptk').html(data);
+            $('#tipePtk').val('estateNonStaffPemanen');
+        });
+        
+      }
+      if(cek && level == 'ENS'){
+        $.post('fptkensfm')
+          .done(function(data){
+            $('.fptk').html(data);
+            $('#tipePtk').val('estateNonStaffMandor');
+        });
+        
+      }
+  });
+
+  $('#level_jbt').change(function(){
+    $.ajaxSetup({
+      headers: {
+          'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+      }
+    });
+
+    var level = $('#level_jbt').val();
+    if(level == 'ENS'){
+      $.post('fptkensr')
+        .done(function(data){
+          $('.fptk').html(data);
+          $('#tipePtk').val('estateNonStaffRawat');
+      });
+      
+    }
+    if(level == 'EST'){
+      $.post('fptkes')
+        .done(function(data){
+          $('.fptk').html(data);
+          $('#tipePtk').val('estateStaff');
+      });      
+    }
+    if(level == 'MST'){
+      $.post('fptkms')
+        .done(function(data){
+          $('.fptk').html(data);
+          $('#tipePtk').val('millStaff');
+      });
+      
+    }
+    if(level == 'MNS'){
+      $.post('fptkmns')
+        .done(function(data){
+          $('.fptk').html(data);
+          $('#tipePtk').val('millNonStaff');
+      });      
+    }
+    if(level == 'ROS'){
+      $.post('fptkro')
+        .done(function(data){
+          $('.fptk').html(data);
+          $('#tipePtk').val('regionalOffice');
+      });      
+    }
+  });
+
+  $("#plus").click(function(){
+    $("#lampiran").clone().appendTo("#file");
+  });
+      
+
 </script>
-@stop
+@endpush()

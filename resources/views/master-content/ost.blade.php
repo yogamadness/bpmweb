@@ -1,6 +1,6 @@
 @extends('layouts-master.master')
 
-@section('title', 'OutStanding Task')
+@section('title', '')
 
 @section('content')
 
