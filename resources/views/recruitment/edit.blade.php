@@ -81,7 +81,6 @@
           <div class="col-md-12">
             <div class="row">
               <div class="col-md-6">
-                <form role="form">
                   <div class="form-group">
                      
                     <label for="no_ktp">
@@ -268,7 +267,7 @@
                      <input type="tel" id="no_hp" class="form-control">
                   </div>
 
-                   <div class="form-group">
+                  <div class="form-group">
                       <label for="marital">
                         Status Pernikahan
                       </label>
@@ -303,13 +302,6 @@
 
 
 
-
-
-
-
-
-
-                </form>
               </div>
               <div class="col-md-6">
                 <form role="form">
@@ -351,7 +343,7 @@
             </div>
             <div class="row">
               <div class="col-md-12">
-                 <span class="label label-default">Label</span>
+                 <span class="label label-default">Susunan Keluarga</span>
                 <table class="table">
                   <thead>
                     <tr>
