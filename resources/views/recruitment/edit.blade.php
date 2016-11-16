@@ -1484,30 +1484,29 @@
 
 
       </div>
-        </form>
       </div>
       <!-- /.box-body -->
       <div class="box-footer">
       <div class="row">
           <div class="col-md-12">
               
-                <button class="btn btn-danger" type="button" id="tolak">Tolak</button>
+                <button class="btn btn-danger" type="submit" id="tolak">Tolak</button>
               
 
              
-                  <button class="btn btn-success" type="button" id="ajukan">Ajukan</button>
+                  <button class="btn btn-success" type="submit" id="ajukan">Ajukan</button>
               
               
               
-                  <button class="btn btn-primary " type="button" id="kembali">Kembali</button>
-              
-
-              
-                  <button class="btn btn-info " type="button" id="tanya">tanya</button>
+                  <button class="btn btn-primary " type="submit" id="kembali">Kembali</button>
               
 
               
-                  <button class="btn btn-success " type="button" id="kirim">kirim</button>
+                  <button class="btn btn-info " type="submit" id="tanya">tanya</button>
+              
+
+              
+                  <button class="btn btn-success " type="submit" id="kirim">kirim</button>
               
             
           </div>
@@ -1516,6 +1515,7 @@
     </div>
   </div>
 </div>
+</form>
 @endsection
 
 @push('js')
