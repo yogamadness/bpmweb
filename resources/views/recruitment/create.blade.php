@@ -25,9 +25,9 @@
       </div>
       <!-- /.box-header -->
       <div class="box-body">
-        <form enctype="multipart/form-data" id="formFptk" class="form-horizontal" name="formFptk">
+        <form enctype="multipart/form-data" id="formFptk" class="form-horizontal" name="formFptk" action="store" method="post">
           <input type="hidden" name="tipePtk" id="tipePtk">
-         
+          <input type="hidden" name="_token" value="{!! csrf_token() !!}">
           <div class="fptk">
 
           </div>
@@ -46,7 +46,7 @@
                 </span>
               </label>
               <div class="col-sm-7">
-                <select class="form-control" id="no_ptk" name="no_ptk" data-parsley-group="first" required=""/>
+                <select class="form-control" id="no_ptk" name="no_ptk" data-parsley-group="first" />
                 </select>
               </div>
               
@@ -121,7 +121,7 @@
 
     
         <div class="col-md-6">
-          <img alt="Bootstrap Image Preview" src="http://lorempixel.com/140/140/" class="img-thumbnail" />
+          <img alt="Bootstrap Image Preview" src="" class="img-thumbnail" />
           + tambah foto
         </div>
       </div>
@@ -134,19 +134,19 @@
 
       <div class="row">
         <div class="col-md-3">
-          <img alt="Bootstrap Image Preview" src="http://lorempixel.com/140/140/" class="img-rounded" />
+          <img alt="Bootstrap Image Preview" src="" class="img-rounded" />
           + tambah ktp
         </div>
         <div class="col-md-3">
-          <img alt="Bootstrap Image Preview" src="http://lorempixel.com/140/140/" class="img-rounded" />
+          <img alt="Bootstrap Image Preview" src="" class="img-rounded" />
           + tambah kk
         </div>
         <div class="col-md-3">
-          <img alt="Bootstrap Image Preview" src="http://lorempixel.com/140/140/" class="img-rounded" />
+          <img alt="Bootstrap Image Preview" src="" class="img-rounded" />
           + tambah npwp
         </div>
         <div class="col-md-3">
-          <img alt="Bootstrap Image Preview" src="http://lorempixel.com/140/140/" class="img-rounded" />
+          <img alt="Bootstrap Image Preview" src="" class="img-rounded" />
           + tambah sim
         </div>
       </div>
@@ -199,7 +199,7 @@
                 </span>
               </label>
               <div class="col-sm-8">
-                <select class="form-control" id="agama" name="agama" data-parsley-group="first" required=""/>
+                <select class="form-control" id="agama" name="agama" data-parsley-group="first" />
                 </select>
               </div>
             </div>
@@ -245,7 +245,7 @@
                 </span>
               </label>
               <div class="col-sm-8">
-                <select class="form-control" id="blood" name="blood" data-parsley-group="first" required=""/>
+                <select class="form-control" id="blood" name="blood" data-parsley-group="first" />
                 </select>
               </div>
             </div>
@@ -288,7 +288,7 @@
               </label>
               <div class="col-sm-8">
               <div class="input-group date" id="datetimepicker1">
-                <input type="text" class="form-control" id="dteob" name="dteob" data-parsley-group="first" required=""> 
+                <input type="text" class="form-control" id="dteob" name="dteob" data-parsley-group="first" > 
                 <span class="input-group-addon">
                 <span class="glyphicon glyphicon-calendar"></span>
                 </span>
@@ -311,7 +311,7 @@
                 </span>
               </label>
               <div class="col-sm-10">
-                <textarea class="form-control" id="addrs" name="addrs" data-parsley-group="first" required=""></textarea>
+                <textarea class="form-control" id="addrs" name="addrs" data-parsley-group="first" ></textarea>
               </div>
             </div>
    
@@ -403,7 +403,7 @@
                 </span>
               </label>
               <div class="col-sm-10">
-                <textarea class="form-control" id="addrs2" name="addrs2" data-parsley-group="first" required=""></textarea>
+                <textarea class="form-control" id="addrs2" name="addrs2" data-parsley-group="first" ></textarea>
               </div>
             </div>
    
@@ -577,13 +577,13 @@
             1
             </td>
             <td>
-            <input type="text" name='name0'  placeholder='Name' class="form-control"/>
+            <input type="text" name='EPH_CODE[0]'  placeholder='Name' class="form-control"/>
             </td>
             <td>
-            <input type="text" name='mail0' placeholder='Mail' class="form-control"/>
+            <input type="text" name='FULLNAME[0]' placeholder='Mail' class="form-control"/>
             </td>
             <td>
-            <input type="text" name='mobile0' placeholder='Mobile' class="form-control"/>
+            <input type="text" name='POB[0]' placeholder='Mobile' class="form-control"/>
             </td>
           </tr>
                     <tr id='addr1'></tr>
@@ -1352,7 +1352,7 @@ debugger;
        $(document).ready(function(){
       var i=1;
      $("#add_row").click(function(){
-      $('#addr'+i).html("<td>"+ (i+1) +"</td><td><input name='name["+i+"][name]' type='text' placeholder='Name' class='form-control input-md'  /> </td><td><input  name='mail["+i+"][mail]' type='text' placeholder='Mail'  class='form-control input-md'></td><td><input  name='mobile["+i+"][mobile]' type='text' placeholder='Mobile'  class='form-control input-md'></td>");
+      $('#addr'+i).html("<td>"+ (i+1) +"</td><td><input name='EPH_CODE["+i+"]' type='text' placeholder='Name' class='form-control input-md'  /> </td><td><input  name='FULLNAME["+i+"]' type='text' placeholder='Mail'  class='form-control input-md'></td><td><input  name='POB["+i+"]' type='text' placeholder='Mobile'  class='form-control input-md'></td>");
 
       $('#tab_logic').append('<tr id="addr'+(i+1)+'"></tr>');
       i++; 
