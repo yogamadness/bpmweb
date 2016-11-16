@@ -1093,7 +1093,7 @@
       </div><!-- /.box-footer -->
     </div>
   </div>
-</div>m,    jmjswa
+</div>
 @endsection
 
 @push('js')
