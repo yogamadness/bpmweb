@@ -554,96 +554,43 @@
         <div class="col-md-12">
           <span class="label label-default">Susunan Keluarga</span>
 
-          <table class="table">
-            <thead>
-              <tr>
-                <th>
-                  #
-                </th>
-                <th>
-                  Product
-                </th>
-                <th>
-                  Payment Taken
-                </th>
-                <th>
-                  Status
-                </th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>
-                  1
-                </td>
-                <td>
-                  TB - Monthly
-                </td>
-                <td>
-                  01/04/2012
-                </td>
-                <td>
-                  Default
-                </td>
-              </tr>
-              <tr class="active">
-                <td>
-                  1
-                </td>
-                <td>
-                  TB - Monthly
-                </td>
-                <td>
-                  01/04/2012
-                </td>
-                <td>
-                  Approved
-                </td>
-              </tr>
-              <tr class="success">
-                <td>
-                  2
-                </td>
-                <td>
-                  TB - Monthly
-                </td>
-                <td>
-                  02/04/2012
-                </td>
-                <td>
-                  Declined
-                </td>
-              </tr>
-              <tr class="warning">
-                <td>
-                  3
-                </td>
-                <td>
-                  TB - Monthly
-                </td>
-                <td>
-                  03/04/2012
-                </td>
-                <td>
-                  Pending
-                </td>
-              </tr>
-              <tr class="danger">
-                <td>
-                  4
-                </td>
-                <td>
-                  TB - Monthly
-                </td>
-                <td>
-                  04/04/2012
-                </td>
-                <td>
-                  Call in to confirm
-                </td>
-              </tr>
-            </tbody>
-          </table>
+           <table class="table table-bordered table-hover" id="tab_logic">
+        <thead>
+          <tr >
+            <th class="text-center">
+              #
+            </th>
+            <th class="text-center">
+              Name
+            </th>
+            <th class="text-center">
+              Mail
+            </th>
+            <th class="text-center">
+              Mobile
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr id='addr0'>
+            <td>
+            1
+            </td>
+            <td>
+            <input type="text" name='name0'  placeholder='Name' class="form-control"/>
+            </td>
+            <td>
+            <input type="text" name='mail0' placeholder='Mail' class="form-control"/>
+            </td>
+            <td>
+            <input type="text" name='mobile0' placeholder='Mobile' class="form-control"/>
+            </td>
+          </tr>
+                    <tr id='addr1'></tr>
+        </tbody>
+      </table>
+  <a id="add_row" class="btn btn-default pull-left">Add Row</a><a id='delete_row' class="pull-right btn btn-default">Delete Row</a>
+        
         </div>
       </div>
 
@@ -1402,6 +1349,22 @@ debugger;
     $("#lampiran").clone().appendTo("#file");
   });
       
+       $(document).ready(function(){
+      var i=1;
+     $("#add_row").click(function(){
+      $('#addr'+i).html("<td>"+ (i+1) +"</td><td><input name='name["+i+"][name]' type='text' placeholder='Name' class='form-control input-md'  /> </td><td><input  name='mail["+i+"][mail]' type='text' placeholder='Mail'  class='form-control input-md'></td><td><input  name='mobile["+i+"][mobile]' type='text' placeholder='Mobile'  class='form-control input-md'></td>");
+
+      $('#tab_logic').append('<tr id="addr'+(i+1)+'"></tr>');
+      i++; 
+  });
+     $("#delete_row").click(function(){
+       if(i>1){
+     $("#addr"+(i-1)).html('');
+     i--;
+     }
+   });
+
+});
 
 </script>
 @endpush()
