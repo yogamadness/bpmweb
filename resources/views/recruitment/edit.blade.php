@@ -71,13 +71,13 @@
             </div>
             
         </div>
-        <div class="col-md-6">
+        <div class="col-md-6 center-block">
 
           <div class="form-group"> 
-                <img alt="Bootstrap Image Preview" src="http://lorempixel.com/140/140/" class="img-rounded col-sm-6"  /> 
+                <img alt="Bootstrap Image Preview" src="http://lorempixel.com/140/140/" class="img-responsive center-block"  /> 
                
-                <div class="col-sm-10">
-                     <input type="file" id="foto_ktp" value ="">      
+                <div class="col-sm-10 col-md-offset-4">
+                     <input type="file" id="foto" value ="">      
                 </div>
                 
          </div>
@@ -95,21 +95,30 @@
       <div class="row">
         <div class="col-md-12">
           <div class="row">
-            <div class="col-md-4">
+            <div class="col-md-3 ">
               <div class="form-group"> 
-                <img alt="Bootstrap Image Preview" src="http://lorempixel.com/140/140/" class="img-rounded" /> 
+                 <img alt="Bootstrap Image Preview" src="http://lorempixel.com/140/140/" class="img-rounded img-responsive center-block" /> 
+                <div class="input-group">
+                  <input type="file" id="foto_ktp" value ="" >    
+                </div>
+              </div>
+            </div>
+
+            <div class="col-md-3">
+              <div class="form-group"> 
+                <img alt="Bootstrap Image Preview" src="http://lorempixel.com/140/140/" class="img-rounded img-responsive center-block" /> 
                 <input type="file" id="foto_kk" value ="">       
               </div>
             </div>
-            <div class="col-md-4">
+            <div class="col-md-3">
                 <div class="form-group"> 
-                <img alt="Bootstrap Image Preview" src="http://lorempixel.com/140/140/" class="img-rounded" /> 
+                <img alt="Bootstrap Image Preview" src="http://lorempixel.com/140/140/" class="img-rounded img-responsive center-block" /> 
                 <input type="file" id="foto_npwp" value ="">       
               </div>
             </div>
-            <div class="col-md-4">
+            <div class="col-md-3">
                 <div class="form-group"> 
-                <img alt="Bootstrap Image Preview" src="http://lorempixel.com/140/140/" class="img-rounded" /> 
+                <img alt="Bootstrap Image Preview" src="http://lorempixel.com/140/140/" class="img-rounded img-responsive center-block" /> 
                 <input type="file" id="foto_sim" value ="">       
               </div>
             </div>
@@ -1354,6 +1363,117 @@
 
             
           </div>
+            <hr>
+          <div class="row">
+           <div class="col-md-12">
+            <span class="label label-default">Histori Transaksi</span>
+            <hr>
+            <table class="table">
+            <thead>
+              <tr>
+                <th>
+                  #
+                </th>
+                <th>
+                  Product
+                </th>
+                <th>
+                  Payment Taken
+                </th>
+                <th>
+                  Status
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>
+                  1
+                </td>
+                <td>
+                  TB - Monthly
+                </td>
+                <td>
+                  01/04/2012
+                </td>
+                <td>
+                  Default
+                </td>
+              </tr>
+              <tr class="active">
+                <td>
+                  1
+                </td>
+                <td>
+                  TB - Monthly
+                </td>
+                <td>
+                  01/04/2012
+                </td>
+                <td>
+                  Approved
+                </td>
+              </tr>
+              <tr class="success">
+                <td>
+                  2
+                </td>
+                <td>
+                  TB - Monthly
+                </td>
+                <td>
+                  02/04/2012
+                </td>
+                <td>
+                  Declined
+                </td>
+              </tr>
+              <tr class="warning">
+                <td>
+                  3
+                </td>
+                <td>
+                  TB - Monthly
+                </td>
+                <td>
+                  03/04/2012
+                </td>
+                <td>
+                  Pending
+                </td>
+              </tr>
+              <tr class="danger">
+                <td>
+                  4
+                </td>
+                <td>
+                  TB - Monthly
+                </td>
+                <td>
+                  04/04/2012
+                </td>
+                <td>
+                  Call in to confirm
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+
+           <div class="form-group">
+                    <label for="no_kk" class="col-sm-6">
+                      Tambah Catatan
+                    </label>
+
+                    <div class="col-sm-10">
+                        <textarea id="alamat_emp_br" class="form-control" rows="3"  /></textarea>
+                    </div>
+                     
+           </div>   
+
+        </div>
+
+          </div>
         </div>
       </div>
     </div>
@@ -1368,8 +1488,30 @@
       </div>
       <!-- /.box-body -->
       <div class="box-footer">
-      <button class="btn btn-default" type="submit">Batal</button>
-      <button class="btn btn-success pull-right" type="button" id="ajukan">Ajukan</button>
+      <div class="row">
+          <div class="col-md-12">
+              
+                <button class="btn btn-danger" type="button" id="tolak">Tolak</button>
+              
+
+             
+                  <button class="btn btn-success" type="button" id="ajukan">Ajukan</button>
+              
+              
+              
+                  <button class="btn btn-primary " type="button" id="kembali">Kembali</button>
+              
+
+              
+                  <button class="btn btn-info " type="button" id="tanya">tanya</button>
+              
+
+              
+                  <button class="btn btn-success " type="button" id="kirim">kirim</button>
+              
+            
+          </div>
+      </div>
       </div><!-- /.box-footer -->
     </div>
   </div>

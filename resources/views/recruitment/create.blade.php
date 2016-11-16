@@ -1,6 +1,6 @@
 @extends('layouts-master.master')
 
-@section('tittle', 'Input Karyawan Baru')
+@section('title', 'Input Karyawan Baru')
 
 @section('cascanding')
 <link rel="stylesheet" href="dist/plugins/datetimepicker/css/bootstrap-datetimepicker.min.css">
@@ -53,10 +53,10 @@
             </div>
             <div class="form-group">
                
-              <label for="jod" class="col-sm-5 control-label" >
-               <span class="pull-left">
+              <label for="jod" class="col-sm-5" >
+               
                 Jumlah orang dibutuhkan
-                </span>
+                
               </label>
               <div class="col-sm-5">
                 <input class="form-control" id="jod" type="text" /> 
@@ -81,10 +81,8 @@
 
             <div class="form-group">
                
-              <label for="jsod" class="col-sm-5 control-label">
-               <span class="pull-left">
+              <label for="jsod" class="col-sm-5 ">
                 Jumlah sisa orang dibutuhkan
-                </span>
               </label>
               <div class="col-sm-5">
                 <input class="form-control" id="jsod" type="text" /> 
@@ -120,11 +118,19 @@
               </div>
             </div>
         </div>
+
+    
         <div class="col-md-6">
           <img alt="Bootstrap Image Preview" src="http://lorempixel.com/140/140/" class="img-thumbnail" />
           + tambah foto
         </div>
       </div>
+
+      <div class="row">
+            <div class="col-md-12">
+                <hr>
+            </div>
+        </div>
 
       <div class="row">
         <div class="col-md-3">
@@ -144,6 +150,14 @@
           + tambah sim
         </div>
       </div>
+
+      <div class="row">
+            <div class="col-md-12">
+                <hr>
+            </div>
+      </div>
+
+
       <div class="row">
         <div class="col-md-6">
             <div class="form-group">
@@ -494,6 +508,8 @@
             </div>
 
         </div>
+
+
         <div class="col-md-6">
 
             <div class="form-group">
@@ -527,9 +543,17 @@
         </div>
       </div>
 
+       <div class="row">
+            <div class="col-md-12">
+                <hr>
+            </div>
+        </div>
+
 <!--                        begin of table                      -->      
       <div class="row">
         <div class="col-md-12">
+          <span class="label label-default">Susunan Keluarga</span>
+
           <table class="table">
             <thead>
               <tr>
@@ -622,8 +646,19 @@
           </table>
         </div>
       </div>
+
+
+      <div class="row">
+            <div class="col-md-12">
+                <hr>
+            </div>
+       </div>
+
       <div class="row">
         <div class="col-md-12">
+          
+          <span class="label label-default">Riwayat Pendidikan</span>
+
           <table class="table">
             <thead>
               <tr>
@@ -716,8 +751,16 @@
           </table>
         </div>
       </div>
+
+      <div class="row">
+            <div class="col-md-12">
+                <hr>
+            </div>
+       </div>
+
       <div class="row">
         <div class="col-md-12">
+          <span class="label label-default">Riwayat Pekerjaan</span>
           <table class="table table-condensed table-hover">
             <thead>
               <tr>
@@ -813,7 +856,7 @@
 <!--                        end of table                      -->
 
       <div class="row">
-        <div class="col-md-12">
+        <div class="col-md-12"> 
 
             <div class="form-group">
                
@@ -868,219 +911,318 @@
 
       <div class="row">
         <div class="col-md-10">
-            <div class="form-group">
-              <label for="month_prob" class="col-sm-4 control-label">
-              <span class="pull-left">
-                Bulan Kontrak/Probition
-              </span>
-              </label>
-              <div class="col-sm-5">
-                <input class="form-control" id="month_prob" type="text" name="month_prob" />
-              </div>
-            </div>
+             <span class="label label-default">Riwayat Pekerjaan</span>
+             <hr>
+           <div class="form-group">
+                    <label for="no_kk" class="col-sm-6">
+                      Bulan Kontrak/Probation
+                    </label>
 
-            <div class="form-group">
-              <label for="month_prob" class="col-sm-4 control-label">
-              <span class="pull-left">
-                Tanggal Expired Kontrak/Probition
-              </span>
-              </label>
-              <div class="col-sm-5">
-                <input class="form-control" id="month_prob" type="text" name="month_prob" />
-              </div>
-            </div>
+                    <div class="col-sm-4">
+                        <input type="date" id="bln_kontrak_br" class="form-control"  />
+                    </div>
+                     
+                </div> 
 
-            <div class="form-group">
-              <label for="month_prob" class="col-sm-4 control-label">
-              <span class="pull-left">
-                Kontrak Ke-
-              </span>
-              </label>
-              <div class="col-sm-5">
-                <input class="form-control" id="month_prob" type="text" name="month_prob" />
-              </div>
-            </div>
+                 <div class="form-group">
+                    <label for="no_kk" class="col-sm-6">
+                      Tanggal Expirate Kotrak/Probation
+                    </label>
 
-            <div class="form-group">
-              <label for="month_prob" class="col-sm-4 control-label">
-              <span class="pull-left">
-                Bulan Kontrak/Probition
-              </span>
-              </label>
-              <div class="col-sm-5">
-                <input class="form-control" id="month_prob" type="text" name="month_prob" />
-              </div>
-            </div>
+                    <div class="col-sm-4">
+                        <input type="date" id="exp_kontrak_br" class="form-control"  />
+                    </div>
+                     
+                </div>       
 
-            <div class="form-group">
-              <label for="month_prob" class="col-sm-4 control-label">
-              <span class="pull-left">
-                Tanggal Expired Kontrak/Probition
-              </span>
-              </label>
-              <div class="col-sm-5">
-                <input class="form-control" id="month_prob" type="text" name="month_prob" />
-              </div>
-            </div>
+                 <div class="form-group">
+                    <label for="no_kk" class="col-sm-6">
+                      Kontrak Ke
+                    </label>
 
-            <div class="form-group">
-              <label for="month_prob" class="col-sm-4 control-label">
-              <span class="pull-left">
-                Kontrak Ke-
-              </span>
-              </label>
-              <div class="col-sm-5">
-                <input class="form-control" id="month_prob" type="text" name="month_prob" />
-              </div>
-            </div>
+                    <div class="col-sm-4">
+                        <input type="input" id="kontrak_ke_br" class="form-control"  ]/>
+                    </div>
+                     
+                </div>
 
-            <div class="form-group">
-              <label for="month_prob" class="col-sm-4 control-label">
-              <span class="pull-left">
-                Bulan Kontrak/Probition
-              </span>
-              </label>
-              <div class="col-sm-5">
-                <input class="form-control" id="month_prob" type="text" name="month_prob" />
-              </div>
-            </div>
+                <div class="form-group">
+                    <label for="no_kk" class="col-sm-6">
+                      Kode Pajak
+                    </label>
 
-            <div class="form-group">
-              <label for="month_prob" class="col-sm-4 control-label">
-              <span class="pull-left">
-                Tanggal Expired Kontrak/Probition
-              </span>
-              </label>
-              <div class="col-sm-5">
-                <input class="form-control" id="month_prob" type="text" name="month_prob" />
-              </div>
-            </div>
+                    <div class="col-sm-4">
+                        <input type="input" id="kode_pajak_br" class="form-control"  />
+                    </div>
+                </div>    
 
-            <div class="form-group">
-              <label for="month_prob" class="col-sm-4 control-label">
-              <span class="pull-left">
-                Kontrak Ke-
-              </span>
-              </label>
-              <div class="col-sm-5">
-                <input class="form-control" id="month_prob" type="text" name="month_prob" />
-              </div>
-            </div>
+                <div class="form-group">
+                    <label for="no_kk" class="col-sm-6">
+                      Suku Ras
+                    </label>
 
-            <div class="form-group">
-              <label for="month_prob" class="col-sm-4 control-label">
-              <span class="pull-left">
-                Bulan Kontrak/Probition
-              </span>
-              </label>
-              <div class="col-sm-5">
-                <input class="form-control" id="month_prob" type="text" name="month_prob" />
-              </div>
-            </div>
+                    <div class="col-sm-4">
+                        <select class="form-control" id="suku_br" />
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                          </select>
+                    </div>
+                     
+                </div> 
 
-            <div class="form-group">
-              <label for="month_prob" class="col-sm-4 control-label">
-              <span class="pull-left">
-                Tanggal Expired Kontrak/Probition
-              </span>
-              </label>
-              <div class="col-sm-5">
-                <input class="form-control" id="month_prob" type="text" name="month_prob" />
-              </div>
-            </div>
+                <div class="form-group">
+                    <label for="no_kk" class="col-sm-6">
+                      Penduduk Lokal
+                    </label>
 
-            <div class="form-group">
-              <label for="month_prob" class="col-sm-4 control-label">
-              <span class="pull-left">
-                Kontrak Ke-
-              </span>
-              </label>
-              <div class="col-sm-5">
-                <input class="form-control" id="month_prob" type="text" name="month_prob" />
-              </div>
-            </div>
+                    <div class="col-sm-4">
+                        <input type="input" id="lokal_br" class="form-control"  />
+                    </div>
+                     
+                </div>  
 
-            <div class="form-group">
-              <label for="month_prob" class="col-sm-4 control-label">
-              <span class="pull-left">
-                Bulan Kontrak/Probition
-              </span>
-              </label>
-              <div class="col-sm-5">
-                <input class="form-control" id="month_prob" type="text" name="month_prob" />
-              </div>
-            </div>
+                <div class="form-group">
+                    <label for="no_kk" class="col-sm-6">
+                      Kode Bank
+                    </label>
 
-            <div class="form-group">
-              <label for="month_prob" class="col-sm-4 control-label">
-              <span class="pull-left">
-                Tanggal Expired Kontrak/Probition
-              </span>
-              </label>
-              <div class="col-sm-5">
-                <input class="form-control" id="month_prob" type="text" name="month_prob" />
-              </div>
-            </div>
+                    <div class="col-sm-4">
+                        <input type="input" id="kode_bank_br" class="form-control"  />
+                    </div>
+                     
+                </div>
 
-            <div class="form-group">
-              <label for="month_prob" class="col-sm-4 control-label">
-              <span class="pull-left">
-                Kontrak Ke-
-              </span>
-              </label>
-              <div class="col-sm-5">
-                <input class="form-control" id="month_prob" type="text" name="month_prob" />
-              </div>
-            </div>
+                <div class="form-group">
+                    <label for="no_kk" class="col-sm-6">
+                      Nama Bank
+                    </label>
 
-            <div class="form-group">
-              <label for="month_prob" class="col-sm-4 control-label">
-              <span class="pull-left">
-                Bulan Kontrak/Probition
-              </span>
-              </label>
-              <div class="col-sm-5">
-                <input class="form-control" id="month_prob" type="text" name="month_prob" />
-              </div>
-            </div>
+                    <div class="col-sm-4">
+                       <select class="form-control" id="nama_bank_br" />
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                          </select>
+                    </div>
+                     
+                </div>                        
 
-            <div class="form-group">
-              <label for="month_prob" class="col-sm-4 control-label">
-              <span class="pull-left">
-                Tanggal Expired Kontrak/Probition
-              </span>
-              </label>
-              <div class="col-sm-5">
-                <input class="form-control" id="month_prob" type="text" name="month_prob" />
-              </div>
-            </div>
+                <div class="form-group">
+                    <label for="no_kk" class="col-sm-6">
+                      No. Rekening
+                    </label>
 
-            <div class="form-group">
-              <label for="month_prob" class="col-sm-4 control-label">
-              <span class="pull-left">
-                Kontrak Ke-
-              </span>
-              </label>
-              <div class="col-sm-5">
-                <input class="form-control" id="month_prob" type="text" name="month_prob" />
-              </div>
-            </div>
+                    <div class="col-sm-4">
+                        <input type="input" id="no_rek_br" class="form-control"  />
+                    </div>
+                     
+                </div>     
 
-            <div class="form-group">
-              <label for="month_prob" class="col-sm-4 control-label">
-              <span class="pull-left">
-                Bulan Kontrak/Probition
-              </span>
-              </label>
-              <div class="col-sm-5">
-                <input class="form-control" id="month_prob" type="text" name="month_prob" />
-              </div>
-            </div>
+                <div class="form-group">
+                    <label for="no_kk" class="col-sm-6">
+                      No Bpjs Ketenagakerjaan
+                    </label>
+
+                    <div class="col-sm-4">
+                        <input type="input" id="bpjs_ket_br" class="form-control"  />
+                    </div>
+                     
+                </div>     
+
+                <div class="form-group">
+                    <label for="no_kk" class="col-sm-6">
+                      No Bpjs Kesehatan
+                    </label>
+
+                    <div class="col-sm-4">
+                        <input type="input" id="bpjs_kes_br" class="form-control"  />
+                    </div>
+                     
+                </div>     
+
+                <div class="form-group">
+                    <label for="no_kk" class="col-sm-6">
+                      Alamat Emplacement
+                    </label>
+
+                    <div class="col-sm-4">
+                        <textarea id="alamat_emp_br" class="form-control" rows="3"  /></textarea>
+                    </div>
+                     
+                </div>   
+
+                <div class="form-group">
+                    <label for="no_kk" class="col-sm-6">
+                      Nama Asisten
+                    </label>
+
+                    <div class="col-sm-4">
+                        <input type="input" name="" class="form-control" id="asisten">
+                    </div>
+                     
+                </div>   
+
+                <div class="form-group">
+                    <label for="no_kk" class="col-sm-6">
+                      Astek Type
+                    </label>
+
+                    <div class="col-sm-4">
+                        
+                          <select class="form-control" id="astek_type">
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                          </select>
+                    </div>
+                     
+                </div>
+
+                <div class="form-group">
+                    <label for="no_kk" class="col-sm-6">
+                      No Paspor
+                    </label>
+
+                    <div class="col-sm-4">
+                        <input type="input" name="" class="form-control" id="paspor">
+                    </div>
+                     
+                </div>        
+
+                <div class="form-group">
+                    <label for="no_kk" class="col-sm-6">
+                      Masa Berlaku
+                    </label>
+
+                    <div class="col-sm-4">
+                        <input type="input" name="" class="form-control" id="paspor_valid">
+                    </div>
+                     
+                </div>   
+
+
+          
 <!--                           belum edit                                                                           -->
         </div>
         <div class="col-md-2">
         </div>
       </div>
+        
+        <div class="row">
+            <div class="col-md-12">
+                <span class="label label-default">Histori Transaksi</span>
+            <hr>
+            <table class="table">
+            <thead>
+              <tr>
+                <th>
+                  #
+                </th>
+                <th>
+                  Product
+                </th>
+                <th>
+                  Payment Taken
+                </th>
+                <th>
+                  Status
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>
+                  1
+                </td>
+                <td>
+                  TB - Monthly
+                </td>
+                <td>
+                  01/04/2012
+                </td>
+                <td>
+                  Default
+                </td>
+              </tr>
+              <tr class="active">
+                <td>
+                  1
+                </td>
+                <td>
+                  TB - Monthly
+                </td>
+                <td>
+                  01/04/2012
+                </td>
+                <td>
+                  Approved
+                </td>
+              </tr>
+              <tr class="success">
+                <td>
+                  2
+                </td>
+                <td>
+                  TB - Monthly
+                </td>
+                <td>
+                  02/04/2012
+                </td>
+                <td>
+                  Declined
+                </td>
+              </tr>
+              <tr class="warning">
+                <td>
+                  3
+                </td>
+                <td>
+                  TB - Monthly
+                </td>
+                <td>
+                  03/04/2012
+                </td>
+                <td>
+                  Pending
+                </td>
+              </tr>
+              <tr class="danger">
+                <td>
+                  4
+                </td>
+                <td>
+                  TB - Monthly
+                </td>
+                <td>
+                  04/04/2012
+                </td>
+                <td>
+                  Call in to confirm
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+
+           <div class="form-group">
+                    <label for="no_kk" class="col-sm-6">
+                      Tambah Catatan
+                    </label>
+
+                    <div class="col-sm-10">
+                        <textarea id="alamat_emp_br" class="form-control" rows="3"  /></textarea>
+                    </div>
+                     
+           </div>   
+
+            </div>
+
+        </div>
+
     </div>
   </div>
 </div>
@@ -1088,8 +1230,28 @@
       </div>
       <!-- /.box-body -->
       <div class="box-footer">
-      <button class="btn btn-default" type="submit">Batal</button>
-      <button class="btn btn-success pull-right" type="button" id="ajukan">Ajukan</button>
+          <div class="col-md-12">
+              
+                <button class="btn btn-danger" type="button" id="tolak">Tolak</button>
+              
+
+             
+                  <button class="btn btn-success" type="button" id="ajukan">Ajukan</button>
+              
+              
+              
+                  <button class="btn btn-primary " type="button" id="kembali">Kembali</button>
+              
+
+              
+                  <button class="btn btn-info " type="button" id="tanya">tanya</button>
+              
+
+              
+                  <button class="btn btn-success " type="button" id="kirim">kirim</button>
+              
+            
+          </div>
       </div><!-- /.box-footer -->
     </div>
   </div>
