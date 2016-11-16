@@ -73,8 +73,8 @@ Route::post('/fptk', function(){
 
 //FORM Recruitment karyawan baru  yoga : ion 
 //Route::get('/recruitment', 'RecruitmentController@index');
-Route::get('/recruitment/create', 'RecruitmentController@create');
-Route::get('/recruitment/edit', 'RecruitmentController@edit');
+Route::get('recruitment/create', 'RecruitmentController@create');
+Route::get('recruitment/edit', 'RecruitmentController@edit');
 //////////////////////////////////
 
 
