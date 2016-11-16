@@ -12,7 +12,7 @@
   <div class="col-sm-12">
     <h1>FORMULIR PERMINTAAN TENAGA KERJA {{ Session::get('area_code') }}
     </h1>
-    
+      
   </div>
 </div>
 <div class="row">

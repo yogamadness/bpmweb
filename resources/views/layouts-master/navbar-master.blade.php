@@ -8,7 +8,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand hidden-xs" href="index.html"><img src="assets/img/pages/logo.png" alt="Brand"> TRIPUTRA AGRO PERSADA</a>
+                <a class="navbar-brand hidden-xs" href="index.html"><img src="{{ asset('assets/img/pages/logo.png') }}" alt="Brand"> TRIPUTRA AGRO PERSADA</a>
                 <a class="navbar-brand visible-xs" href="index.html">TAP</a>
             </div>
             <!-- Top Menu Items -->

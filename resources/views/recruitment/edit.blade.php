@@ -3,14 +3,14 @@
 @section('title', 'Perubahan Karyawan')
 
 @section('cascanding')
-<link rel="stylesheet" href="dist/plugins/datetimepicker/css/bootstrap-datetimepicker.min.css">
-<link rel="stylesheet" type="text/css" href="dist/Parsley.js-2.6.0/src/parsley.css">
+<link rel="stylesheet" href="{{ URL::asset('dist/plugins/datetimepicker/css/bootstrap-datetimepicker.min.css' )}}">
+<link rel="stylesheet" type="text/css" href="{{ URL::asset('dist/Parsley.js-2.6.0/src/parsley.css') }}">
 @endsection()
 
 @section('content')
 <div class="row">
   <div class="col-sm-12">
-    <h1>FORMULIR PERUBAHAN TENAGA KERJA {{ Session::get('area_code') }}
+    <h1>FORMULIR PERUBAHAN TENAGA KERJA
     </h1>
     
   </div>
@@ -1520,12 +1520,12 @@
 
 @push('js')
 <!-- bootstrap datepicker -->
-<script src="dist/plugins/datetimepicker/js/moment.min.js"></script>
-<script src="dist/plugins/datetimepicker/js/bootstrap-datetimepicker.min.js"></script>
-<script src="dist/plugins/Typeahead-master/bootstrap3-typeahead.js"></script>
-<script src="dist/plugins/select2/select2.full.js"></script>
-<script type="text/javascript" src="dist/plugins/parsley/js/parsley-2.1.2.min.js"></script>
-<script src="dist/plugins/parsley/js/id.js"></script>
+<script src="{{ URL::asset('dist/plugins/datetimepicker/js/moment.min.js') }}"></script>
+<script src="{{ URL::asset('dist/plugins/datetimepicker/js/bootstrap-datetimepicker.min.js') }}"></script>
+<script src="{{ URL::asset('dist/plugins/Typeahead-master/bootstrap3-typeahead.js') }}"></script>
+<script src="{{ URL::asset('dist/plugins/select2/select2.full.js') }}"></script>
+<script type="text/javascript" src="{{ URL::asset('dist/plugins/parsley/js/parsley-2.1.2.min.js') }}"></script>
+<script src="{{ URL::asset('dist/plugins/parsley/js/id.js') }}"></script>
 
 <script type="text/javascript">
   $('#ajukan').click(function(){
