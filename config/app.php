@@ -167,8 +167,8 @@ return [
         /*
          * Package Service Providers...
          */
-        //Yajra\Datatables\DatatablesServiceProvider::class,
-        //Yajra\Oci8\Oci8ServiceProvider::class,
+        Yajra\Datatables\DatatablesServiceProvider::class,
+        Yajra\Oci8\Oci8ServiceProvider::class,
         Collective\Html\HtmlServiceProvider::class,
         Barryvdh\Cors\ServiceProvider::class,
         // Kozz\Laravel\Providers\Guzzle::class,
