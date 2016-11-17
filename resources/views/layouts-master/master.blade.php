@@ -13,7 +13,7 @@
     <title>TAP - @yield('title')</title>
 
     <link href="{{ asset('/assets/css/bootstrap.min.css') }}" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="dist/plugins/select2/select2.css">
+    <link rel="{{ asset('stylesheet" type="text/css" href="dist/plugins/select2/select2.css') }} ">
     <link href="{{ asset('/assets/css/sb-admin.css') }}" rel="stylesheet">
     <link href="{{ asset('/assets/dist/css/AdminLTE.min.css') }}" rel="stylesheet">
     <link href="{{ asset('/assets/font-awesome-4.1.0/css/font-awesome.min.css') }}" rel="stylesheet" type="text/css">
